@@ -3,8 +3,6 @@ import React, { Component } from 'react';
 export default class Entry extends Component {
   constructor(props){
     super(props);
-
-    console.log(props);
   }
 
   render(){
@@ -12,7 +10,9 @@ export default class Entry extends Component {
       <div className='individual-entry'>
         {this.props.data.entry}
         <br />
-        {this.props.data.categories}
+        <div className='category-text'>
+          {this.props.data.categories}
+        </div>
       </div>
     )
   }

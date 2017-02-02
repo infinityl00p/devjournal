@@ -7,7 +7,7 @@ export default class JournalPage extends Component {
     super(props);
   }
 
-
+  
   render(){
     return(
       <div className='entry-box-wrapper'>

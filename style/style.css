@@ -4,7 +4,7 @@
 }
 
 
-/*input area */
+/*input area ------------------------------*/
 form {
   padding-bottom: 30px;
   border-bottom: 2px dotted black;
@@ -30,10 +30,15 @@ form {
   margin-left: 60%;
 }
 
+/*Entry display -----------------------------*/
 .individual-entry {
   text-align: center;
   margin-top: 15px;
   margin-bottom: 30px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.category-text {
+  color: blue;
 }

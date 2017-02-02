@@ -11,6 +11,7 @@ export default class PreviousEntries extends Component {
   appendEntries(){
     var sortedEntries = [];
 
+    //this should push each entry from newest to oldest based on array size
     for (var i = this.props.entries.length - 1; i >= 0; i--){
       sortedEntries.push(
         <Entry key={i} data={this.props.entries[i]} />

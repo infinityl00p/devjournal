@@ -21,6 +21,7 @@ export default class EntryPage extends Component{
 
   }
 
+//add form submit action functions, good place to insert axios calls
   render(){
     return(
       <form onSubmit={this.handleSubmit}>
