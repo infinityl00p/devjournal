@@ -11,11 +11,18 @@ export default class PreviousEntries extends Component {
   appendEntries(){
     var sortedEntries = [];
 
-    //this should push each entry from newest to oldest based on array size
-    for (var i = this.props.entries.length - 1; i >= 0; i--){
+    if (this.props.entries.length == 0){
       sortedEntries.push(
-        <Entry key={i} data={this.props.entries[i]} />
-      );
+        <h1 className='empty-array'>Nothing to show!</h1>
+      )
+    }
+    //this should push each entry from newest to oldest based on array size
+    else {
+      for (var i = this.props.entries.length - 1; i >= 0; i--){
+        sortedEntries.push(
+          <Entry key={i} data={this.props.entries[i]} />
+        );
+      }
     }
     return sortedEntries;
   }
