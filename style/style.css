@@ -3,9 +3,8 @@
   margin-right: auto;
 }
 
-
 /*input area ------------------------------*/
-form {
+#entry-form {
   padding-bottom: 30px;
   border-bottom: 2px dotted black;
 }
@@ -15,7 +14,7 @@ form {
   font-weight: bold;
 }
 
-#input-text {
+#entry {
   width: 100%;
 }
 
@@ -27,7 +26,7 @@ form {
 
 .btn {
   position: relative;
-  margin-left: 60%;
+  margin-left: 59.5%;
 }
 
 /*Entry display -----------------------------*/
@@ -41,4 +40,9 @@ form {
 
 .category-text {
   color: blue;
+  font-weight: bold;
+}
+
+.empty-array {
+  text-align: center;
 }
