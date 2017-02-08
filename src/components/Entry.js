@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
 
 export default class Entry extends Component {
-  constructor(props){
-    super(props);
-  }
-
   render(){
     return(
       <div className='individual-entry'>
         {this.props.data.entry}
         <br />
         <div className='category-text'>
-          {this.props.data.categories}
+          { // TODO: These should map into a Label componet
+            this.props.data.categories.join(' ')
+          }
         </div>
       </div>
     )
