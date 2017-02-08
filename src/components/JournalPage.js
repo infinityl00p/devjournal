@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import EntryBox from './EntryBox';
-import PreviousEntries from './PreviousEntries';
+import EntryList from './EntryList';
+import Sidebar from './Sidebar';
 
 export default class JournalPage extends Component {
   constructor(props){
@@ -24,14 +25,30 @@ export default class JournalPage extends Component {
 
   render(){
     return(
-      <div className='journal-page-wrapper'>
-        <div className='sidebar-wrapper'>
+      <div id='wrapper'>
+        <div id='sidebar-wrapper'>
+          <ul className='sidebar-nav'>
+            <li>
+              <div className='entry-box-wrapper'>
+                <EntryBox renderEntries={this.renderEntries}/>
+              </div>
+            </li>
+            <div className="category-wrapper">
+              <Sidebar entries={this.state.entries}/>
+            </div>
+          </ul>
         </div>
-        <div className='entry-box-wrapper'>
-          <EntryBox renderEntries={this.renderEntries}/>
-        </div>
-        <div className='previous-entries-wrapper'>
-          <PreviousEntries entries={this.state.entries}/>
+        {/* Page Content */}
+        <div className='page-content-wrapper'>
+          <div className="container-fluid">
+            <div className="row">
+              <div className="col-lg-12">
+                <div className='entry-list-wrapper'>
+                  <EntryList entries={this.state.entries}/>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     )

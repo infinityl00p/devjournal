@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Entry from './Entry';
 
-export default class PreviousEntries extends Component {
+export default class EntryList extends Component {
   constructor(props){
     super(props);
 
