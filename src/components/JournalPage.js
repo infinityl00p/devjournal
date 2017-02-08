@@ -20,7 +20,6 @@ export default class JournalPage extends Component {
     this.setState({
       entries: updatedEntries
     })
-    console.log(this.state);
   }
 
   render(){
