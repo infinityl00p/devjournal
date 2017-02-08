@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
 export default class EntryPage extends Component{
-  constructor(props){
-    super(props);
+  constructor(){
+    super();
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleEntryChange = this.handleEntryChange.bind(this);
@@ -26,7 +26,6 @@ export default class EntryPage extends Component{
     }
 
     this.props.renderEntries(newEntry);
-
   }
 
   todaysDate(){
@@ -37,31 +36,13 @@ export default class EntryPage extends Component{
     var currentDate = year + "-" + month + "-" + day;
     return currentDate;
   }
-  splitCategories(categoryString){
-    var categoryArray = [];
-    var tempString = '';
-    var i = 0;
-    var wordCount = 0;
 
-    while (i < categoryString.length){
-      if(categoryString[i] === '#'){
-        while(i !== categoryString.length && categoryString[i] !== ' '){
-          tempString += categoryString[i];
-          i++;
-        }
-        categoryArray.push(tempString);
-        tempString = '';
-        wordCount++;
-      }
-      else{
-          i++;
-      }
-    }
+  splitCategories(categoryString){
+    var categoryArray = categoryString.match(/#\S+/g);
     return categoryArray;
   }
 
   handleCategoryChange(e){
-
   }
 
   handleEntryChange(e){

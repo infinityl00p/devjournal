@@ -5,7 +5,6 @@ html, body {
 }
 /*Sidebar */
 /* Toggle Styles */
-
 #wrapper {
    padding-left: 0;
    -webkit-transition: all 0.5s ease;
@@ -156,8 +155,7 @@ html, body {
   position: relative;
   margin-left: 30%;
 }
-
-/*Entry display*/
+/* Entry display */
 .individual-entry {
   text-align: center;
   margin-top: 35px;
