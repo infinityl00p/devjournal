@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Entry from './Entry';
 
+// TODO: this should be called EntryList
 export default class PreviousEntries extends Component {
   constructor(props){
     super(props);

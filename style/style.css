@@ -3,7 +3,7 @@
   margin-right: auto;
 }
 
-/*input area ------------------------------*/
+/* input area */
 #entry-form {
   padding-bottom: 30px;
   border-bottom: 2px dotted black;
@@ -29,7 +29,7 @@
   margin-left: 59.5%;
 }
 
-/*Entry display -----------------------------*/
+/* Entry display */
 .individual-entry {
   text-align: center;
   margin-top: 15px;
