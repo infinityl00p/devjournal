@@ -4,13 +4,14 @@ import EntryList from './EntryList';
 import Sidebar from './Sidebar';
 
 export default class JournalPage extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
 
     this.renderEntries = this.renderEntries.bind(this);
 
     this.state = {
-      entries: this.props.Entries
+      entries: this.props.data.entries,
+      tags: this.props.data.tags
     }
   }
 
@@ -19,13 +20,17 @@ export default class JournalPage extends Component {
     updatedEntries.push(entryObject);
     this.setState({
       entries: updatedEntries
-    })
+    });
+    // call backend
   }
 
   render(){
     return(
-      <div id='wrapper'>
-        <div id='sidebar-wrapper'>
+      <div id='journal-page-container'>
+        { /*
+          TODO: This needs to be a container component
+         */ }
+        <div id='sidebar-container'>
           <ul className='sidebar-nav'>
             <li>
               <div className='entry-box-wrapper'>
@@ -37,19 +42,22 @@ export default class JournalPage extends Component {
             </div>
           </ul>
         </div>
-        {/* Page Content */}
+        { /*
+          TODO: This needs to be cleaned up, some of it is superfluous
+         */ }
         <div className='page-content-wrapper'>
           <div className="container-fluid">
             <div className="row">
               <div className="col-lg-12">
                 <div className='entry-list-wrapper'>
-                  <EntryList entries={this.state.entries}/>
+                  <EntryList entries={this.state.entries} tags={this.state.tags} />
                 </div>
               </div>
             </div>
           </div>
         </div>
+
       </div>
-    )
+    );
   }
 }

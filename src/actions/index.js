@@ -7,9 +7,9 @@ export const GET_ENTRIES = 'GET_ENTRIES';
 export const DELETE_ENTRY = 'DELETE_ENTRY';
 export const UPDATE_ENTRY = 'UPDATE_ENTRY';
 
-export const GET_LABELS = 'GET_LABELS';
-export const CREATE_LABEL = 'CREATE_LABEL';
-export const DELETE_LABEL = 'DELETE_LABEL';
+export const GET_TAGS = 'GET_TAGS';
+export const CREATE_TAG = 'CREATE_TAG';
+export const DELETE_TAG = 'DELETE_TAG';
 
 // TODO: Add user_id filter when we get to that stage
 export function createEntry(entry) {
@@ -58,36 +58,36 @@ export function deleteEntry(entryId) {
     };
 }
 
-export function createLabel(label) {
+export function createTag(tag) {
     const request = axios.post(
-        ROOT_URL + '/labels',
-        label
+        ROOT_URL + '/tags',
+        tag
     );
 
     return {
-        type: CREATE_LABEL,
+        type: CREATE_TAG,
         payload: request
     };
 }
 
-export function getLabels() {
+export function getTags() {
     const request = axios.get(
-        ROOT_URL + '/labels'
+        ROOT_URL + '/tags'
     );
 
     return {
-        type: GET_LABELS,
+        type: GET_TAGS,
         payload: request
     };
 }
 
-export function deleteLabel(labelId) {
+export function deleteTag(tagId) {
     const request = axios.post(
-        ROOT_URL + '/labels/' + labelId
+        ROOT_URL + '/tags/' + tagId
     );
 
     return {
-        type: DELETE_LABEL,
+        type: DELETE_TAG,
         payload: request
     };
 }
