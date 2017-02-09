@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class EntryPage extends Component {
+export default class EntryForm extends Component {
   constructor(){
     super();
 
@@ -14,7 +14,6 @@ export default class EntryPage extends Component {
   handleSubmit(e) {
     e.preventDefault();
     var tagString = e.target.tags.value;
-    //prepare tags
     var tags = this.splitTags(tagString);
     var date = this.todaysDate();
     var entry = e.target.entry.value;

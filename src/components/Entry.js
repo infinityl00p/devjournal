@@ -9,7 +9,7 @@ export default class Entry extends Component {
           {this.props.entry.entryText}
         </div>
         <div className='tag-container'>
-          { // TODO: should map tag master array instead
+          {
             this.props.tags.map((tag) =>
               <Tag key={tag.id} data={tag} />
             )

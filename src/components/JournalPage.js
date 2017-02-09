@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import EntryBox from './EntryBox';
+import EntryForm from './EntryForm';
 import EntryList from './EntryList';
 import Sidebar from './Sidebar';
 
@@ -56,7 +56,6 @@ export default class JournalPage extends Component {
             </div>
           </div>
         </div>
-
       </div>
     );
   }

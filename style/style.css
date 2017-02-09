@@ -5,7 +5,7 @@ html, body {
 }
 /*Sidebar */
 /* Toggle Styles */
-#wrapper {
+#journal-page-container {
    padding-left: 0;
    -webkit-transition: all 0.5s ease;
    -moz-transition: all 0.5s ease;
@@ -13,7 +13,12 @@ html, body {
    transition: all 0.5s ease;
 }
 
-#wrapper.toggled {
+.entry-form-container {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#journal-page-container.toggled {
    padding-left: 250px;
 }
 
@@ -32,7 +37,7 @@ html, body {
    transition: all 0.5s ease;
 }
 
-#wrapper.toggled #sidebar-container {
+#journal-page-container.toggled #sidebar-container {
    width: 250px;
 }
 
@@ -42,7 +47,7 @@ html, body {
    padding: 15px;
 }
 
-#wrapper.toggled #page-content-container {
+#journal-page-container.toggled #page-content-container {
    position: absolute;
    margin-right: -250px;
 }
@@ -96,28 +101,28 @@ html, body {
 }
 
 @media(min-width:768px) {
-   #wrapper {
+   #journal-page-container {
        padding-left: 250px;
    }
 
-   #wrapper.toggled {
+   #journal-page-container.toggled {
        padding-left: 0;
    }
 
-   #sidebar-wrapper {
+   #sidebar-container {
        width: 400px;
    }
 
-   #wrapper.toggled #sidebar-wrapper {
+   #journal-page-container.toggled #sidebar-container {
        width: 0;
    }
 
-   #page-content-wrapper {
+   #page-content-container {
        padding: 20px;
        position: relative;
    }
 
-   #wrapper.toggled #page-content-wrapper {
+   #journal-page-container.toggled #page-content-container {
        position: relative;
        margin-right: 0;
    }
