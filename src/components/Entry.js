@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
+import Tag from './Tag';
 
 export default class Entry extends Component {
   render(){
     return(
-      <div className='individual-entry'>
-        {this.props.data.entry}
-        <br />
-        <div className='category-text'>
-          { // TODO: These should map into a Label componet
-            this.props.data.categories.join(' ')
+      <div className='entry-container'>
+        <div className='entry-text'>
+          {this.props.entry.entryText}
+        </div>
+        <div className='tag-container'>
+          {
+            this.props.tags.map((tag) =>
+              <Tag key={tag.id} data={tag} />
+            )
           }
         </div>
       </div>
-    )
+    );
   }
 
 }

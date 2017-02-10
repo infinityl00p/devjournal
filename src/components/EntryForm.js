@@ -1,34 +1,33 @@
 import React, { Component } from 'react';
 
-export default class EntryPage extends Component{
+export default class EntryForm extends Component {
   constructor(){
     super();
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleEntryChange = this.handleEntryChange.bind(this);
-    this.handleCategoryChange = this.handleCategoryChange.bind(this);
-    this.splitCategories = this.splitCategories.bind(this);
+    this.handleTagChange = this.handleTagChange.bind(this);
+    this.splitTags = this.splitTags.bind(this);
     this.todaysDate = this.todaysDate.bind(this);
   }
 
-  handleSubmit(e){
+  handleSubmit(e) {
     e.preventDefault();
-    var categoryString = e.target.categories.value;
-    //prepare categories
-    var categories = this.splitCategories(categoryString);
+    var tagString = e.target.tags.value;
+    var tags = this.splitTags(tagString);
     var date = this.todaysDate();
     var entry = e.target.entry.value;
 
     var newEntry = {
       entry,
-      categories,
+      tags,
       date
     }
 
     this.props.renderEntries(newEntry);
   }
 
-  todaysDate(){
+  todaysDate() {
     var date = new Date();
     var day = date.getDate();
     var month = date.getMonth();
@@ -37,24 +36,21 @@ export default class EntryPage extends Component{
     return currentDate;
   }
 
-  splitCategories(categoryString){
-    var categoryArray = categoryString.match(/#\S+/g);
-    return categoryArray;
+  splitTags(tagString) {
+    var tagArray = tagString.match(/#\S+/g);
+    return tagArray;
   }
 
-  handleCategoryChange(e){
-  }
+  handleTagChange(e) {}
 
-  handleEntryChange(e){
-  }
+  handleEntryChange(e) {}
 
-//add form submit action functions, good place to insert axios calls
   render(){
     return(
       <form id='entry-form' onSubmit={this.handleSubmit}>
-        <label className="entry-title"> Journal Entry: </label>
+        <tag className="entry-title"> Journal Entry: </tag>
         <textarea rows='6' onChange={this.handleEntryChange} id='entry' placeholder='printf("hello world");'></textarea>
-        <input type='text' onChange={this.handleCategoryChange} id='categories' placeholder='#enter #categories #separated #byspace'/>
+        <input type='text' onChange={this.handleTagChange} id='tags' placeholder='#enter #tags #separated #byspace'/>
         <button type='submit' className='btn btn-default' >Save</button>
       </form>
     )

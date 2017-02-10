@@ -1,7 +1,7 @@
 {
   "name": "devjournal",
   "version": "1.0.0",
-  "description": "Developer journal",
+  "description": "Developer Journal",
   "main": "index.js",
   "repository": "git@gitlab.com:sim.brar1188/devjournal.git",
   "scripts": {
