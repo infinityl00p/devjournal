@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import EntryForm from './EntryForm';
 import EntryList from './EntryList';
-import Sidebar from './Sidebar';
+// import Sidebar from './Sidebar';
 
 export default class JournalPage extends Component {
   constructor(props) {
@@ -33,29 +33,30 @@ export default class JournalPage extends Component {
         <div id='sidebar-container'>
           <ul className='sidebar-nav'>
             <li>
-              <div className='entry-box-wrapper'>
-                <EntryBox renderEntries={this.renderEntries}/>
+              <div className='entry-form-container'>
+                <EntryForm renderEntries={this.renderEntries}/>
               </div>
             </li>
-            <div className="category-wrapper">
-              <Sidebar entries={this.state.entries}/>
+            <div className="category-container">
+              { /* <Sidebar entries={this.state.entries}/> */ }
             </div>
           </ul>
         </div>
         { /*
           TODO: This needs to be cleaned up, some of it is superfluous
          */ }
-        <div className='page-content-wrapper'>
+        <div className='page-content-container'>
           <div className="container-fluid">
             <div className="row">
               <div className="col-lg-12">
-                <div className='entry-list-wrapper'>
+                <div className='entry-list-container'>
                   <EntryList entries={this.state.entries} tags={this.state.tags} />
                 </div>
               </div>
             </div>
           </div>
         </div>
+
       </div>
     );
   }

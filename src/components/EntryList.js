@@ -1,36 +1,29 @@
 import React, { Component } from 'react';
 import Entry from './Entry';
+import _ from 'lodash';
 
 export default class EntryList extends Component {
-  constructor(props){
-    super(props);
+  constructor() {
+    super();
 
-    this.appendEntries = this.appendEntries.bind(this);
+    this.renderEntries = this.renderEntries.bind(this);
   }
 
-  appendEntries(){
-    var sortedEntries = [];
+  renderEntries() {
+    var entries = this.props.entries.map((entry) => {
+      var tags = this.props.tags.filter(function (tag) {
+        return _.contains(entry.tags, tag.id)
+      });
+      return <Entry key={entry.id} entry={entry} tags={tags} />
+    });
 
-    if (this.props.entries.length == 0){
-      sortedEntries.push(
-        <h1 className='empty-array'>Nothing to show!</h1>
-      )
-    }
-    //this should push each entry from newest to oldest based on array size
-    else {
-      for (var i = this.props.entries.length - 1; i >= 0; i--){
-        sortedEntries.push(
-          <Entry key={i} data={this.props.entries[i]} />
-        );
-      }
-    }
-    return sortedEntries;
+    return entries;
   }
 
-  render(){
+  render() {
     return(
       <div className="previous-entries">
-        {this.appendEntries()}
+        {this.renderEntries()}
        </div>
     )
   }

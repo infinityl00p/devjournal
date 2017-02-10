@@ -11,10 +11,9 @@ export default class Sidebar extends Component {
     return entries.map((entry) => {
       var categories = entry.categories;
       return categories.map((item) => {
-        {console.log(item)};
         return <li className='sidebar-list'>{item}</li>
       })
-    })
+    });
   }
 
   render(){
@@ -22,6 +21,6 @@ export default class Sidebar extends Component {
       <div className='sidebar-list-wrapper'>
         {this.renderSidebar(this.props.entries)}
       </div>
-    )
+    );
   }
 }
