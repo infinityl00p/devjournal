@@ -1,13 +1,20 @@
 import React, { Component } from 'react';
 import EntryForm from './EntryForm';
 import EntryList from './EntryList';
+import * as actionCreators from '../actions/index';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
 // import Sidebar from './Sidebar';
 
-export default class JournalPage extends Component {
+class JournalPage extends Component {
   constructor(props) {
     super(props);
 
-    this.renderEntries = this.renderEntries.bind(this);
+    this.props.actions.getEntries();
+    this.props.actions.getTags();
+
+    this.createEntry = this.createEntry.bind(this);
 
     this.state = {
       entries: this.props.data.entries,
@@ -15,13 +22,13 @@ export default class JournalPage extends Component {
     }
   }
 
-  renderEntries(entryObject){
+  createEntry(entryObject){
+
     var updatedEntries = this.state.entries.slice();
     updatedEntries.push(entryObject);
     this.setState({
       entries: updatedEntries
     });
-    // call backend
   }
 
   render(){
@@ -34,7 +41,7 @@ export default class JournalPage extends Component {
           <ul className='sidebar-nav'>
             <li>
               <div className='entry-form-container'>
-                <EntryForm renderEntries={this.renderEntries}/>
+                <EntryForm onSubmit={this.createEntry}/>
               </div>
             </li>
             <div className="category-container">
@@ -61,3 +68,16 @@ export default class JournalPage extends Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    entries: state.entries,
+    tags: state.tags
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return { actions: bindActionCreators(actionCreators, dispatch) };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(JournalPage)

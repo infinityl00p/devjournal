@@ -24,7 +24,7 @@ export default class EntryForm extends Component {
       date
     }
 
-    this.props.renderEntries(newEntry);
+    this.props.onSubmit(newEntry);
   }
 
   todaysDate() {

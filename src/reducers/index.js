@@ -1,7 +1,10 @@
 import { combineReducers } from 'redux';
+import entries from './reducer_entries';
+import tags from './reducer_tags';
 
 const rootReducer = combineReducers({
-  state: (state = {}) => state
+  entries,
+  tags
 });
 
 export default rootReducer;
