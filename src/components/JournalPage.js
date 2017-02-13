@@ -4,6 +4,7 @@ import EntryList from './EntryList';
 import * as actionCreators from '../actions/index';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import _ from 'lodash';
 
 // import Sidebar from './Sidebar';
 
@@ -14,7 +15,8 @@ class JournalPage extends Component {
     this.props.actions.getEntries();
     this.props.actions.getTags();
 
-    this.createEntry = this.createEntry.bind(this);
+    this.createEntryAndTags = this.createEntryAndTags.bind(this);
+    this.createNewTags = this.createNewTags.bind(this);
 
     this.state = {
       entries: this.props.data.entries,
@@ -22,13 +24,43 @@ class JournalPage extends Component {
     }
   }
 
-  createEntry(entryObject){
 
-    var updatedEntries = this.state.entries.slice();
-    updatedEntries.push(entryObject);
-    this.setState({
-      entries: updatedEntries
+  createEntryAndTags(newEntryAndTags){
+    var tagIds;
+    var existingTagsMap = _.reduce(this.props.data.tags, function (existingTagsMap, tag) {
+      existingTagsMap[tag.tagText] = tag.id;
+      return existingTagsMap;
+    }, {});
+
+    if (newEntryAndTags.tags !== null && newEntryAndTags.tags.length > 0) {
+      tagIds = this.createNewTags(newEntryAndTags.tags, existingTagsMap);
+    } else {
+      tagIds = [];
+    }
+
+    this.props.actions.createEntry({
+      entryText: newEntryAndTags.entryText,
+      tags: tagIds
     });
+  }
+
+  createNewTags(tags, existingTagsMap) {
+    var ac = this.props.actions;
+
+    var tagIds = tags.map(function(tag) {
+      if (tag in existingTagsMap) {
+        return existingTagsMap[tag];
+      } else {
+        console.log("creating new tag:", tag);
+        ac.createTag({tagText: tag}).then((newTag) => {
+          // TODO: this is done sync so this id is undefined at the time of this statement. need to figure out better way to add.
+          // could create an endpoint that creates tags AND entry together and let the backend handle this.
+          return newTag.payload.data.id;
+        });
+      }
+    });
+
+    return tagIds;
   }
 
   render(){
@@ -41,7 +73,7 @@ class JournalPage extends Component {
           <ul className='sidebar-nav'>
             <li>
               <div className='entry-form-container'>
-                <EntryForm onSubmit={this.createEntry}/>
+                <EntryForm onSubmit={this.createEntryAndTags}/>
               </div>
             </li>
             <div className="category-container">

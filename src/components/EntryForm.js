@@ -18,13 +18,13 @@ export default class EntryForm extends Component {
     var date = this.todaysDate();
     var entry = e.target.entry.value;
 
-    var newEntry = {
+    var newEntryAndTags = {
       entry,
       tags,
       date
     }
 
-    this.props.onSubmit(newEntry);
+    this.props.onSubmit(newEntryAndTags);
   }
 
   todaysDate() {
