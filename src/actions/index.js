@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const ROOT_URL = 'http://shielded-basin-84367.herokuapp.com';
 
-export const CREATE_ENTRY = 'CREATE_ENTRY';
+export const CREATE_ENTRY_AND_TAGS = 'CREATE_ENTRY_AND_TAGS';
 export const GET_ENTRIES = 'GET_ENTRIES';
 export const DELETE_ENTRY = 'DELETE_ENTRY';
 export const UPDATE_ENTRY = 'UPDATE_ENTRY';
@@ -19,7 +19,7 @@ export function createEntry(entry) {
     );
 
     return {
-        type: CREATE_ENTRY,
+        type: CREATE_ENTRY_AND_TAGS,
         payload: request
     };
 }

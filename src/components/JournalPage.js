@@ -26,41 +26,39 @@ class JournalPage extends Component {
 
 
   createEntryAndTags(newEntryAndTags){
-    var tagIds;
+    var newAndExistingTags;
+
     var existingTagsMap = _.reduce(this.props.data.tags, function (existingTagsMap, tag) {
       existingTagsMap[tag.tagText] = tag.id;
       return existingTagsMap;
     }, {});
 
     if (newEntryAndTags.tags !== null && newEntryAndTags.tags.length > 0) {
-      tagIds = this.createNewTags(newEntryAndTags.tags, existingTagsMap);
+      newAndExistingTags = this.getNewAndExistingTags(newEntryAndTags.tags, existingTagsMap);
     } else {
-      tagIds = [];
+      newAndExistingTags = {};
     }
 
     this.props.actions.createEntry({
       entryText: newEntryAndTags.entryText,
-      tags: tagIds
+      newTags: newAndExistingTags.newTags,
+      existingTagIds: newAndExistingTags.existingTagIds
     });
   }
 
-  createNewTags(tags, existingTagsMap) {
-    var ac = this.props.actions;
+  getNewAndExistingTags(tags, existingTagsMap) {
+    var newTags = [];
+    var existingTagIds = [];
 
-    var tagIds = tags.map(function(tag) {
+    tags.forEach(function(tag) {
       if (tag in existingTagsMap) {
-        return existingTagsMap[tag];
+        append(existingTagIds, newTagsexistingTagsMap[tag]);
       } else {
-        console.log("creating new tag:", tag);
-        ac.createTag({tagText: tag}).then((newTag) => {
-          // TODO: this is done sync so this id is undefined at the time of this statement. need to figure out better way to add.
-          // could create an endpoint that creates tags AND entry together and let the backend handle this.
-          return newTag.payload.data.id;
-        });
+        append(newTags, tag);
       }
     });
 
-    return tagIds;
+    return { newTags: newTags, existingTags: existingTags };
   }
 
   render(){
