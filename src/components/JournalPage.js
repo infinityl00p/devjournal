@@ -16,7 +16,7 @@ class JournalPage extends Component {
     this.props.actions.getTags();
 
     this.createEntryAndTags = this.createEntryAndTags.bind(this);
-    this.createNewTags = this.createNewTags.bind(this);
+    this.getNewAndExistingTags = this.getNewAndExistingTags.bind(this);
 
     this.state = {
       entries: this.props.data.entries,
@@ -40,7 +40,7 @@ class JournalPage extends Component {
     }
 
     this.props.actions.createEntry({
-      entryText: newEntryAndTags.entryText,
+      entryText: newEntryAndTags.entry,
       newTags: newAndExistingTags.newTags,
       existingTagIds: newAndExistingTags.existingTagIds
     });
@@ -52,16 +52,16 @@ class JournalPage extends Component {
 
     tags.forEach(function(tag) {
       if (tag in existingTagsMap) {
-        append(existingTagIds, newTagsexistingTagsMap[tag]);
+        existingTagIds.push(existingTagsMap[tag]);
       } else {
-        append(newTags, tag);
+        newTags.push(tag);
       }
     });
 
-    return { newTags: newTags, existingTags: existingTags };
+    return { newTags: newTags, existingTagIds: existingTagIds };
   }
 
-  render(){
+  render() {
     return(
       <div id='journal-page-container'>
         { /*

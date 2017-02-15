@@ -13,6 +13,7 @@ export const DELETE_TAG = 'DELETE_TAG';
 
 // TODO: ADD ERROR HANDLING
 export function createEntry(entry) {
+    console.log("createEntry", entry);
     const request = axios.post(
         ROOT_URL + '/entries',
         entry
