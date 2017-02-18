@@ -12,16 +12,10 @@ class JournalPage extends Component {
   constructor(props) {
     super(props);
 
-    this.props.actions.getEntries();
-    this.props.actions.getTags();
-
     this.createEntryAndTags = this.createEntryAndTags.bind(this);
     this.getNewAndExistingTags = this.getNewAndExistingTags.bind(this);
 
-    this.state = {
-      entries: this.props.data.entries,
-      tags: this.props.data.tags
-    }
+    this.props.actions.getEntriesAndTags();
   }
 
 
@@ -39,7 +33,7 @@ class JournalPage extends Component {
       newAndExistingTags = {};
     }
 
-    this.props.actions.createEntry({
+    this.props.actions.createEntryAndTags({
       entryText: newEntryAndTags.entry,
       newTags: newAndExistingTags.newTags,
       existingTagIds: newAndExistingTags.existingTagIds
@@ -62,6 +56,11 @@ class JournalPage extends Component {
   }
 
   render() {
+    if (!this.props.journal) {
+      return(
+        <div><h3>Loading...</h3></div>
+      );
+    }
     return(
       <div id='journal-page-container'>
         { /*
@@ -87,7 +86,7 @@ class JournalPage extends Component {
             <div className="row">
               <div className="col-lg-12">
                 <div className='entry-list-container'>
-                  <EntryList entries={this.state.entries} tags={this.state.tags} />
+                  <EntryList entries={this.props.journal.entries} tags={this.props.journal.tags} />
                 </div>
               </div>
             </div>
@@ -101,8 +100,7 @@ class JournalPage extends Component {
 
 function mapStateToProps(state) {
   return {
-    entries: state.entries,
-    tags: state.tags
+    journal: state.entries
   }
 }
 

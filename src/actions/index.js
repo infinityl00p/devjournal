@@ -3,7 +3,7 @@ import axios from 'axios'
 const ROOT_URL = 'http://shielded-basin-84367.herokuapp.com';
 
 export const CREATE_ENTRY_AND_TAGS = 'CREATE_ENTRY_AND_TAGS';
-export const GET_ENTRIES = 'GET_ENTRIES';
+export const GET_ENTRIES_AND_TAGS = 'GET_ENTRIES_AND_TAGS';
 export const DELETE_ENTRY = 'DELETE_ENTRY';
 export const UPDATE_ENTRY = 'UPDATE_ENTRY';
 
@@ -12,8 +12,7 @@ export const CREATE_TAG = 'CREATE_TAG';
 export const DELETE_TAG = 'DELETE_TAG';
 
 // TODO: ADD ERROR HANDLING
-export function createEntry(entry) {
-    console.log("createEntry", entry);
+export function createEntryAndTags(entry) {
     const request = axios.post(
         ROOT_URL + '/entries',
         entry
@@ -25,13 +24,13 @@ export function createEntry(entry) {
     };
 }
 
-export function getEntries() {
+export function getEntriesAndTags() {
     const request = axios.get(
         ROOT_URL + '/entries'
     );
 
     return {
-        type: GET_ENTRIES,
+        type: GET_ENTRIES_AND_TAGS,
         payload: request
     };
 }
