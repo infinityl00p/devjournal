@@ -22,7 +22,7 @@ class JournalPage extends Component {
   createEntryAndTags(newEntryAndTags){
     var newAndExistingTags;
 
-    var existingTagsMap = _.reduce(this.props.data.tags, function (existingTagsMap, tag) {
+    var existingTagsMap = _.reduce(this.props.journal.tags, function (existingTagsMap, tag) {
       existingTagsMap[tag.tagText] = tag.id;
       return existingTagsMap;
     }, {});
@@ -56,6 +56,7 @@ class JournalPage extends Component {
   }
 
   render() {
+    // TODO: Make this UX better.
     if (!this.props.journal) {
       return(
         <div><h3>Loading...</h3></div>

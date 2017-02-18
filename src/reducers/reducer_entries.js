@@ -3,10 +3,22 @@ import * as actionCreators from '../actions/index';
 const entries = (state = null, action) => {
     switch(action.type) {
         case actionCreators.CREATE_ENTRY_AND_TAGS:
-            var response = action.payload.data;
-            console.log("createEntryReducer", response);
-            // TODO: Update states for Entries and Tags
-            //       First, load state.
+            var response = action.payload.data.data;
+            return Object.assign({}, state, {
+                entries: [
+                    ...state.entries,
+                    {
+                        id: response.entry.id,
+                        entryText: response.entry.entryText,
+                        date: response.entry.date,
+                        tags: response.entry.tags
+                    }
+                ],
+                tags: [
+                    ...state.tags,
+                    ...response.tags,
+                ]
+            });
         case actionCreators.GET_ENTRIES_AND_TAGS:
             var response = action.payload.data.data;
             return {

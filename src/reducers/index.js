@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 import entries from './reducer_entries';
-import tags from './reducer_tags';
+// import tags from './reducer_tags';
 
 const rootReducer = combineReducers({
   entries,
-  tags
+  // tags
 });
 
 export default rootReducer;
