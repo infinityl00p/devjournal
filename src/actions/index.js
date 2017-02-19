@@ -1,9 +1,9 @@
 import axios from 'axios'
 
-const ROOT_URL = 'shielded-basin-84367.herokuapp.com';
+const ROOT_URL = 'http://shielded-basin-84367.herokuapp.com';
 
-export const CREATE_ENTRY = 'CREATE_ENTRY';
-export const GET_ENTRIES = 'GET_ENTRIES';
+export const CREATE_ENTRY_AND_TAGS = 'CREATE_ENTRY_AND_TAGS';
+export const GET_ENTRIES_AND_TAGS = 'GET_ENTRIES_AND_TAGS';
 export const DELETE_ENTRY = 'DELETE_ENTRY';
 export const UPDATE_ENTRY = 'UPDATE_ENTRY';
 
@@ -11,26 +11,26 @@ export const GET_TAGS = 'GET_TAGS';
 export const CREATE_TAG = 'CREATE_TAG';
 export const DELETE_TAG = 'DELETE_TAG';
 
-// TODO: Add user_id filter when we get to that stage
-export function createEntry(entry) {
+// TODO: ADD ERROR HANDLING
+export function createEntryAndTags(entry) {
     const request = axios.post(
         ROOT_URL + '/entries',
         entry
     );
 
     return {
-        type: CREATE_ENTRY,
+        type: CREATE_ENTRY_AND_TAGS,
         payload: request
     };
 }
 
-export function getEntries() {
+export function getEntriesAndTags() {
     const request = axios.get(
         ROOT_URL + '/entries'
     );
 
     return {
-        type: GET_ENTRIES,
+        type: GET_ENTRIES_AND_TAGS,
         payload: request
     };
 }

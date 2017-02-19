@@ -161,7 +161,6 @@ html, body {
 /* Entry display */
 .entry-container {
   text-align: center;
-  border-bottom: 1px dotted black;
   margin-top: 15px;
   margin-bottom: 30px;
 }

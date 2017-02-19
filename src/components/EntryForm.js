@@ -13,18 +13,24 @@ export default class EntryForm extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    var tagString = e.target.tags.value;
-    var tags = this.splitTags(tagString);
-    var date = this.todaysDate();
-    var entry = e.target.entry.value;
+    // TODO: figure out why I can use .value here and then not get it everytime later
+    var entryRef = this.refs.entry;
+    var tagsRef = this.refs.tags;
 
-    var newEntry = {
+    var entry = entryRef.value;
+    var tags = this.splitTags(tagsRef.value);
+    var date = this.todaysDate();
+
+    var newEntryAndTags = {
       entry,
       tags,
       date
     }
 
-    this.props.renderEntries(newEntry);
+    this.props.onSubmit(newEntryAndTags);
+
+    entryRef.value = "";
+    tagsRef.value = "";
   }
 
   todaysDate() {
@@ -49,8 +55,8 @@ export default class EntryForm extends Component {
     return(
       <form id='entry-form' onSubmit={this.handleSubmit}>
         <tag className="entry-title"> Journal Entry: </tag>
-        <textarea rows='6' onChange={this.handleEntryChange} id='entry' placeholder='printf("hello world");'></textarea>
-        <input type='text' onChange={this.handleTagChange} id='tags' placeholder='#enter #tags #separated #byspace'/>
+        <textarea rows='6' onChange={this.handleEntryChange} id='entry' placeholder='printf("hello world");' ref="entry"></textarea>
+        <input type='text' onChange={this.handleTagChange} id='tags' placeholder='#enter #tags #separated #byspace' ref="tags"/>
         <button type='submit' className='btn btn-default' >Save</button>
       </form>
     )

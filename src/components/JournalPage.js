@@ -1,30 +1,67 @@
 import React, { Component } from 'react';
 import EntryForm from './EntryForm';
 import EntryList from './EntryList';
+import * as actionCreators from '../actions/index';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import _ from 'lodash';
+
 // import Sidebar from './Sidebar';
 
-export default class JournalPage extends Component {
+class JournalPage extends Component {
   constructor(props) {
     super(props);
 
-    this.renderEntries = this.renderEntries.bind(this);
+    this.createEntryAndTags = this.createEntryAndTags.bind(this);
+    this.getNewAndExistingTags = this.getNewAndExistingTags.bind(this);
 
-    this.state = {
-      entries: this.props.data.entries,
-      tags: this.props.data.tags
+    this.props.actions.getEntriesAndTags();
+  }
+
+
+  createEntryAndTags(newEntryAndTags){
+    var newAndExistingTags;
+
+    var existingTagsMap = _.reduce(this.props.journal.tags, function (existingTagsMap, tag) {
+      existingTagsMap[tag.tagText] = tag.id;
+      return existingTagsMap;
+    }, {});
+
+    if (newEntryAndTags.tags !== null && newEntryAndTags.tags.length > 0) {
+      newAndExistingTags = this.getNewAndExistingTags(newEntryAndTags.tags, existingTagsMap);
+    } else {
+      newAndExistingTags = {};
     }
-  }
 
-  renderEntries(entryObject){
-    var updatedEntries = this.state.entries.slice();
-    updatedEntries.push(entryObject);
-    this.setState({
-      entries: updatedEntries
+    this.props.actions.createEntryAndTags({
+      entryText: newEntryAndTags.entry,
+      newTags: newAndExistingTags.newTags,
+      existingTagIds: newAndExistingTags.existingTagIds
     });
-    // call backend
   }
 
-  render(){
+  getNewAndExistingTags(tags, existingTagsMap) {
+    var newTags = [];
+    var existingTagIds = [];
+
+    tags.forEach(function(tag) {
+      if (tag in existingTagsMap) {
+        existingTagIds.push(existingTagsMap[tag]);
+      } else {
+        newTags.push(tag);
+      }
+    });
+
+    return { newTags: newTags, existingTagIds: existingTagIds };
+  }
+
+  render() {
+    // TODO: Make this UX better.
+    if (!this.props.journal) {
+      return(
+        <div><h3>Loading...</h3></div>
+      );
+    }
     return(
       <div id='journal-page-container'>
         { /*
@@ -34,7 +71,7 @@ export default class JournalPage extends Component {
           <ul className='sidebar-nav'>
             <li>
               <div className='entry-form-container'>
-                <EntryForm renderEntries={this.renderEntries}/>
+                <EntryForm onSubmit={this.createEntryAndTags}/>
               </div>
             </li>
             <div className="category-container">
@@ -50,7 +87,7 @@ export default class JournalPage extends Component {
             <div className="row">
               <div className="col-lg-12">
                 <div className='entry-list-container'>
-                  <EntryList entries={this.state.entries} tags={this.state.tags} />
+                  <EntryList entries={this.props.journal.entries} tags={this.props.journal.tags} />
                 </div>
               </div>
             </div>
@@ -61,3 +98,15 @@ export default class JournalPage extends Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    journal: state.entries
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return { actions: bindActionCreators(actionCreators, dispatch) };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(JournalPage)
