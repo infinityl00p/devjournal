@@ -8,7 +8,7 @@ export default class ActionBar extends Component {
     this.renderEntryForm = this.renderEntryForm.bind(this);
     this.renderSearchBar = this.renderSearchBar.bind(this);
     this.renderFilterOptions = this.renderFilterOptions.bind(this);
-    this.renderViewOptions = this.renderViewOptions.bind(this);
+    this.renderList = this.renderList.bind(this);
 
     this.state = {
       activeItem: [false, false, false, false]
@@ -33,7 +33,7 @@ export default class ActionBar extends Component {
     });
   }
 
-  renderViewOptions() {
+  renderList() {
     this.setState({
       activeItem: [false, false, false , true]
     });
@@ -64,11 +64,11 @@ export default class ActionBar extends Component {
           onClick={this.renderFilterOptions}
         />
         <ActionBarItem
-          key="view"
-          icon="glyphicon-th-large"
+          key="list"
+          icon="glyphicon-align-justify"
           isActive={this.state.activeItem[3]}
-          text="VIEW"
-          onClick={this.renderViewOptions}
+          text="LIST"
+          onClick={this.renderList}
         />
       </div>
     );

@@ -88,3 +88,19 @@ html, body {
   margin: 5px;
   padding: 2px 4px;
 }
+
+/* EntryView styles */
+#entry-view {
+  padding-left: 50px;
+  margin-top: 30px;
+}
+
+#entry-view .date-text {
+  text-align: center;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+#entry-view .entry-text {
+  margin-top: 30px;
+}

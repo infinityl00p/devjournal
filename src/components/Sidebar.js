@@ -6,8 +6,6 @@ import EntryList from './EntryList';
 
 export default class Sidebar extends Component {
   render() {
-    // TODO: Probably handle calls to ActionCreators here instead of arbitrarily passing it one level higher
-    // We also need to look into using col-md-4 instead of fixed positioning
     return(
       <div className="col-md-4" id="sidebar">
         <ActionBar
