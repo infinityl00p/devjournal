@@ -17,14 +17,14 @@ export default class EntryList extends Component {
       return <Entry key={entry.id} entry={entry} tags={tags} />
     });
 
-    return entries;
+    return entries.reverse();
   }
 
   render() {
     return(
-      <div className="previous-entries">
+      <div className="entry-list-container">
         {this.renderEntries()}
-       </div>
+      </div>
     )
   }
 }

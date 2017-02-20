@@ -1,25 +1,34 @@
 import React, { Component } from 'react';
+import EntryForm from './EntryForm';
+import EntryList from './EntryList';
+
 
 export default class Sidebar extends Component {
-  constructor(props){
-    super(props);
-
-    this.renderSidebar = this.renderSidebar.bind(this);
+  constructor() {
+    super();
   }
 
-  renderSidebar(entries){
-    return entries.map((entry) => {
-      var categories = entry.categories;
-      return categories.map((item) => {
-        return <li className='sidebar-list'>{item}</li>
-      })
-    });
-  }
-
-  render(){
+  render() {
+    // TODO: Probably handle calls to ActionCreators here instead of arbitrarily passing it one level higher
+    // We also need to look into using col-md-4 instead of fixed positioning
     return(
-      <div className='sidebar-list-wrapper'>
-        {this.renderSidebar(this.props.entries)}
+      <div className="col-md-4" id="sidebar">
+        <ul className="sidebar-components">
+          <li>
+            <EntryForm
+              entries={this.props.entries}
+              tags={this.props.tags}
+              handleCreate={this.props.actions.createEntryAndTags}
+              onSubmit={this.createEntryAndTags}
+            />
+          </li>
+          <li>
+            <EntryList
+              entries={this.props.entries}
+              tags={this.props.tags}
+            />
+          </li>
+        </ul>
       </div>
     );
   }

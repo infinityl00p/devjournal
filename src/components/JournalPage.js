@@ -1,58 +1,17 @@
 import React, { Component } from 'react';
-import EntryForm from './EntryForm';
+import Sidebar from './Sidebar';
+import EntryView from './EntryView';
 import EntryList from './EntryList';
 import * as actionCreators from '../actions/index';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import _ from 'lodash';
 
-// import Sidebar from './Sidebar';
-
 class JournalPage extends Component {
   constructor(props) {
     super(props);
 
-    this.createEntryAndTags = this.createEntryAndTags.bind(this);
-    this.getNewAndExistingTags = this.getNewAndExistingTags.bind(this);
-
     this.props.actions.getEntriesAndTags();
-  }
-
-
-  createEntryAndTags(newEntryAndTags){
-    var newAndExistingTags;
-
-    var existingTagsMap = _.reduce(this.props.journal.tags, function (existingTagsMap, tag) {
-      existingTagsMap[tag.tagText] = tag.id;
-      return existingTagsMap;
-    }, {});
-
-    if (newEntryAndTags.tags !== null && newEntryAndTags.tags.length > 0) {
-      newAndExistingTags = this.getNewAndExistingTags(newEntryAndTags.tags, existingTagsMap);
-    } else {
-      newAndExistingTags = {};
-    }
-
-    this.props.actions.createEntryAndTags({
-      entryText: newEntryAndTags.entry,
-      newTags: newAndExistingTags.newTags,
-      existingTagIds: newAndExistingTags.existingTagIds
-    });
-  }
-
-  getNewAndExistingTags(tags, existingTagsMap) {
-    var newTags = [];
-    var existingTagIds = [];
-
-    tags.forEach(function(tag) {
-      if (tag in existingTagsMap) {
-        existingTagIds.push(existingTagsMap[tag]);
-      } else {
-        newTags.push(tag);
-      }
-    });
-
-    return { newTags: newTags, existingTagIds: existingTagIds };
   }
 
   render() {
@@ -63,29 +22,14 @@ class JournalPage extends Component {
       );
     }
     return(
-      <div id='journal-page-container'>
-        { /*
-          TODO: This needs to be a container component
-         */ }
-        <div id='sidebar-container'>
-          <ul className='sidebar-nav'>
-            <li>
-              <div className='entry-form-container'>
-                <EntryForm onSubmit={this.createEntryAndTags}/>
-              </div>
-            </li>
-            <div className="category-container">
-              { /* <Sidebar entries={this.state.entries}/> */ }
-            </div>
-          </ul>
-        </div>
-
-        <div className="container-fluid page-content-container">
-          <div className='col-lg-12 entry-list-container'>
-            <EntryList entries={this.props.journal.entries} tags={this.props.journal.tags} />
-          </div>
-        </div>
-
+      <div id="journal-page-container">
+        <Sidebar
+          actions={this.props.actions}
+          entries={this.props.journal.entries}
+          tags={this.props.journal.tags}
+          props={this.props}
+        />
+        <EntryView />
       </div>
     );
   }
