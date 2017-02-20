@@ -79,18 +79,10 @@ class JournalPage extends Component {
             </div>
           </ul>
         </div>
-        { /*
-          TODO: This needs to be cleaned up, some of it is superfluous
-         */ }
-        <div className='page-content-container'>
-          <div className="container-fluid">
-            <div className="row">
-              <div className="col-lg-12">
-                <div className='entry-list-container'>
-                  <EntryList entries={this.props.journal.entries} tags={this.props.journal.tags} />
-                </div>
-              </div>
-            </div>
+
+        <div className="container-fluid page-content-container">
+          <div className='col-lg-12 entry-list-container'>
+            <EntryList entries={this.props.journal.entries} tags={this.props.journal.tags} />
           </div>
         </div>
 
