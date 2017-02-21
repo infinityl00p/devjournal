@@ -5,38 +5,46 @@ export default class ActionBar extends Component {
   constructor() {
     super();
 
-    this.renderEntryForm = this.renderEntryForm.bind(this);
-    this.renderSearchBar = this.renderSearchBar.bind(this);
-    this.renderFilterOptions = this.renderFilterOptions.bind(this);
-    this.renderList = this.renderList.bind(this);
+    this.handleCreateClick = this.handleCreateClick.bind(this);
+    this.handleSearchClick = this.handleSearchClick.bind(this);
+    this.handleFilterClick = this.handleFilterClick.bind(this);
+    this.handleListClick = this.handleListClick.bind(this);
 
     this.state = {
       activeItem: [false, false, false, false]
     }
   }
 
-  renderEntryForm() {
+  handleCreateClick() {
     this.setState({
       activeItem: [true, false, false , false]
     });
+
+    this.props.onSelect('create');
   }
 
-  renderSearchBar() {
+  handleSearchClick() {
     this.setState({
       activeItem: [false, true, false , false]
     });
+
+    this.props.onSelect('search');
   }
 
-  renderFilterOptions() {
+  handleFilterClick() {
     this.setState({
       activeItem: [false, false, true , false]
     });
+
+    this.props.onSelect('filter');
   }
 
-  renderList() {
+  handleListClick() {
     this.setState({
       activeItem: [false, false, false , true]
     });
+
+    this.props.onSelect('list');
   }
 
   render() {
@@ -47,28 +55,28 @@ export default class ActionBar extends Component {
           icon="glyphicon-plus"
           isActive={this.state.activeItem[0]}
           text="CREATE"
-          onClick={this.renderEntryForm}
+          onClick={this.handleCreateClick}
         />
         <ActionBarItem
           key="search"
           icon="glyphicon-search"
           isActive={this.state.activeItem[1]}
           text="SEARCH"
-          onClick={this.renderSearchBar}
+          onClick={this.handleSearchClick}
         />
         <ActionBarItem
           key="filter"
           icon="glyphicon-filter"
           isActive={this.state.activeItem[2]}
           text="FILTER"
-          onClick={this.renderFilterOptions}
+          onClick={this.handleFilterClick}
         />
         <ActionBarItem
           key="list"
           icon="glyphicon-align-justify"
           isActive={this.state.activeItem[3]}
           text="LIST"
-          onClick={this.renderList}
+          onClick={this.handleListClick}
         />
       </div>
     );

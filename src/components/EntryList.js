@@ -22,7 +22,7 @@ export default class EntryList extends Component {
 
   render() {
     return(
-      <div className="entry-list-container">
+      <div id="entry-list">
         {this.renderEntries()}
       </div>
     )

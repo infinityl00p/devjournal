@@ -12,7 +12,6 @@ html, body {
 /* Sidebar styles */
 #sidebar {
   padding: 0;
-  /* TODO: Add styles */
 }
 
 #sidebar .sidebar-components {
@@ -73,6 +72,10 @@ html, body {
 }
 
 /* EntryList styles */
+#entry-list {
+  /* TODO: Add styles */
+}
+
 .entry-item-container {
   text-align: center;
   margin-top: 15px;
