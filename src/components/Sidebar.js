@@ -3,7 +3,7 @@ import ActionBar from './ActionBar';
 import EntryForm from './EntryForm';
 import EntryList from './EntryList';
 import EntrySearch from './EntrySearch';
-
+import EntryFilter from './EntryFilter';
 
 export default class Sidebar extends Component {
   constructor() {
@@ -13,14 +13,13 @@ export default class Sidebar extends Component {
     this.renderActionComponent = this.renderActionComponent.bind(this);
 
     this.state = {
-      activeComponent: ''
+      activeComponent: 'EntryForm'
     }
   }
 
   handleActionSelect(actionType) {
     switch(actionType) {
       case 'create':
-        console.log('create');
         this.setState({ activeComponent: 'EntryForm' });
         return;
       case 'search':
@@ -30,7 +29,6 @@ export default class Sidebar extends Component {
         this.setState({ activeComponent: 'EntryFilter' });
         return;
       case 'list':
-        console.log('list?');
         this.setState({ activeComponent: 'EntryList' });
         return;
     }
@@ -45,32 +43,40 @@ export default class Sidebar extends Component {
             entries={this.props.entries}
             tags={this.props.tags}
             handleCreate={this.props.actions.createEntryAndTags}
-            onSubmit={this.createEntryAndTags}
           />
         );
 
       case 'EntrySearch':
+        // TODO: Also render an EntryList with updated values inside EntrySearch
         return(
-          <EntrySearch onSubmit={this.handleEntrySearch} />
+          <EntrySearch
+            entries={this.props.entries}
+            tags={this.props.tags}
+            onClick={this.handleEntrySelect}
+          />
         );
-        // TODO: Also render an EntryList with updated values
       case 'EntryFilter':
-        return;
+        // TODO: Also render an EntryList with updated values inside EntryFilter
+        return(
+          <EntryFilter
+            entries={this.props.entries}
+            tags={this.props.tags}
+            onClick={this.handleEntrySelect}
+          />
+        );
       case 'EntryList':
         return(
           <EntryList
             entries={this.props.entries}
             tags={this.props.tags}
+            onClick={this.handleEntrySelect}
           />
         );
-
-      default:
-        return;
     }
   }
 
-  handleEntrySearch(searchText) {
-    console.log("add me");
+  handleEntrySelect(entry) {
+    // TODO: Update EntryView with this
   }
 
   render() {

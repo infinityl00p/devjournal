@@ -76,17 +76,17 @@ html, body {
   /* TODO: Add styles */
 }
 
-.entry-item-container {
+#entry-list .entry-item-container {
   text-align: center;
   margin-top: 15px;
   margin-bottom: 30px;
 }
 
-.entry-item-container .tag-container {
+#entry-list .entry-item-container .tag-container {
   margin-top: 15px;
 }
 
-.tag-container .entry-tag {
+#entry-list .tag-container .entry-tag {
   border: 1px solid black;
   margin: 5px;
   padding: 2px 4px;
@@ -111,4 +111,14 @@ html, body {
 /* EntrySeach styles */
 #entry-search {
   margin-top: 30px;
+}
+
+/* EntryFilter styles */
+#entry-filter {
+  margin-top: 30px;
+}
+
+#entry-filter ul {
+  list-style: none;
+  padding: 0;
 }
