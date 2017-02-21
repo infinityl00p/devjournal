@@ -5,8 +5,8 @@ export default class EntryForm extends Component {
     super();
 
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleEntryChange = this.handleEntryChange.bind(this);
-    this.handleTagChange = this.handleTagChange.bind(this);
+    this.createEntryAndTags = this.createEntryAndTags.bind(this);
+    this.getNewAndExistingTags = this.getNewAndExistingTags.bind(this);
     this.splitTags = this.splitTags.bind(this);
     this.todaysDate = this.todaysDate.bind(this);
   }
@@ -27,10 +27,46 @@ export default class EntryForm extends Component {
       date
     }
 
-    this.props.onSubmit(newEntryAndTags);
+    this.createEntryAndTags(newEntryAndTags);
 
     entryRef.value = "";
     tagsRef.value = "";
+  }
+
+  createEntryAndTags(newEntryAndTags){
+    var newAndExistingTags;
+
+    var existingTagsMap = _.reduce(this.props.tags, function (existingTagsMap, tag) {
+      existingTagsMap[tag.tagText] = tag.id;
+      return existingTagsMap;
+    }, {});
+
+    if (newEntryAndTags.tags !== null && newEntryAndTags.tags.length > 0) {
+      newAndExistingTags = this.getNewAndExistingTags(newEntryAndTags.tags, existingTagsMap);
+    } else {
+      newAndExistingTags = {};
+    }
+
+    this.props.handleCreate({
+      entryText: newEntryAndTags.entry,
+      newTags: newAndExistingTags.newTags,
+      existingTagIds: newAndExistingTags.existingTagIds
+    });
+  }
+
+  getNewAndExistingTags(tags, existingTagsMap) {
+    var newTags = [];
+    var existingTagIds = [];
+
+    tags.forEach(function(tag) {
+      if (tag in existingTagsMap) {
+        existingTagIds.push(existingTagsMap[tag]);
+      } else {
+        newTags.push(tag);
+      }
+    });
+
+    return { newTags: newTags, existingTagIds: existingTagIds };
   }
 
   todaysDate() {
@@ -47,18 +83,16 @@ export default class EntryForm extends Component {
     return tagArray;
   }
 
-  handleTagChange(e) {}
-
-  handleEntryChange(e) {}
-
   render(){
     return(
-      <form id='entry-form' onSubmit={this.handleSubmit}>
-        <tag className="entry-title"> Journal Entry: </tag>
-        <textarea rows='6' onChange={this.handleEntryChange} id='entry' placeholder='printf("hello world");' ref="entry"></textarea>
-        <input type='text' onChange={this.handleTagChange} id='tags' placeholder='#enter #tags #separated #byspace' ref="tags"/>
-        <button type='submit' className='btn btn-default' >Save</button>
-      </form>
-    )
+      <div className="entry-form-container">
+        <form id="entry-form" onSubmit={this.handleSubmit}>
+          <h2 className="entry-form-title">Add a new entry:</h2>
+          <textarea rows="6" className="entry-textarea" placeholder="printf('hello world');" ref="entry"></textarea>
+          <input type="text" className="tags-input" placeholder="#enter #tags #separated #byspace" ref="tags"/>
+          <button type="submit" className="btn btn-info" >Save</button>
+        </form>
+      </div>
+    );
   }
 }

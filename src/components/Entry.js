@@ -4,7 +4,7 @@ import Tag from './Tag';
 export default class Entry extends Component {
   render(){
     return(
-      <div className='entry-container'>
+      <div className='entry-item-container'>
         <div className='entry-text'>
           {this.props.entry.entryText}
         </div>
