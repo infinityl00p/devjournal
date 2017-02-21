@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ActionBar from './ActionBar';
 import EntryForm from './EntryForm';
 import EntryList from './EntryList';
+import EntrySearch from './EntrySearch';
 
 
 export default class Sidebar extends Component {
@@ -49,7 +50,10 @@ export default class Sidebar extends Component {
         );
 
       case 'EntrySearch':
-        return;
+        return(
+          <EntrySearch onSubmit={this.handleEntrySearch} />
+        );
+        // TODO: Also render an EntryList with updated values
       case 'EntryFilter':
         return;
       case 'EntryList':
@@ -63,6 +67,10 @@ export default class Sidebar extends Component {
       default:
         return;
     }
+  }
+
+  handleEntrySearch(searchText) {
+    console.log("add me");
   }
 
   render() {
