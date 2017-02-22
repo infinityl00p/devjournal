@@ -30,7 +30,7 @@ export default class EntrySearch extends Component {
           onChange={this.onInputChange}
         />
         <span className="input-group-btn">
-          <button type="submit" className="btn btn-primary">Search Entries</button>
+          <button type="submit" className="btn btn-search">Search Entries</button>
         </span>
       </form>
     );
