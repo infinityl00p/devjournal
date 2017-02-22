@@ -6,22 +6,44 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import _ from 'lodash';
 
+var tempEntry = {
+  entry: {
+    date: "2017-02-22T04:50:46.729656Z",
+    entryText:"Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
+    id: 28,
+    tags: [29, 31, 34]
+  },
+  tags: [
+    {
+      id: 29,
+      tagText: '#first'
+    },
+    {
+      id: 31,
+      tagText: '#second'
+    },
+    {
+      id: 34,
+      tagText: '#third'
+    }
+  ]
+};
+
 class JournalPage extends Component {
   constructor(props) {
     super(props);
     this.props.actions.getEntriesAndTags();
 
     this.handleEntrySelect = this.handleEntrySelect.bind(this);
-
+    // TODO: update this to set state to:
+    // this.props.journal.entries.slice(-1)[0] after successful getEntriesAndTags()
     this.state = {
-      // TODO: update this to set state to:
-      // this.props.journal.entries.slice(-1)[0] after successful getEntriesAndTags()
-      selectedEntry: null
+      selectedEntry: tempEntry
     }
   }
 
-  handleEntrySelect(entry) {
-    // TODO: Update state
+  handleEntrySelect(entryAndTags) {
+    this.setState({ selectedEntry: entryAndTags });
   }
 
   render() {
@@ -38,9 +60,9 @@ class JournalPage extends Component {
           entries={this.props.journal.entries}
           tags={this.props.journal.tags}
           props={this.props}
-          onEntrySelect={this.handleEntrySelect}
+          onEntryClick={this.handleEntrySelect}
         />
-        <EntryView entry={this.state.selectedEntry} />
+        <EntryView currentEntry={this.state.selectedEntry} />
       </div>
     );
   }
