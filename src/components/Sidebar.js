@@ -52,7 +52,7 @@ export default class Sidebar extends Component {
           <EntrySearch
             entries={this.props.entries}
             tags={this.props.tags}
-            onClick={this.handleEntrySelect}
+            onEntryClick={this.props.onEntryClick}
           />
         );
       case 'EntryFilter':

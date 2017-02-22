@@ -139,9 +139,8 @@ html, body {
   margin: 15px;
 }
 
-#entry-search .btn-search {
-  color: white;
-  background-color: #0EBFE9;
+#entry-search .input-group {
+  width: 100%;
 }
 
 /* EntryFilter styles */
