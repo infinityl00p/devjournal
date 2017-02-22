@@ -14,7 +14,7 @@ export default class EntryList extends Component {
       var tags = this.props.tags.filter(function (tag) {
         return _.contains(entry.tags, tag.id)
       });
-      return <Entry key={entry.id} entry={entry} tags={tags} />
+      return <Entry key={entry.id} entry={entry} tags={tags} onClick={this.props.onEntryClick} />
     });
 
     return entries.reverse();

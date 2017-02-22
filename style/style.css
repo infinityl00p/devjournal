@@ -100,7 +100,7 @@ html, body {
   float: right;
 }
 
-#entry-list .tag-container .entry-tag {
+#entry-list .tag-container .entry-tag, #entry-view .tag-container .entry-tag {
   background-color: #0EBFE9;
   border-radius: 4px;
   color: white;
@@ -108,7 +108,7 @@ html, body {
   padding: 2px 4px;
 }
 
-#entry-list .tag-container .entry-tag:hover {
+#entry-list .tag-container .entry-tag:hover, #entry-view .tag-container .entry-tag:hover {
   font-weight: bold;
 }
 
@@ -120,11 +120,17 @@ html, body {
 
 #entry-view .date-text {
   text-align: center;
-  font-weight: 500;
+  font-weight: bold;
   text-transform: uppercase;
 }
 
 #entry-view .entry-text {
+  margin-top: 30px;
+  font-weight: lighter;
+  font-size: 12pt;
+}
+
+#entry-view .tag-container {
   margin-top: 30px;
 }
 

@@ -1,11 +1,27 @@
 import React, { Component } from 'react';
+import Tag from './Tag';
 
 export default class EntryView extends Component {
+  formatDate(date) {
+    var truncatedDate = date.substring(0, date.indexOf('T'));
+    var fullDate = new Date(truncatedDate).toDateString();
+    return fullDate;
+  }
+
   render() {
     return(
       <div className="col-md-8" id="entry-view">
-        <h4 className="date-text">February 19, 2017, 8:39 PM</h4>
-        <p className="entry-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        <div className="entry">
+          <h4 className="date-text">{this.formatDate(this.props.currentEntry.entry.date)}</h4>
+          <p className="entry-text">{this.props.currentEntry.entry.entryText}</p>
+        </div>
+        <div className="tag-container">
+          {
+            this.props.currentEntry.tags.map((tag) =>
+              <Tag key={tag.id} data={tag} />
+            )
+          }
+        </div>
       </div>
     );
   }
