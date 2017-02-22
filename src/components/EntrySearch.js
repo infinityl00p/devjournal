@@ -1,22 +1,27 @@
 import React, { Component } from 'react';
 import EntryList from './EntryList';
+import _ from 'lodash';
 
 export default class EntrySearch extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.renderEntryList = this.renderEntryList.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.onInputChange = this.onInputChange.bind(this);
+    this.onSearch = this.onSearch.bind(this);
 
     this.state = {
       searchTerm: '',
-      showEntryList: false
+      showEntryList: false,
+      entries: this.props.entries
     }
   }
 
   onInputChange(e) {
     this.setState({ searchTerm: e.target.value });
+    this.setState({ showEntryList: true });
+    this.onSearch(e.target.value);
   }
 
   onSubmit(e) {
@@ -27,14 +32,18 @@ export default class EntrySearch extends Component {
   }
 
   onSearch(searchTerm) {
-    console.log("filter me");
+    var searchEntries = this.props.entries.filter(function (entry) {
+      return _.contains(entry.entryText, searchTerm)
+    });
+
+    this.setState({ entries: searchEntries });
   }
 
   renderEntryList() {
     if (this.state.showEntryList) {
       return(
         <EntryList
-          entries={this.props.entries}
+          entries={this.state.entries}
           tags={this.props.tags}
           onEntryClick={this.props.onEntryClick}
         />
@@ -54,9 +63,6 @@ export default class EntrySearch extends Component {
             value={this.state.searchTerm}
             onChange={this.onInputChange}
           />
-          <span className="input-group-btn">
-            <button type="submit" className="btn btn-search">Search Entries</button>
-          </span>
         </form>
         <div className="search-results">
           <h4>Search results:</h4>

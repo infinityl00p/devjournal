@@ -23,9 +23,9 @@ export default class Entry extends Component {
 
   render(){
     return(
-      <div className="entry-item-container">
+      <div className="entry-item-container" onClick={this.handleClick}>
         <div className="entry-header">
-          <div className="entry-date" onClick={this.handleClick}>
+          <div className="entry-date">
             {this.truncateDate(this.props.entry.date)}
           </div>
           <div className="tag-container">
@@ -36,7 +36,7 @@ export default class Entry extends Component {
             }
           </div>
         </div>
-        <div className="entry-text" onClick={this.handleClick}>
+        <div className="entry-text">
           {this.props.entry.entryText}
         </div>
       </div>
