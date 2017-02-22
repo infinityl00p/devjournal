@@ -1,6 +1,8 @@
 html, body {
   overflow: hidden;
   height: 100%;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 300;
 }
 
 .container {
@@ -16,7 +18,6 @@ html, body {
 #sidebar .sidebar-components {
   list-style: none;
   padding: 0;
-  margin-left: 10px;
 }
 
 /* ActionBar styles */
@@ -49,7 +50,7 @@ html, body {
 
 /* EntryForm styles */
 #entry-form {
-  /* TODO: Add styles */
+  margin: 15px;
 }
 
 #entry-form .entry-form-title {
@@ -75,20 +76,40 @@ html, body {
   overflow-y: scroll;
   height: 100vh;
 }
-
+/* TODO: Add fade out for text */
 #entry-list .entry-item-container {
-  margin-top: 15px;
-  margin-bottom: 30px;
+  padding: 15px;
+  max-height: 8em;
+  overflow: hidden;
+  /* TODO: Make this better */
+  border-left: 4px solid #f8f8f8;
+  border-top: 4px solid #f8f8f8;
+  border-right: 4px solid #f8f8f8;
 }
 
-#entry-list .entry-item-container .tag-container {
-  margin-top: 15px;
+#entry-list .entry-header {
+  margin-bottom: 5px;
+}
+
+#entry-list .entry-date {
+  display: inline-block;
+  font-weight: bold;
+}
+
+#entry-list .tag-container {
+  float: right;
 }
 
 #entry-list .tag-container .entry-tag {
-  border: 1px solid black;
+  background-color: #0EBFE9;
+  border-radius: 4px;
+  color: white;
   margin: 5px;
   padding: 2px 4px;
+}
+
+#entry-list .tag-container .entry-tag:hover {
+  font-weight: bold;
 }
 
 /* EntryView styles */
@@ -109,12 +130,17 @@ html, body {
 
 /* EntrySeach styles */
 #entry-search {
-  margin-top: 30px;
+  margin: 15px;
+}
+
+#entry-search .btn-search {
+  color: white;
+  background-color: #0EBFE9;
 }
 
 /* EntryFilter styles */
 #entry-filter {
-  margin-top: 30px;
+  margin: 15px;
   overflow-y: scroll;
   height: 50vh;
 }
