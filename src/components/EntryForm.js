@@ -86,10 +86,10 @@ export default class EntryForm extends Component {
   render(){
     return(
       <div className="entry-form-container">
-        <form id="entry-form" onSubmit={this.handleSubmit}>
+        <form id="entry-form" className="input-group" onSubmit={this.handleSubmit}>
           <h2 className="entry-form-title">Add a new entry:</h2>
-          <textarea rows="6" className="entry-textarea" placeholder="printf('hello world');" ref="entry"></textarea>
-          <input type="text" className="tags-input" placeholder="#enter #tags #separated #byspace" ref="tags"/>
+          <textarea rows="6" className="form-control entry-textarea" placeholder="" ref="entry"></textarea>
+          <input className="form-control tags-input" placeholder="#enter #tags #separated #byspace" ref="tags"/>
           <button type="submit" className="btn btn-info" >Save</button>
         </form>
       </div>

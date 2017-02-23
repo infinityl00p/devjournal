@@ -13,6 +13,8 @@ html, body {
 /* Sidebar styles */
 #sidebar {
   padding: 0;
+  height: 100vh;
+  background-color: #fafafa;
 }
 
 #sidebar .sidebar-components {
@@ -22,7 +24,7 @@ html, body {
 
 /* ActionBar styles */
 #action-bar {
-  background-color: black;
+  background-color: #274B62;
 }
 
 #action-bar .action-bar-item {
@@ -63,12 +65,14 @@ html, body {
 }
 
 #entry-form .tags-input {
-  width: 70%;
+  width: 80%;
   margin-top: 10px;
 }
 
 #entry-form button {
+  margin-top: 10px;
   margin-left: 10px;
+  background-color: #0EBFE9;
 }
 
 /* EntryList styles */
@@ -82,9 +86,9 @@ html, body {
   max-height: 8em;
   overflow: hidden;
   /* TODO: Make this better */
-  border-left: 4px solid #f8f8f8;
-  border-top: 4px solid #f8f8f8;
-  border-right: 4px solid #f8f8f8;
+  border-left: 4px solid #f7f7f7;
+  border-top: 4px solid #f7f7f7;
+  border-right: 4px solid #f7f7f7;
 }
 
 #entry-list .entry-header {
