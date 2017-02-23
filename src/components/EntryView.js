@@ -1,27 +1,58 @@
 import React, { Component } from 'react';
-import Tag from './Tag';
+import EntryViewItem from './EntryViewItem';
+import EntryViewList from './EntryViewList';
 
 export default class EntryView extends Component {
-  formatDate(date) {
-    var truncatedDate = date.substring(0, date.indexOf('T'));
-    var fullDate = new Date(truncatedDate).toDateString();
-    return fullDate;
+  constructor() {
+    super();
+    // TODO: handle `starting point` for entry list and use same logic for single view
+    // probably need an anchor in EntryViewList
+    this.getSelectorClass = this.getSelectorClass.bind(this);
+    this.handleViewStateChange = this.handleViewStateChange.bind(this);
+    this.renderEntryView = this.renderEntryView.bind(this);
+
+    this.state = {
+      multiViewState: false
+    }
+  }
+
+  handleViewStateChange() {
+    var prevState = this.state.multiViewState;
+    this.setState({ multiViewState: !prevState });
+  }
+
+  getSelectorClass() {
+    if (this.state.multiViewState) {
+      return "entry-view-selector-multi col-md-offset-12";
+    }
+    return "entry-view-selector col-md-offset-12";
+  }
+
+  renderEntryView() {
+    if (this.state.multiViewState) {
+      return(
+        <EntryViewList
+          entries={this.props.entries}
+          tags={this.props.tags}
+        />
+      );
+    }
+    return(
+      <EntryViewItem
+        date={this.props.currentEntry.entry.date}
+        entryText={this.props.currentEntry.entry.entryText}
+        tags={this.props.currentEntry.tags}
+      />
+    );
   }
 
   render() {
     return(
       <div className="col-md-8" id="entry-view">
-        <div className="entry">
-          <h4 className="date-text">{this.formatDate(this.props.currentEntry.entry.date)}</h4>
-          <p className="entry-text">{this.props.currentEntry.entry.entryText}</p>
+        <div className={this.getSelectorClass()}>
+          <span className="glyphicon glyphicon-th-list" onClick={this.handleViewStateChange}/>
         </div>
-        <div className="tag-container">
-          {
-            this.props.currentEntry.tags.map((tag) =>
-              <Tag key={tag.id} data={tag} />
-            )
-          }
-        </div>
+        {this.renderEntryView()}
       </div>
     );
   }

@@ -52,12 +52,12 @@ html, body {
 
 /* EntryForm styles */
 #entry-form {
-  margin: 15px;
+  margin: 0 15px 15px 15px;
 }
 
 #entry-form .entry-form-title {
   font-size: 20px;
-  font-weight: bold;
+  font-weight: 300;
 }
 
 #entry-form .entry-textarea {
@@ -91,6 +91,10 @@ html, body {
   border-right: 4px solid #f7f7f7;
 }
 
+#entry-list .entry-item-container:hover {
+  border-right: 6px solid #0EBFE9;
+}
+
 #entry-list .entry-header {
   margin-bottom: 5px;
 }
@@ -122,6 +126,24 @@ html, body {
   margin-top: 30px;
 }
 
+#entry-view-list {
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+#entry-view .entry-view-selector .glyphicon {
+  font-size: 1.75em;
+  color: #0EBFE9;
+  padding: 10px;
+}
+
+#entry-view .entry-view-selector-multi .glyphicon {
+  font-size: 1.75em;
+  padding: 10px;
+  background-color: #0EBFE9;
+  color: white;
+}
+
 #entry-view .date-text {
   text-align: center;
   font-weight: bold;
@@ -140,11 +162,15 @@ html, body {
 
 /* EntrySeach styles */
 #entry-search {
-  margin: 15px;
+  margin-top: 15px;
+}
+
+#entry-search input, h4 {
+  margin: 0 15px 15px 15px;
 }
 
 #entry-search .input-group {
-  width: 100%;
+  width: 90%;
 }
 
 /* EntryFilter styles */
