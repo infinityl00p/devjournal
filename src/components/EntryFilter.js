@@ -16,7 +16,7 @@ export default class EntryFilter extends Component {
   renderTags() {
     var tags = this.props.tags.map((tag) => {
       return(
-          <li><Tag key={tag.id} data={tag}/></li>
+          <li key={tag.id}><Tag data={tag}/></li>
       );
     });
 
