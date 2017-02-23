@@ -33,12 +33,14 @@ export default class EntryView extends Component {
       return(
         <EntryViewList
           entries={this.props.entries}
+          selectedEntryId={this.props.currentEntry.entry.id}
           tags={this.props.tags}
         />
       );
     }
     return(
       <EntryViewItem
+        id={this.props.currentEntry.entry.id}
         date={this.props.currentEntry.entry.date}
         entryText={this.props.currentEntry.entry.entryText}
         tags={this.props.currentEntry.tags}

@@ -13,7 +13,13 @@ export default class EntryViewList extends Component {
       var tags = this.props.tags.filter(function (tag) {
         return _.contains(entry.tags, tag.id)
       });
-      return <EntryViewItem key={entry.id} date={entry.date} entryText={entry.entryText} tags={tags} />
+      return <EntryViewItem
+               key={entry.id}
+               date={entry.date}
+               entryText={entry.entryText}
+               id={entry.id}
+               tags={tags}
+              />
     });
 
     return entryItems.reverse();

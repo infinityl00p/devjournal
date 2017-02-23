@@ -21,6 +21,7 @@ export default class Entry extends Component {
     this.props.onClick(entryAndTags);
   }
 
+  // TODO: wrap in <a href={"#" + this.props.entry.id}>
   render(){
     return(
       <div className="entry-item-container" onClick={this.handleClick}>

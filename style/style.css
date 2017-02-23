@@ -91,6 +91,11 @@ html, body {
   border-right: 4px solid #f7f7f7;
 }
 
+#entry-list .entry-item-container a {
+  color: black;
+  text-decoration: none;
+}
+
 #entry-list .entry-item-container:hover {
   border-right: 6px solid #0EBFE9;
 }
@@ -129,6 +134,11 @@ html, body {
 #entry-view-list {
   height: 100vh;
   overflow-y: scroll;
+}
+
+#entry-view-list .entry-view-item {
+  padding: 15px 0 15px 0;
+  border-bottom: 3px solid #f7f7f7;
 }
 
 #entry-view .entry-view-selector .glyphicon {
