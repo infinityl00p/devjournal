@@ -28,3 +28,9 @@ export default class EntryList extends Component {
     )
   }
 }
+
+EntryList.propTypes = {
+  entries: React.PropTypes.array,
+  tags: React.PropTypes.array,
+  onEntryClick: React.PropTypes.func
+}

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import ActionBarItem from './ActionBarItem';
 
+
 export default class ActionBar extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.handleCreateClick = this.handleCreateClick.bind(this);
     this.handleSearchClick = this.handleSearchClick.bind(this);
@@ -73,7 +74,7 @@ export default class ActionBar extends Component {
         />
         <ActionBarItem
           key="list"
-          icon="glyphicon-align-justify"
+          icon="glyphicon-menu-hamburger"
           isActive={this.state.activeItem[3]}
           text="LIST"
           onClick={this.handleListClick}
@@ -81,4 +82,10 @@ export default class ActionBar extends Component {
       </div>
     );
   }
+}
+
+ActionBar.propTypes = {
+  entries: React.PropTypes.array,
+  tags: React.PropTypes.array,
+  onSelect: React.PropTypes.func
 }

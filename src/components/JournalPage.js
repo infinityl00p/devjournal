@@ -42,6 +42,20 @@ class JournalPage extends Component {
     }
   }
 
+  // TODO: make this better: create helper method to filter by tag
+  componentWillReceiveProps(nextProps) {
+    var firstEntry = nextProps.journal.entries.slice(-1).pop();
+    var firstEntryTags = nextProps.journal.tags.filter(function (tag) {
+      return _.contains(firstEntry.tags, tag.id)
+    });
+    var firstEntry = {
+      entry: firstEntry,
+      tags: firstEntryTags
+    };
+    this.setState({ selectedEntry: firstEntry });
+  }
+
+
   handleEntrySelect(entryAndTags) {
     this.setState({ selectedEntry: entryAndTags });
   }
@@ -62,7 +76,11 @@ class JournalPage extends Component {
           props={this.props}
           onEntryClick={this.handleEntrySelect}
         />
-        <EntryView currentEntry={this.state.selectedEntry} />
+        <EntryView
+          currentEntry={this.state.selectedEntry}
+          entries={this.props.journal.entries}
+          tags={this.props.journal.tags}
+        />
       </div>
     );
   }
