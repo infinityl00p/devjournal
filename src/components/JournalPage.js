@@ -62,7 +62,11 @@ class JournalPage extends Component {
           props={this.props}
           onEntryClick={this.handleEntrySelect}
         />
-        <EntryView currentEntry={this.state.selectedEntry} />
+        <EntryView
+          currentEntry={this.state.selectedEntry}
+          entries={this.props.journal.entries}
+          tags={this.props.journal.tags}
+        />
       </div>
     );
   }

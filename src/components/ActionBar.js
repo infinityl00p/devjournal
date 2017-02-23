@@ -73,7 +73,7 @@ export default class ActionBar extends Component {
         />
         <ActionBarItem
           key="list"
-          icon="glyphicon-align-justify"
+          icon="glyphicon-menu-hamburger"
           isActive={this.state.activeItem[3]}
           text="LIST"
           onClick={this.handleListClick}
