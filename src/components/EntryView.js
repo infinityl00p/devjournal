@@ -5,8 +5,7 @@ import EntryViewList from './EntryViewList';
 export default class EntryView extends Component {
   constructor() {
     super();
-    // TODO: handle `starting point` for entry list and use same logic for single view
-    // probably need an anchor in EntryViewList
+
     this.getSelectorClass = this.getSelectorClass.bind(this);
     this.handleViewStateChange = this.handleViewStateChange.bind(this);
     this.renderEntryView = this.renderEntryView.bind(this);
@@ -32,6 +31,7 @@ export default class EntryView extends Component {
     if (this.state.multiViewState) {
       return(
         <EntryViewList
+          activeEntryId={this.props.currentEntry.entry.id}
           entries={this.props.entries}
           selectedEntryId={this.props.currentEntry.entry.id}
           tags={this.props.tags}
