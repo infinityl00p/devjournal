@@ -25,6 +25,7 @@ export default class Entry extends Component {
   render(){
     return(
       <div className="entry-item-container" onClick={this.handleClick}>
+        <a href="#" >
         <div className="entry-header">
           <div className="entry-date">
             {this.truncateDate(this.props.entry.date)}
@@ -40,6 +41,7 @@ export default class Entry extends Component {
         <div className="entry-text">
           {this.props.entry.entryText}
         </div>
+        </a>
       </div>
     );
   }

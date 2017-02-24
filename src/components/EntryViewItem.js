@@ -11,7 +11,6 @@ export default class EntryViewItem extends Component {
   render() {
     return(
       <div className="entry-view-item">
-        <a name={this.props.id} />
         <div className="entry">
             <h4 className="date-text">{this.formatDate(this.props.date)}</h4>
             <p className="entry-text">{this.props.entryText}</p>
