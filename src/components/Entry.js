@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Tag from './Tag';
+import marked from 'marked';
 
 export default class Entry extends Component {
   constructor() {
@@ -21,8 +22,8 @@ export default class Entry extends Component {
     this.props.onClick(entryAndTags);
   }
 
-  // TODO: wrap in <a href={"#" + this.props.entry.id}>
   render(){
+    const entryText = marked(this.props.entry.entryText);
     return(
       <div className="entry-item-container" onClick={this.handleClick}>
         <a href="#" >
@@ -38,9 +39,7 @@ export default class Entry extends Component {
             }
           </div>
         </div>
-        <div className="entry-text">
-          {this.props.entry.entryText}
-        </div>
+        <div className="entry-text" dangerouslySetInnerHTML={{__html: entryText}} />
         </a>
       </div>
     );
