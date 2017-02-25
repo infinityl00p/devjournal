@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Tag from './Tag';
+import marked from 'marked';
 
 export default class EntryViewItem extends Component {
   formatDate(date) {
@@ -9,11 +10,12 @@ export default class EntryViewItem extends Component {
   }
 
   render() {
+    const entryText = marked(this.props.entryText);
     return(
       <div className="entry-view-item">
         <div className="entry">
             <h4 className="date-text">{this.formatDate(this.props.date)}</h4>
-            <p className="entry-text">{this.props.entryText}</p>
+            <div className="entry-text" dangerouslySetInnerHTML={{__html: entryText}} />
         </div>
         <div className="tag-container">
             { this.props.tags.map((tag) => <Tag key={tag.id} data={tag} />) }

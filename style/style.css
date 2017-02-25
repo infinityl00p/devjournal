@@ -91,6 +91,11 @@ html, body {
   border-right: 4px solid #f7f7f7;
 }
 
+/* Fix for markdown */
+#entry-list .entry-item-container .entry-text * {
+  font-size: 14px;
+}
+
 #entry-list .entry-item-container a {
   color: black;
   text-decoration: none;
