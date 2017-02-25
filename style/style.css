@@ -155,6 +155,18 @@ html, body {
   border-bottom: 3px solid #f7f7f7;
 }
 
+#entry-view .entry-view-item .action-bar {
+  text-align: center;
+}
+
+#entry-view .entry-view-item .action-bar span {
+  color: #A9A9A9;
+  margin: 0 5px 0 5px;
+}
+#entry-view .entry-view-item .action-bar span:hover {
+  color: #0EBFE9;
+}
+
 #entry-view .entry-view-selector .glyphicon {
   font-size: 1.75em;
   color: #0EBFE9;
@@ -172,6 +184,7 @@ html, body {
   text-align: center;
   font-weight: bold;
   text-transform: uppercase;
+  margin-bottom: 0;
 }
 
 #entry-view .entry-text {
