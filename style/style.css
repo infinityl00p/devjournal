@@ -75,6 +75,15 @@ html, body {
   background-color: #0EBFE9;
 }
 
+.entry-form-container .markdown-text {
+  margin: 20px 0 0 15px;
+  color: darkslategray;
+}
+
+.entry-form-container .markdown {
+  margin: 5px 15px 0 15px;
+}
+
 /* EntryList styles */
 #entry-list {
   overflow-y: scroll;
