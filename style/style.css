@@ -8,6 +8,7 @@ html, body {
 .container {
   margin: 0;
   padding: 0;
+  width: 100%;
 }
 
 /* Sidebar styles */
@@ -155,6 +156,10 @@ html, body {
   border-bottom: 3px solid #f7f7f7;
 }
 
+#entry-view .entry-view-item {
+  margin-right: 50px;
+}
+
 #entry-view .entry-view-item .action-bar {
   text-align: center;
 }
@@ -220,4 +225,30 @@ html, body {
 #entry-filter ul {
   list-style: none;
   padding: 0;
+}
+
+/* SharedEntry styles */
+#shared-entry-view {
+  height: 100vh;
+  background-color: #f7f7f7;
+  overflow-y: scroll;
+}
+
+#shared-entry-item {
+  height: 100vh;
+  background-color: white;
+  padding: 40px 30px 0 30px;
+}
+
+#shared-entry-item .entry .entry-note {
+  text-align: center;
+  font-weight: 200;
+  font-style: italic;
+  font-size: 16px;
+  margin: 0 0 5px 0;;
+}
+#shared-entry-item .entry .entry-date {
+  text-align: center;
+  font-weight: bold;
+  text-transform: uppercase;
 }

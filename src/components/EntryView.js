@@ -22,9 +22,9 @@ export default class EntryView extends Component {
 
   getSelectorClass() {
     if (this.state.multiViewState) {
-      return "entry-view-selector-multi col-md-offset-12";
+      return "entry-view-selector-multi col-md-offset-11";
     }
-    return "entry-view-selector col-md-offset-12";
+    return "entry-view-selector col-md-offset-11";
   }
 
   renderEntryView() {
