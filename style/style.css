@@ -172,6 +172,10 @@ html, body {
   color: #0EBFE9;
 }
 
+#entry-view .shared-link-container {
+  text-align: center;
+}
+
 #entry-view .entry-view-selector .glyphicon {
   font-size: 1.75em;
   color: #0EBFE9;
@@ -237,7 +241,7 @@ html, body {
 #shared-entry-item {
   height: 100vh;
   background-color: white;
-  padding: 40px 30px 0 30px;
+  padding: 40px 40px 0 40px;
 }
 
 #shared-entry-item .entry .entry-note {

@@ -21,10 +21,3 @@ export default class SharedEntryItem extends Component {
     );
   }
 }
-
-// props:
-// key: tempEntry.entry.id,
-// date: tempEntry.entry.date,
-// entryText: tempEntry.entry.entryText,
-// id: tempEntry.entry.id,
-// tags: tempEntry.tags

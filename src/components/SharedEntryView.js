@@ -1,47 +1,42 @@
 import React, { Component } from 'react';
 import SharedEntryItem from './SharedEntryItem';
+import axios from 'axios';
+import base62 from 'base62';
 
-var tempEntry = {
-  entry: {
-    date: "2017-02-22T04:50:46.729656Z",
-    entryText:"Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
-    id: 28,
-    tags: [29, 31, 34]
-  },
-  tags: [
-    {
-      id: 29,
-      tagText: '#first'
-    },
-    {
-      id: 31,
-      tagText: '#second'
-    },
-    {
-      id: 34,
-      tagText: '#third'
-    }
-  ]
-};
+const ROOT_URL = 'http://shielded-basin-84367.herokuapp.com';
 
 export default class SharedEntryView extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
-    // TODO: Call backend to get entryData.
+    this.state = {
+      entry: null
+    }
+
+    // TODO: render 404 page if it does not exist / work
+    var entryId = base62.decode(this.props.params.hash);
+    const request = axios.get(
+      ROOT_URL + '/shared/' + entryId,
+      entryId
+    ).then((response) => {
+      this.setState({ entry: response.data.entry });
+    });
   }
+
   render() {
-    var props = {
-      key: tempEntry.entry.id,
-      date: tempEntry.entry.date,
-      entryText: tempEntry.entry.entryText,
-      id: tempEntry.entry.id,
-      tags: tempEntry.tags
-    };
-    return(
-      <div id="shared-entry-view" className="col-md-12">
-        <SharedEntryItem {...props} />
-      </div>
-    );
+    if (this.state.entry != null) {
+      var props = {
+        key: this.state.entry.id,
+        date: this.state.entry.date,
+        entryText: this.state.entry.entryText,
+        id: this.state.entry.id,
+      };
+      return(
+        <div id="shared-entry-view" className="col-md-12">
+          <SharedEntryItem {...props} />
+        </div>
+      );
+    }
+    return (<div className="not-found">Not found.</div>);
   }
 }
