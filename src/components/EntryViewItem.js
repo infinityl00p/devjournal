@@ -1,8 +1,28 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import Tag from './Tag';
+
+import axios from 'axios';
 import marked from 'marked';
+import base62 from 'base62';
+
+const ROOT_URL = 'http://shielded-basin-84367.herokuapp.com';
+const URL = 'http://localhost:8080/';
+// const URL = 'http://devjournal.co/';
 
 export default class EntryViewItem extends Component {
+  constructor() {
+    super();
+
+    this.handleShare = this.handleShare.bind(this);
+    this.renderSharedLinkInput = this.renderSharedLinkInput.bind(this);
+
+    this.state = {
+      sharedEntryUrl: '',
+      showLink: false
+    }
+  }
+
   formatDate(date) {
     var truncatedDate = date.substring(0, date.indexOf('T'));
     var fullDate = new Date(truncatedDate).toDateString();
@@ -17,8 +37,32 @@ export default class EntryViewItem extends Component {
   }
 
   handleShare() {
-    // generate shareable link
-    // this.props.onShare(this.props.id);
+    if (this.state.sharedEntryUrl === '') {
+      const request = axios.post(
+        ROOT_URL + '/shared',
+        { entryId: this.props.id }
+      ).then((response) => {
+        this.setState({ sharedEntryUrl: base62.encode(response.data.id) })
+        this.setState({ showLink: !this.state.showLink });
+      });
+    } else {
+      this.setState({ showLink: !this.state.showLink });
+      this.renderSharedLinkInput();
+    }
+  }
+
+  // TODO: maybe render this as a modal or some other thing.
+  renderSharedLinkInput() {
+    if (this.state.showLink) {
+      return(
+        <input
+          className="shared-link-input"
+          type="text"
+          readOnly
+          value={URL + this.state.sharedEntryUrl}
+        />
+      );
+    }
   }
 
   handleDelete() {
@@ -36,6 +80,7 @@ export default class EntryViewItem extends Component {
               <span className="glyphicon glyphicon-share" title="share" onClick={this.handleShare} />
               <span className="glyphicon glyphicon-trash" title="delete" onClick={this.handleDelete} />
             </div>
+            <div className="shared-link-container">{this.renderSharedLinkInput()}</div>
             <div className="entry-text" dangerouslySetInnerHTML={{__html: entryText}} />
         </div>
         <div className="tag-container">
