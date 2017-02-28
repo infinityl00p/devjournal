@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import * as actionCreators from '../actions/index';
 
 // TODO: add loged in to global state; add logic to redirect here if not logged in.
 export default class LoginPage extends Component {
@@ -11,14 +12,20 @@ export default class LoginPage extends Component {
 
     this.state = {
         email: '',
-        password: '',
+        password: ''
     }
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    // TODO: Call backend to login and redirect to other page
-    console.log(this.state);
+
+    var user = {
+      email: this.state.email,
+      password: this.state.password
+    }
+    // TODO: redirect only on login, catch login errors and display message
+    actionCreators.loginUser(user);
+
   }
 
   handleEmailChange(e) {

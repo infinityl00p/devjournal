@@ -101,7 +101,7 @@ export default class EntryViewItem extends Component {
           <div className="entry-text" dangerouslySetInnerHTML={{__html: entryText}} />
         </div>
         <div className="tag-container">
-            { this.props.tags.map((tag) => <Tag key={tag.id} data={tag} />) }
+          { this.props.tags.map((tag) => <Tag key={tag.id} data={tag} />) }
         </div>
       </div>
     );

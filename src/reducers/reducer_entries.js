@@ -45,6 +45,15 @@ const entries = (state = null, action) => {
             tags
           };
           return Object.assign({}, state, updatedState);
+        case actionCreators.CREATE_USER:
+        case actionCreators.LOGIN_USER:
+            var response = action.payload.data
+            return Object.assign({}, state, {
+                user: {
+                    id: response.userId,
+                    loggedIn: true
+                }
+            });
     }
     return state;
 }
