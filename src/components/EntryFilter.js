@@ -58,7 +58,7 @@ export default class EntryFilter extends Component {
       return(
           <li key={tag.id} className="filter-list-item col-md-6">
             <FilterTag
-              data={tag} 
+              data={tag}
               id={tag.id}
               onClick={this.handleClick}
               active={this.checkActive}
