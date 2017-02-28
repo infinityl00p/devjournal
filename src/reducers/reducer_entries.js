@@ -27,6 +27,15 @@ const entries = (state = null, action) => {
             };
         case actionCreators.UPDATE_ENTRY:
         case actionCreators.DELETE_ENTRY:
+        case actionCreators.CREATE_USER:
+        case actionCreators.LOGIN_USER:
+            var response = action.payload.data
+            return Object.assign({}, state, {
+                user: {
+                    id: response.userId,
+                    loggedIn: true
+                }
+            });
     }
     return state;
 }

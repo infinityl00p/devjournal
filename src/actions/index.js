@@ -11,6 +11,9 @@ export const GET_TAGS = 'GET_TAGS';
 export const CREATE_TAG = 'CREATE_TAG';
 export const DELETE_TAG = 'DELETE_TAG';
 
+export const CREATE_USER = 'CREATE_USER';
+export const LOGIN_USER = 'LOGIN_USER';
+
 // TODO: ADD ERROR HANDLING
 export function createEntryAndTags(entry) {
     const request = axios.post(
@@ -88,6 +91,30 @@ export function deleteTag(tagId) {
 
     return {
         type: DELETE_TAG,
+        payload: request
+    };
+}
+
+export function createUser(user) {
+    const request = axios.post(
+        ROOT_URL + '/users/add',
+        user
+    );
+
+    return {
+        type: CREATE_USER,
+        payload: request
+    };
+}
+
+export function loginUser(user) {
+    const request = axios.post(
+        ROOT_URL + '/users/login',
+        user
+    );
+
+    return {
+        type: LOGIN_USER,
         payload: request
     };
 }
