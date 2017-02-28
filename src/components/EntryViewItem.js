@@ -7,8 +7,8 @@ import marked from 'marked';
 import base62 from 'base62';
 
 const ROOT_URL = 'http://shielded-basin-84367.herokuapp.com';
-const URL = 'http://localhost:8080/';
-// const URL = 'http://devjournal.co/';
+const URL = 'http://localhost:8080/s/';
+// const URL = 'http://devjournal.co/s/';
 
 export default class EntryViewItem extends Component {
   constructor() {
