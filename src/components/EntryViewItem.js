@@ -74,14 +74,14 @@ export default class EntryViewItem extends Component {
     return(
       <div className="entry-view-item">
         <div className="entry">
-            <h4 className="date-text">{this.formatDate(this.props.date)}</h4>
-            <div className="action-bar">
-              <span className="glyphicon glyphicon-edit" title="edit" onClick={this.handleEdit} />
-              <span className="glyphicon glyphicon-share" title="share" onClick={this.handleShare} />
-              <span className="glyphicon glyphicon-trash" title="delete" onClick={this.handleDelete} />
-            </div>
-            <div className="shared-link-container">{this.renderSharedLinkInput()}</div>
-            <div className="entry-text" dangerouslySetInnerHTML={{__html: entryText}} />
+          <h4 className="date-text">{this.formatDate(this.props.date)}</h4>
+          <div className="action-bar">
+            <span className="glyphicon glyphicon-edit" title="edit" onClick={this.handleEdit} />
+            <span className="glyphicon glyphicon-share" title="share" onClick={this.handleShare} />
+            <span className="glyphicon glyphicon-trash" title="delete" onClick={this.handleDelete} />
+          </div>
+          <div className="shared-link-container">{this.renderSharedLinkInput()}</div>
+          <div className="entry-text" dangerouslySetInnerHTML={{__html: entryText}} />
         </div>
         <div className="tag-container">
             { this.props.tags.map((tag) => <Tag key={tag.id} data={tag} />) }

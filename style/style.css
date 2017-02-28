@@ -256,3 +256,9 @@ html, body {
   font-weight: bold;
   text-transform: uppercase;
 }
+
+/* LoginPage styles */
+#login-page {
+  height: 100vh;
+  background-color: #f7f7f7;
+}
