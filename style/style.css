@@ -303,6 +303,7 @@ html, body {
   text-transform: uppercase;
 }
 
+<<<<<<< HEAD
 /* Todo List styles */
 #todo-list {
   background-color: #fafafa;
@@ -885,4 +886,9 @@ input[type="checkbox"]:focus{
 
 .react-calendar-heatmap .color-gitlab-4 {
   fill: #254e77;
+}
+/* LoginPage styles */
+#login-page {
+  height: 100vh;
+  background-color: #f7f7f7;
 }

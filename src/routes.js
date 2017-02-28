@@ -10,6 +10,7 @@ const routes = [
   <Route key="shared" path="s/:hash" component={SharedEntryView} />,
   <Route key="todo" path="todo" component={TodoList} />,
   <Route key="/profile" path="/profile" component={ProfilePage} />
+  <Route key="login" path="login" component={LoginPage} />
 ];
 
 export default routes;
