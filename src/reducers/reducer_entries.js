@@ -27,6 +27,20 @@ const entries = (state = null, action) => {
             };
         case actionCreators.UPDATE_ENTRY:
         case actionCreators.DELETE_ENTRY:
+          var response = action.payload;
+
+          var entries = state.entries.filter(function(entry) {
+            if(entry.id !== response){
+              return entry
+            }
+          })
+
+          var tags = state.tags;
+          var updatedState = {
+            entries,
+            tags
+          };
+          return Object.assign({}, state, updatedState);
     }
     return state;
 }

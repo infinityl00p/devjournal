@@ -33,7 +33,7 @@ class JournalPage extends Component {
   constructor(props) {
     super(props);
     this.props.actions.getEntriesAndTags();
-
+    
     this.handleEntrySelect = this.handleEntrySelect.bind(this);
     // TODO: update this to set state to:
     // this.props.journal.entries.slice(-1)[0] after successful getEntriesAndTags()
@@ -80,6 +80,7 @@ class JournalPage extends Component {
           currentEntry={this.state.selectedEntry}
           entries={this.props.journal.entries}
           tags={this.props.journal.tags}
+          onDelete={this.props.actions.deleteEntry}
         />
       </div>
     );

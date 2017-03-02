@@ -16,6 +16,7 @@ export default class EntryViewItem extends Component {
 
     this.handleShare = this.handleShare.bind(this);
     this.renderSharedLinkInput = this.renderSharedLinkInput.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
 
     this.state = {
       sharedEntryUrl: '',
@@ -66,7 +67,7 @@ export default class EntryViewItem extends Component {
   }
 
   handleDelete() {
-  //   this.props.onDelete(this.props.id);
+     this.props.onDelete(this.props.id);
   }
 
   render() {
