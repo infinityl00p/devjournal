@@ -207,6 +207,11 @@ html, body {
   margin-top: 30px;
 }
 
+/* EntryViewItem styles TODO: Probably update the hover styling to match the other merge*/
+.entry-view-item:hover {
+  border-right: 6px solid #0EBFE9;
+}
+
 /* EntrySeach styles */
 #entry-search {
   margin-top: 15px;
