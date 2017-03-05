@@ -6,8 +6,8 @@ import EntrySearch from './EntrySearch';
 import EntryFilter from './EntryFilter';
 
 export default class Sidebar extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.handleActionSelect = this.handleActionSelect.bind(this);
     this.renderActionComponent = this.renderActionComponent.bind(this);
@@ -61,7 +61,7 @@ export default class Sidebar extends Component {
           <EntryFilter
             entries={this.props.entries}
             tags={this.props.tags}
-            onClick={this.handleEntrySelect}
+            onEntryClick={this.props.onEntryClick}
           />
         );
       case 'EntryList':
@@ -89,4 +89,10 @@ export default class Sidebar extends Component {
       </div>
     );
   }
+}
+
+Sidebar.propTypes = {
+  entries: React.PropTypes.array,
+  tags: React.PropTypes.array,
+  onEntryClick: React.PropTypes.func
 }

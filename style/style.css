@@ -113,6 +113,7 @@ html, body {
 
 #entry-list .entry-item-container:hover {
   border-right: 6px solid #0EBFE9;
+  background-color: rgba(211,211,211, 0.5);
 }
 
 #entry-list .entry-header {
@@ -225,10 +226,14 @@ html, body {
 }
 
 /* EntryFilter styles */
-#entry-filter {
-  margin: 15px;
+#filter-glyphicon {
+  margin-left: 100%%;
+}
+
+#entry-filter{
   overflow-y: scroll;
-  height: 50vh;
+  height: 25vh;
+  margin-bottom: 10px;
 }
 
 #entry-filter ul {
@@ -236,6 +241,39 @@ html, body {
   padding: 0;
 }
 
+#entry-filter .hide{
+  display: none;
+}
+
+#filter #filter-button {
+  display: block;
+  margin: 0 auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.filter-results {
+  position: relative;
+  overflow-y: scroll;
+  height:75vh;
+}
+
+.filter-tag:hover {
+  padding-right: 5px;
+  background-color: rgba(211,211,211, 0.5);
+  cursor: pointer;
+}
+
+.filter-results {
+  overflow-y: scroll;
+  height:75vh;
+}
+
+/* Filter Tag Styles */
+.filter-tag.active {
+  font-weight: bold;
+  color: #0EBFE9;
+}
 /* SharedEntry styles */
 #shared-entry-view {
   height: 100vh;

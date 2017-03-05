@@ -75,3 +75,9 @@ export default class EntryView extends Component {
     );
   }
 }
+
+EntryView.propTypes = {
+  currentEntry: React.PropTypes.object,
+  entries: React.PropTypes.array,
+  tags: React.PropTypes.array
+}

@@ -21,3 +21,8 @@ export default class SharedEntryItem extends Component {
     );
   }
 }
+
+SharedEntryItem.propTypes = {
+  entryText: React.PropTypes.string,
+  date: React.PropTypes.string
+}

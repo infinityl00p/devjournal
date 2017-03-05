@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import EntryViewItem from './EntryViewItem';
 
 export default class EntryViewList extends Component {
-  constructor() {
-      super();
+  constructor(props) {
+      super(props);
 
       this.renderEntryList = this.renderEntryList.bind(this);
       this.handleClick = this.handleClick.bind(this);
@@ -66,4 +66,11 @@ export default class EntryViewList extends Component {
       </div>
     );
   }
+}
+
+EntryViewList.proptypes = {
+  activeEntryId: React.PropTypes.number,
+  entries: React.PropTypes.array,
+  selectedEntryId: React.PropTypes.number,
+  tags: React.PropTypes.array
 }
