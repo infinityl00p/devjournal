@@ -9,14 +9,9 @@ export default class EntryView extends Component {
     this.getSelectorClass = this.getSelectorClass.bind(this);
     this.handleViewStateChange = this.handleViewStateChange.bind(this);
     this.renderEntryView = this.renderEntryView.bind(this);
-    this.renderEntry = this.renderEntry.bind(this);
 
     this.state = {
-      multiViewState: false,
-      activeId: this.props.currentEntry.entry.id,
-      activeDate: this.props.currentEntry.entry.date,
-      activeEntryText: this.props.currentEntry.entry.entryText,
-      activeTags: this.props.currentEntry.tags
+      multiViewState: false
     }
   }
 
@@ -32,15 +27,6 @@ export default class EntryView extends Component {
     return "entry-view-selector col-md-offset-11";
   }
 
-  renderEntry(id, date, entryText, tags) {
-    this.setState({
-      activeId: id,
-      activeDate: date,
-      activeEntryText: entryText,
-      activeTags: tags
-    });
-  }
-
   renderEntryView() {
     if (this.state.multiViewState) {
       return(
@@ -49,17 +35,15 @@ export default class EntryView extends Component {
           entries={this.props.entries}
           selectedEntryId={this.props.currentEntry.entry.id}
           tags={this.props.tags}
-          onClick={this.renderEntry}
         />
       );
     }
     return(
       <EntryViewItem
-        id={this.state.activeId}
-        date={this.state.activeDate}
-        entryText={this.state.activeEntryText}
-        tags={this.state.activeTags}
-        onClick={this.renderEntry}
+        id={this.props.currentEntry.entry.id}
+        date={this.props.currentEntry.entry.date}
+        entryText={this.props.currentEntry.entry.entryText}
+        tags={this.props.currentEntry.tags}
       />
     );
   }

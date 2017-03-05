@@ -7,7 +7,6 @@ export default class EntryViewList extends Component {
       super(props);
 
       this.renderEntryList = this.renderEntryList.bind(this);
-      this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidUpdate(prevProps) {
@@ -41,8 +40,7 @@ export default class EntryViewList extends Component {
         date: entry.date,
         entryText: entry.entryText,
         id: entry.id,
-        tags: tags,
-        onClick: this.handleClick
+        tags: tags
       };
 
       if (active) {
@@ -53,10 +51,6 @@ export default class EntryViewList extends Component {
     });
 
     return entryItems.reverse();
-  }
-
-  handleClick(id, date, entryText, tags) {
-    this.props.onClick(id, date, entryText, tags);
   }
 
   render() {

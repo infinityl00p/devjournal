@@ -16,7 +16,6 @@ export default class EntryViewItem extends Component {
 
     this.handleShare = this.handleShare.bind(this);
     this.renderSharedLinkInput = this.renderSharedLinkInput.bind(this);
-    this.handleClick = this.handleClick.bind(this);
 
     this.state = {
       sharedEntryUrl: '',
@@ -35,10 +34,6 @@ export default class EntryViewItem extends Component {
     // Render edit Modal (or do it in the view)
     // var editedData = { 'something' };
     // this.props.onEdit(editedData);
-  }
-
-  handleClick() {
-    this.props.onClick(this.props.id, this.props.date, this.props.entryText, this.props.tags);
   }
 
   handleShare() {
@@ -77,7 +72,7 @@ export default class EntryViewItem extends Component {
   render() {
     const entryText = marked(this.props.entryText);
     return(
-      <div className="entry-view-item" onClick={this.handleClick}>
+      <div className="entry-view-item">
         <div className="entry">
             <h4 className="date-text">{this.formatDate(this.props.date)}</h4>
             <div className="action-bar">
@@ -89,7 +84,7 @@ export default class EntryViewItem extends Component {
             <div className="entry-text" dangerouslySetInnerHTML={{__html: entryText}} />
         </div>
         <div className="tag-container">
-            { this.props.tags.map((tag) => <Tag key={tag.id} data={tag}/>) }
+            { this.props.tags.map((tag) => <Tag key={tag.id} data={tag} />) }
         </div>
       </div>
     );
