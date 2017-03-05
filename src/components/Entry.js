@@ -3,8 +3,8 @@ import Tag from './Tag';
 import marked from 'marked';
 
 export default class Entry extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.handleClick = this.handleClick.bind(this);
   }
@@ -45,4 +45,9 @@ export default class Entry extends Component {
     );
   }
 
+}
+
+Entry.propTypes = {
+  entry: React.PropTypes.object,
+  tags: React.PropTypes.array
 }

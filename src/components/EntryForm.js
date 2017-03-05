@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
 export default class EntryForm extends Component {
-  constructor(){
-    super();
+  constructor(props) {
+    super(props);
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.createEntryAndTags = this.createEntryAndTags.bind(this);
@@ -90,7 +90,7 @@ export default class EntryForm extends Component {
           <h2 className="entry-form-title">Add a new entry:</h2>
           <textarea rows="6" className="form-control entry-textarea" placeholder="" ref="entry"></textarea>
           <input className="form-control tags-input" placeholder="#enter #tags #separated #byspace" ref="tags"/>
-          <button type="submit" className="btn btn-info" >Save</button>
+          <button type="submit" className="btn btn-info pull-right" >Save</button>
         </form>
         <p className="markdown-text">Note - DevJournal supports <a href="https://guides.github.com/features/mastering-markdown/">Markdown</a>:</p>
         <div className="markdown well">
@@ -106,4 +106,10 @@ export default class EntryForm extends Component {
       </div>
     );
   }
+}
+
+EntryForm.propTypes = {
+  entries: React.PropTypes.array,
+  tags: React.PropTypes.array,
+  handleCreate: React.PropTypes.func
 }

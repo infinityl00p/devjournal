@@ -7,12 +7,12 @@ import marked from 'marked';
 import base62 from 'base62';
 
 const ROOT_URL = 'http://shielded-basin-84367.herokuapp.com';
-const URL = 'http://localhost:8080/s/';
-// const URL = 'http://devjournal.co/s/';
+const URL = 'http://localhost:8080/';
+// const URL = 'http://devjournal.co/';
 
 export default class EntryViewItem extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.handleShare = this.handleShare.bind(this);
     this.renderSharedLinkInput = this.renderSharedLinkInput.bind(this);
@@ -89,4 +89,11 @@ export default class EntryViewItem extends Component {
       </div>
     );
   }
+}
+
+EntryViewItem.propTypes = {
+  id: React.PropTypes.number,
+  date: React.PropTypes.string,
+  entryText: React.PropTypes.string,
+  tags: React.PropTypes.array
 }

@@ -3,8 +3,8 @@ import EntryViewItem from './EntryViewItem';
 import EntryViewList from './EntryViewList';
 
 export default class EntryView extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.getSelectorClass = this.getSelectorClass.bind(this);
     this.handleViewStateChange = this.handleViewStateChange.bind(this);
@@ -58,4 +58,10 @@ export default class EntryView extends Component {
       </div>
     );
   }
+}
+
+EntryView.propTypes = {
+  currentEntry: React.PropTypes.object,
+  entries: React.PropTypes.array,
+  tags: React.PropTypes.array
 }
