@@ -11,10 +11,12 @@ export const GET_TAGS = 'GET_TAGS';
 export const CREATE_TAG = 'CREATE_TAG';
 export const DELETE_TAG = 'DELETE_TAG';
 
+const USER_ID = 2;
+
 // TODO: ADD ERROR HANDLING
 export function createEntryAndTags(entry) {
     const request = axios.post(
-        ROOT_URL + '/entries',
+        ROOT_URL + '/entries/' + USER_ID,
         entry
     );
     return {
@@ -25,7 +27,7 @@ export function createEntryAndTags(entry) {
 
 export function getEntriesAndTags() {
     const request = axios.get(
-        ROOT_URL + '/entries'
+        ROOT_URL + '/entries/' + USER_ID
     );
 
     return {
@@ -36,7 +38,7 @@ export function getEntriesAndTags() {
 
 export function updateEntry(entryId, entryData) {
     const request = axios.post(
-        ROOT_URL + '/entries/' + entryId,
+        ROOT_URL + '/entries/' + USER_ID + '/' + entryId,
         entryData
     );
 
@@ -48,7 +50,7 @@ export function updateEntry(entryId, entryData) {
 
 export function deleteEntry(entryId) {
     const request = axios.delete(
-        ROOT_URL + '/entries/' + entryId
+        ROOT_URL + '/entries/' + USER_ID + '/' + entryId
     );
     return {
         type: DELETE_ENTRY,
@@ -56,36 +58,36 @@ export function deleteEntry(entryId) {
     };
 }
 
-export function createTag(tag) {
-    const request = axios.post(
-        ROOT_URL + '/tags',
-        tag
-    );
+// export function createTag(tag) {
+//     const request = axios.post(
+//         ROOT_URL + '/tags',
+//         tag
+//     );
+//
+//     return {
+//         type: CREATE_TAG,
+//         payload: request
+//     };
+// }
 
-    return {
-        type: CREATE_TAG,
-        payload: request
-    };
-}
+// export function getTags() {
+//     const request = axios.get(
+//         ROOT_URL + '/tags'
+//     );
+//
+//     return {
+//         type: GET_TAGS,
+//         payload: request
+//     };
+// }
 
-export function getTags() {
-    const request = axios.get(
-        ROOT_URL + '/tags'
-    );
-
-    return {
-        type: GET_TAGS,
-        payload: request
-    };
-}
-
-export function deleteTag(tagId) {
-    const request = axios.post(
-        ROOT_URL + '/tags/' + tagId
-    );
-
-    return {
-        type: DELETE_TAG,
-        payload: request
-    };
-}
+// export function deleteTag(tagId) {
+//     const request = axios.post(
+//         ROOT_URL + '/tags/' + tagId
+//     );
+//
+//     return {
+//         type: DELETE_TAG,
+//         payload: request
+//     };
+// }
