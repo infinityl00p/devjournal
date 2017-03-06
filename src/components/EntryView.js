@@ -9,7 +9,6 @@ export default class EntryView extends Component {
     this.getSelectorClass = this.getSelectorClass.bind(this);
     this.handleViewStateChange = this.handleViewStateChange.bind(this);
     this.renderEntryView = this.renderEntryView.bind(this);
-    this.setActiveEntry = this.setActiveEntry.bind(this);
 
     this.state = {
       multiViewState: false,
@@ -27,12 +26,6 @@ export default class EntryView extends Component {
     this.setState({ multiViewState: !prevState });
   }
 
-  setActiveEntry(data) {
-    this.setState({
-      activeEntryData: data
-    });
-  }
-
   getSelectorClass() {
     if (this.state.multiViewState) {
       return "entry-view-selector-multi col-md-offset-11";
@@ -48,16 +41,16 @@ export default class EntryView extends Component {
           entries={this.props.entries}
           selectedEntryId={this.props.currentEntry.entry.id}
           tags={this.props.tags}
-          onClick={this.setActiveEntry}
+          onClick={this.props.setActiveEntry}
         />
       );
     }
     return(
       <EntryViewItem
-        id={this.state.activeEntryData.id}
-        date={this.state.activeEntryData.date}
-        entryText={this.state.activeEntryData.entryText}
-        tags={this.state.activeEntryData.tags}
+        id={this.props.currentEntry.entry.id}
+        date={this.props.currentEntry.entry.date}
+        entryText={this.props.currentEntry.entry.entryText}
+        tags={this.props.currentEntry.tags}
         onDelete={this.props.onDelete}
       />
     );
