@@ -28,7 +28,6 @@ export default class EntryView extends Component {
   }
 
   setActiveEntry(data) {
-    console.log(data);
     this.setState({
       activeEntryData: data
     });
