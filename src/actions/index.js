@@ -48,11 +48,11 @@ export function updateEntry(entryId, entryData) {
 
 export function deleteEntry(entryId) {
     const request = axios.delete(
-        ROOT_URL + '/entries/' + entryId,
+        ROOT_URL + '/entries/' + entryId
     );
     return {
         type: DELETE_ENTRY,
-        payload: entryId
+        payload: request
     };
 }
 
