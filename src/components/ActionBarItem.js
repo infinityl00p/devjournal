@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 
+
 export default class ActionBarItem extends Component {
   constructor(props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);
 
     this.state = {
-      active : this.props.isActive
+      active: this.props.isActive
     }
   }
 
@@ -26,4 +27,12 @@ export default class ActionBarItem extends Component {
         </div>
       );
   }
+}
+
+ActionBarItem.propTypes = {
+  isActive: React.PropTypes.bool,
+  text: React.PropTypes.string,
+  icon: React.PropTypes.string,
+  key: React.PropTypes.string,
+  onClick: React.PropTypes.func
 }

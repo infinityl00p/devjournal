@@ -72,3 +72,9 @@ export default class EntrySearch extends Component {
     );
   }
 }
+
+EntrySearch.propTypes = {
+  entries: React.PropTypes.array,
+  tags: React.PropTypes.array,
+  onEntryClick: React.PropTypes.func
+}
