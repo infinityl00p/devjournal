@@ -157,6 +157,13 @@ html, body {
   border-bottom: 3px solid #f7f7f7;
 }
 
+#entry-view-list .entry-view-item:hover {
+  border-right: 6px solid #0EBFE9;
+  padding-right: 5px;
+  background-color: rgba(211,211,211, 0.5);
+  cursor: pointer;
+}
+
 #entry-view .entry-view-item {
   margin-right: 50px;
 }

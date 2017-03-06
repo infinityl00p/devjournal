@@ -17,6 +17,7 @@ export default class EntryViewItem extends Component {
     this.handleShare = this.handleShare.bind(this);
     this.renderSharedLinkInput = this.renderSharedLinkInput.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.handleClick = this.handleClick.bind(this);
 
     this.state = {
       sharedEntryUrl: '',
@@ -28,6 +29,18 @@ export default class EntryViewItem extends Component {
     var truncatedDate = date.substring(0, date.indexOf('T'));
     var fullDate = new Date(truncatedDate).toDateString();
     return fullDate;
+  }
+
+  handleClick(){
+    if (this.props.onClick){
+      var data = {
+        id: this.props.id,
+        date: this.props.date,
+        entryText: this.props.entryText,
+        tags: this.props.tags
+      }
+      this.props.onClick(data);
+    }
   }
 
   // TODO: add these as we build functionality. Should call action creator in JournalPage.
@@ -73,7 +86,7 @@ export default class EntryViewItem extends Component {
   render() {
     const entryText = marked(this.props.entryText);
     return(
-      <div className="entry-view-item">
+      <div className="entry-view-item" onClick={this.handleClick}>
         <div className="entry">
             <h4 className="date-text">{this.formatDate(this.props.date)}</h4>
             <div className="action-bar">

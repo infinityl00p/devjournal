@@ -9,15 +9,29 @@ export default class EntryView extends Component {
     this.getSelectorClass = this.getSelectorClass.bind(this);
     this.handleViewStateChange = this.handleViewStateChange.bind(this);
     this.renderEntryView = this.renderEntryView.bind(this);
+    this.setActiveEntry = this.setActiveEntry.bind(this);
 
     this.state = {
-      multiViewState: false
+      multiViewState: false,
+      activeEntryData: {
+        id: this.props.currentEntry.entry.id,
+        date: this.props.currentEntry.entry.date,
+        entryText: this.props.currentEntry.entry.entryText,
+        tags: this.props.currentEntry.tags
+      }
     }
   }
 
   handleViewStateChange() {
     var prevState = this.state.multiViewState;
     this.setState({ multiViewState: !prevState });
+  }
+
+  setActiveEntry(data) {
+    console.log(data);
+    this.setState({
+      activeEntryData: data
+    });
   }
 
   getSelectorClass() {
@@ -35,15 +49,16 @@ export default class EntryView extends Component {
           entries={this.props.entries}
           selectedEntryId={this.props.currentEntry.entry.id}
           tags={this.props.tags}
+          onClick={this.setActiveEntry}
         />
       );
     }
     return(
       <EntryViewItem
-        id={this.props.currentEntry.entry.id}
-        date={this.props.currentEntry.entry.date}
-        entryText={this.props.currentEntry.entry.entryText}
-        tags={this.props.currentEntry.tags}
+        id={this.state.activeEntryData.id}
+        date={this.state.activeEntryData.date}
+        entryText={this.state.activeEntryData.entryText}
+        tags={this.state.activeEntryData.tags}
         onDelete={this.props.onDelete}
       />
     );
