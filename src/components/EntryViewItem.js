@@ -33,13 +33,17 @@ export default class EntryViewItem extends Component {
 
   handleClick(){
     if (this.props.onClick){
-      var data = {
-        id: this.props.id,
+      var updatedEntry = {
         date: this.props.date,
         entryText: this.props.entryText,
+        id: this.props.id,
+      }
+
+      var visibleEntry = {
+        entry: updatedEntry,
         tags: this.props.tags
       }
-      this.props.onClick(data);
+      this.props.onClick(visibleEntry);
     }
   }
 

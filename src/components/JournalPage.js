@@ -56,19 +56,8 @@ class JournalPage extends Component {
     this.setState({ selectedEntry: firstEntry });
   }
 
-  setActiveEntry(data) {
-    var updatedEntry = {
-      date: data.date,
-      entryText: data.entryText,
-      id: data.id
-    }
-
-    var newEntry = {
-      entry: updatedEntry,
-      tags: data.tags
-    }
-
-    this.setState({ selectedEntry: newEntry });
+  setActiveEntry(visibleEntry) {
+    this.setState({ selectedEntry: visibleEntry });
   }
 
   handleEntrySelect(entryAndTags) {
