@@ -44,6 +44,7 @@ export default class EntryView extends Component {
         date={this.props.currentEntry.entry.date}
         entryText={this.props.currentEntry.entry.entryText}
         tags={this.props.currentEntry.tags}
+        onDelete={this.props.onDelete}
       />
     );
   }

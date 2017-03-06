@@ -27,6 +27,21 @@ const entries = (state = null, action) => {
             };
         case actionCreators.UPDATE_ENTRY:
         case actionCreators.DELETE_ENTRY:
+          var response = action.payload.data.success;
+          var entries = state.entries.filter(function(entry) {
+            // TODO: Add error handling for response
+            if(entry.id != response){
+              return entry
+            }
+          })
+
+          var tags = state.tags;
+          var updatedState = {
+            entries,
+            tags
+          };
+          console.log(updatedState);
+          return Object.assign({}, state, updatedState);
     }
     return state;
 }

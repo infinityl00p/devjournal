@@ -17,7 +17,6 @@ export function createEntryAndTags(entry) {
         ROOT_URL + '/entries',
         entry
     );
-
     return {
         type: CREATE_ENTRY_AND_TAGS,
         payload: request
@@ -48,10 +47,9 @@ export function updateEntry(entryId, entryData) {
 }
 
 export function deleteEntry(entryId) {
-    const request = axios.get(
+    const request = axios.delete(
         ROOT_URL + '/entries/' + entryId
     );
-
     return {
         type: DELETE_ENTRY,
         payload: request
