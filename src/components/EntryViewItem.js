@@ -60,7 +60,7 @@ export default class EntryViewItem extends Component {
           className="shared-link-input"
           type="text"
           readOnly
-          value={URL + this.state.sharedEntryUrl}
+          value={URL + 's/' + this.state.sharedEntryUrl}
         />
       );
     }

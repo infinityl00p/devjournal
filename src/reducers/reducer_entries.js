@@ -4,6 +4,10 @@ const entries = (state = null, action) => {
     switch(action.type) {
         case actionCreators.CREATE_ENTRY_AND_TAGS:
             var response = action.payload.data.data;
+            // handle entry with no tags
+            if (response.tags === null) {
+                response.tags = {};
+            }
             return Object.assign({}, state, {
                 entries: [
                     ...state.entries,

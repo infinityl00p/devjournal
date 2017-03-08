@@ -162,12 +162,13 @@ html, body {
 }
 
 #entry-view .entry-view-item .action-bar {
+  font-size: 1.35em;
   text-align: center;
 }
 
 #entry-view .entry-view-item .action-bar span {
   color: #A9A9A9;
-  margin: 0 5px 0 5px;
+  margin: 0 10px 0 10px;
 }
 #entry-view .entry-view-item .action-bar span:hover {
   color: #0EBFE9;
