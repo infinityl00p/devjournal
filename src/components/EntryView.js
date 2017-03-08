@@ -42,6 +42,7 @@ export default class EntryView extends Component {
           selectedEntryId={this.props.currentEntry.entry.id}
           tags={this.props.tags}
           onClick={this.props.setActiveEntry}
+          onDelete={this.props.onDelete}
         />
       );
     }

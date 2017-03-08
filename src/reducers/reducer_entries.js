@@ -44,7 +44,6 @@ const entries = (state = null, action) => {
             entries,
             tags
           };
-          console.log(updatedState);
           return Object.assign({}, state, updatedState);
     }
     return state;
