@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Sidebar from './Sidebar';
 import EntryView from './EntryView';
-import * as actionCreators from '../actions/index';
+import * as actionCreators from '../../actions/index';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import _ from 'lodash';

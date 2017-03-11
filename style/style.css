@@ -297,8 +297,37 @@ html, body {
   font-size: 16px;
   margin: 0 0 5px 0;;
 }
+
 #shared-entry-item .entry .entry-date {
   text-align: center;
   font-weight: bold;
   text-transform: uppercase;
+}
+
+
+/* Profile Pic styles */
+#avatar-wrapper {
+  padding-top: 30px;
+}
+
+#profile-picture {
+  width: 200px;
+  height: auto;
+}
+
+/*Top Tags styles */
+#top-tags-wrapper {
+  padding-top: 50px;
+}
+
+#tag-list-header {
+  color: white;
+  background-color: #274B62;
+  text-align: center;
+}
+
+/*Info Table styles */
+#info-table {
+  padding-top: 100px;
+  padding-left: 100px;
 }
