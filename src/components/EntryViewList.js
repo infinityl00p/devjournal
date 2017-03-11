@@ -40,7 +40,9 @@ export default class EntryViewList extends Component {
         date: entry.date,
         entryText: entry.entryText,
         id: entry.id,
-        tags: tags
+        tags: tags,
+        onClick: this.props.onClick,
+        onDelete: this.props.onDelete
       };
 
       if (active) {
