@@ -8,21 +8,43 @@ export default class TopTags extends Component {
   }
 
   sortTags() {
-    var sortedTags = [];
-    var TagTally = [];
-    this.props.data.entries.map(function(entry){
-      entry.tags.map(function(tag){
-        TagTally[tag]++;
-      })
+    var frequencyArray = [];
+    var tagTextArray = [];
+    this.props.data.tags.forEach(function (tags) {
+      tagTextArray[tags.id] = tags.tagText;
     })
-    console.log(TagTally);
-    return sortedTags;
+
+    var entries = this.props.data.entries;
+    for (var i = 0; i < entries.length; i++) {
+      for (var j = 0; j < entries[i].tags.length; j++) {
+        var tag = entries[i].tags[j];
+        if (frequencyArray[tag] === undefined) {
+          frequencyArray[tag] = {
+            id: tagTextArray[tag],
+            frequency: 1
+          };
+        }
+        else {
+          frequencyArray[tag].frequency = frequencyArray[tag].frequency + 1;
+        }
+      }
+    }
+
+    var sortedArray = frequencyArray.sort(function(a,b) {
+      return (a.frequency < b.frequency) ? 1 : ((b.frequency < a.frequency) ? -1 : 0);
+    });
+
+    sortedArray = frequencyArray.map(function (object) {
+      return (<li className="list-group-item" key={object.id}> {object.id} </li>)
+    })
+
+    return sortedArray;
   }
 
   render() {
     return(
       <div className="tag-list list-group">
-        <h2 id="tag-list-header">
+        <h2 className="list-group-item-info">
           Top tags
         </h2>
         { this.sortTags() }
