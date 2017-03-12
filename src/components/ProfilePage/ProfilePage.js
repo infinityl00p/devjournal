@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import TopTags from './TopTags';
-import InfoTable from './infotable.js';
+import StatsContainer from './StatsContainer.js';
 
 const data = {
   entries: [
@@ -26,23 +26,23 @@ const data = {
   tags: [
     {
       id: 1,
-      tagText: '#one'
+      tagText: '#react'
     },
     {
       id: 2,
-      tagText: '#two'
+      tagText: '#javascript'
     },
     {
       id: 3,
-      tagText: '#three'
+      tagText: '#html'
     },
     {
       id: 4,
-      tagText: '#four'
+      tagText: '#css'
     },
     {
       id: 5,
-      tagText: '#five'
+      tagText: '#bootstrap'
     }
   ],
   avatar: "http://www.skyovnis.com/wp-content/uploads/2014/12/Profile-sky-ovnis.jpg"
@@ -52,21 +52,19 @@ const data = {
 export default class ProfilePage extends Component {
   render() {
     return(
-      <div className>
+      <div id="profile-page-container">
         <div className="col-md-3">
-        {/*TODO recieve profile image info here, create an image component and pass data through*/}
-          <div id="avatar-wrapper">
+          <div id="personal-info-container">
             <img src={data.avatar} className="img-circle" id="profile-picture"/>
-            <h1> James Gill </h1>
-            <h4> React Developer </h4>
+            <h1 id="name"> James Gill </h1>
+            <h4 id="description"> React Developer </h4>
           </div>
-          <div id="top-tags-wrapper">
+          <div id="top-tags-container">
             <TopTags data={data} />
           </div>
         </div>
-        {/*TODO everything else goes here*/}
         <div className="col-md-9">
-          <InfoTable data={data} />
+          <StatsContainer data={data} />
         </div>
       </div>
     )

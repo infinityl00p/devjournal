@@ -35,7 +35,13 @@ export default class TopTags extends Component {
     });
 
     sortedArray = frequencyArray.map(function (object) {
-      return (<li className="list-group-item" key={object.id}> {object.id} </li>)
+      return (
+        <li className="list-group-item tag-list-item" key={object.id}>
+          {object.id}
+          <span className="frequency">
+            {object.frequency}
+          </span>
+        </li>)
     })
 
     return sortedArray;
@@ -44,8 +50,9 @@ export default class TopTags extends Component {
   render() {
     return(
       <div className="tag-list list-group">
-        <h2 className="list-group-item-info">
-          Top tags
+        <h2 id="top-tags-header">
+          <span className="glyphicon glyphicon-star"></span>
+          Top Tags
         </h2>
         { this.sortTags() }
       </div>
