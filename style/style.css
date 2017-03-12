@@ -1,5 +1,4 @@
 html, body {
-  overflow: hidden;
   height: 100%;
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-weight: 300;
@@ -603,31 +602,81 @@ input[type="checkbox"]:focus{
 
 ::-webkit-scrollbar {
   display: none;
-}
 
 /* Profile Pic styles */
-#avatar-wrapper {
+#personal-info-container {
   padding-top: 30px;
+  text-align: center;
 }
 
 #profile-picture {
   width: 200px;
   height: auto;
+  display: block;
+  margin: 0 auto;
 }
 
+#personal-info{
+  text-align: center;
+}
 /*Top Tags styles */
-#top-tags-wrapper {
-  padding-top: 50px;
+#top-tags-container {
+  display: block;
+  margin-top: 20px;
+  border: 1px solid #A9A9A9;
 }
 
-#tag-list-header {
-  color: white;
-  background-color: #274B62;
+#top-tags-header {
   text-align: center;
 }
 
-/*Info Table styles */
-#info-table {
-  padding-top: 100px;
-  padding-left: 100px;
+.list-group-item {
+  border-left: 0px;
+  border-right: 0px;
+}
+
+.tag-list-item {
+  text-align: center;
+  font-weight: bold;
+}
+
+.tag-list-item:hover {
+  background-color: rgba(211,211,211, 0.5);
+  cursor: pointer;
+}
+
+.tag-list-item .frequency {
+  color: grey;
+  font-weight: normal;
+  padding-left: 10px;
+}
+
+/*stats table stats */
+#stats-container {
+  text-align: center;
+}
+
+#stats-bar {
+  float: none;
+  margin-left: auto;
+  margin-right: auto;
+  display: inline-block;
+}
+
+.stats-bar-item {
+  display: inline-block;
+  padding-right: 50px;
+}
+
+.stats-bar-item:hover {
+  border-bottom: 1px solid rgba(211,211,211, 0.5);
+  padding-bottom: 5px;
+}
+
+#stats-bar .stats-bar-item .active {
+  color: red;
+}
+
+.stats-bar-item p {
+  display: inline-block;
 }
