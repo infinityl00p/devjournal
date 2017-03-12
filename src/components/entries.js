@@ -8,7 +8,7 @@ export const storeData = {
     },
     {
       id: 2,
-      entryText: "<code> console.log('hello world') </code> ",
+      entryText: "<code>hello world</code> ",
       tags: [3, 5],
       date: '2017-02-02'
     }

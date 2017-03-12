@@ -230,7 +230,7 @@ html, body {
 
 /* EntryFilter styles */
 #filter-glyphicon {
-  margin-left: 100%%;
+  margin-left: 100%;
 }
 
 #entry-filter{
@@ -301,4 +301,305 @@ html, body {
   text-align: center;
   font-weight: bold;
   text-transform: uppercase;
+}
+
+/* Todo List styles */
+#todo-list {
+  background-color: #fafafa;
+  height: 100vh;
+}
+
+#todo-sidebar {
+  height: 100vh;
+  padding-top: 30px;
+  padding-left: 30px;
+  border-right: 1px solid #f1f1f1;
+}
+
+#folder-list .sub-heading {
+  font-size: 10pt;
+  font-weight: light;
+  color: #b3b3b3;
+}
+
+#folder-list .folder-list-item {
+  font-size: 12pt;
+  padding: 10px 0 0 10px;
+  line-height: 20px;
+  margin-bottom: 3px;
+  border: 1px solid transparent;
+}
+
+#folder-list .folder-list-item p {
+  display: inline-block;
+  margin-left: 15px;
+  margin-right: 8px;
+}
+
+#folder-list .folder-list-item .glyphicon {
+  color: #b3b3b3;
+}
+
+#folder-list .folder-list-item span.counter {
+  font-size: 8pt;
+  color: #b3b3b3;
+}
+
+
+#folder-list .folder-list-item.active, #folder-list .folder-list-item:hover {
+  font-weight: bold;
+  background-color: #ffffff;
+  border: 1px solid #f1f1f1;
+}
+
+#task-filter {
+  margin-top: 50px;
+  font-size: 10pt;
+}
+
+#task-filter .sub-heading {
+  font-size: 10pt;
+  font-weight: light;
+  color: #b3b3b3;
+}
+
+#task-filter .filters {
+  margin-bottom: 7px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+#task-filter .filters span {
+  margin-right: 20px;
+}
+
+#task-filter .filters span.active,
+#task-filter .filters span:hover {
+  font-weight: bold;
+}
+
+#task-filter .filter-list {
+  max-height: 100px;
+  overflow-y: scroll;
+}
+
+#task-filter .filter-list .filter-list-item {
+  line-height: 10px;
+  padding-top: 8px;
+  padding-left: 6px;
+  border: 1px solid transparent;
+}
+
+#task-filter .filter-list .filter-list-item .glyphicon {
+  color: #b3b3b3;
+}
+
+#task-filter .filter-list .filter-list-item.active,
+#task-filter .filter-list .filter-list-item:hover {
+  background-color: #ffffff;
+  border: 1px solid #f1f1f1;
+}
+
+#task-filter .filter-list .filter-list-item p {
+  display: inline-block;
+  padding-left: 8px;
+}
+
+#task-filter .create-item .create-item-input {
+  margin-bottom: 5px;
+}
+
+#task-filter .create-item .create-item-text p {
+  display: inline-block;
+  margin-left: 5px;
+}
+
+#task-filter .create-item .create-item-text p:hover {
+  text-decoration: underline;
+}
+
+#task-list-container {
+  height: 100vh;
+  background-color: #ffffff;
+  border-right: 1px solid #f1f1f1;
+}
+
+#task-list {
+  margin: 60px 0 0 30px;
+}
+
+#task-list h1 {
+  font-size: 18pt;
+}
+
+#task-list .tasks {
+  margin-left: 15px;
+  margin-top: 10px;
+}
+
+#task-list .tasks .task, #task-list .completed-tasks .task {
+  width: 90%;
+  margin: 15px 0 15px 0;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+#task-list .tasks .task input, #task-list .completed-tasks .task input {
+  margin-right: 10px;
+}
+
+#task-list .tasks .task p, #task-list .completed-tasks .task p {
+  font-size: 12pt;
+  display: inline-block;
+  margin-right: 10px;
+  line-height: 20px;
+}
+
+#task-list .tasks .task .action-icons {
+  display: inline;
+}
+
+#task-list .completed-tasks .task .action-icons {
+  display: inline;
+  color: #b3b3b3;
+}
+
+#task-list .completed-tasks .task .action-icons .glyphicon-plus-sign {
+  visibility: hidden;
+}
+
+#task-list .tasks .task .action-icons span {
+  margin-right: 5px;
+}
+
+#task-list .tasks .task .action-icons span:hover,
+#task-list .tasks .task .action-icons .activeIcon,
+#task-list .tasks .task .action-icons .glyphicon-chevron-up {
+  color: #0EBFE9;
+}
+
+#task-list .tasks .task .created-date,
+#task-list .completed-tasks .task .created-date {
+  float: right;
+  font-size: 9pt;
+}
+
+#task-list .tasks .task .created-date .date-underline,
+#task-list .completed-tasks .task .created-date .date-underline {
+  padding-bottom: 1px;
+  border-bottom: black 1px solid;
+}
+
+#task-list .tasks .create-item {
+  width: 90%;
+  color: #0EBFE9;
+}
+
+#task-list .tasks .create-item p {
+  font-size: 12pt;
+  display: inline-block;
+  margin-left: 5px;
+}
+
+#task-list .tasks .create-item p:hover {
+  text-decoration: underline;
+}
+
+#task-list .tasks .create-item .create-item-input {
+  margin-bottom: 5px;
+}
+
+#task-list .tasks .create-item .create-item-input label {
+  background-color: #ffffff;
+  padding: 8px 0 5px 10px;
+  margin-bottom: 8px;
+}
+
+#task-list .tasks .create-item .create-item-input .project-icon {
+  color: #b3b3b3;
+  padding-right: 10px;
+  width: 10%;
+}
+
+#task-list .tasks .create-item .create-item-input span {
+  margin-right: 5px;
+}
+
+#task-list .tasks .create-item .create-item-input .input-group {
+  display: inline;
+}
+
+#task-list .tasks .create-item .create-item-input .input-group input {
+  width: 70%;
+}
+
+#task-list .tasks .create-item .create-item-input label .date-picker {
+  width: 90px;
+  border: none;
+}
+
+#task-list .tasks .create-item .create-item-input .project-selector {
+  margin-top: 5px;
+  color: black;
+  font-size: 11pt;
+}
+
+#task-list .tasks .create-item .create-item-input .project-selector .project {
+  padding: 0 3px 0 3px;
+}
+
+#task-list .tasks .create-item .create-item-input .project-selector .project:hover,
+#task-list .tasks .create-item .create-item-input .project-selector .project.active {
+  font-weight: bold;
+  border-bottom: 4px solid #0EBFE9;
+}
+
+#task-list .tasks .task .subtasks, #task-list .completed-tasks .task .subtasks {
+  margin-left: 30px;
+}
+
+#task-list .tasks .task .create-subtask .input-group,
+#task-list .completed-tasks .task .create-subtask .input-group {
+  width: 100%;
+  margin-bottom: 10px;
+  margin-left: 30px;
+}
+
+#task-list .completed-tasks h2, #task-list .task-weekday-subheading h2 {
+  font-size: 12pt;
+  font-weight: lighter;
+  color: #b3b3b3;
+}
+
+#task-list .completed-tasks .task p, #task-list .tasks .subtask .completed-subtask {
+  color: #b3b3b3;
+  text-decoration: line-through;
+}
+
+#task-list .completed-tasks .checkbox-round:checked {
+  opacity: 0.5;
+  background-color: #0EBFE9;
+}
+
+/* Global styles */
+.checkbox-round {
+  width: 1.3em;
+  height: 1.3em;
+  background-color: white;
+  border-radius: 50%;
+  vertical-align: middle;
+  border: 1px solid #ddd;
+  -webkit-appearance: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.checkbox-round:checked {
+  background-color: #0EBFE9;
+}
+
+input[type="checkbox"]:focus{
+  outline:0;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }

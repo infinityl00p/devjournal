@@ -47,7 +47,6 @@ export default class Sidebar extends Component {
         );
 
       case 'EntrySearch':
-        // TODO: Also render an EntryList with updated values inside EntrySearch
         return(
           <EntrySearch
             entries={this.props.entries}
@@ -56,7 +55,6 @@ export default class Sidebar extends Component {
           />
         );
       case 'EntryFilter':
-        // TODO: Also render an EntryList with updated values inside EntryFilter
         return(
           <EntryFilter
             entries={this.props.entries}
