@@ -7,13 +7,13 @@ const data = {
     {
       id: 1,
       entryText: "<code> printf('hello world') </code>",
-      tags: [1, 2, 4],
+      tags: [1, 2, 4, 3],
       date: '2017-01-30'
     },
     {
       id: 2,
       entryText: "<code> console.log('hello world') </code> ",
-      tags: [3, 5],
+      tags: [3, 5, 4],
       date: '2017-02-02'
     },
     {
@@ -57,8 +57,9 @@ export default class ProfilePage extends Component {
         {/*TODO recieve profile image info here, create an image component and pass data through*/}
           <div id="avatar-wrapper">
             <img src={data.avatar} className="img-circle" id="profile-picture"/>
+            <h1> James Gill </h1>
+            <h4> React Developer </h4>
           </div>
-        {/*TODO recieve tags by user Id, inser them into this component, then sort and filter*/}
           <div id="top-tags-wrapper">
             <TopTags data={data} />
           </div>
