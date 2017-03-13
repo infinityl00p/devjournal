@@ -24,6 +24,6 @@ export default class StatsBarItem extends Component {
         <span className={"glyphicon " + this.props.icon} />
         <p>{this.props.name}</p>
       </div>
-    )
+    );
   }
 }

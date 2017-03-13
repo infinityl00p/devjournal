@@ -20,7 +20,7 @@ const data = {
       id: 3,
       entryText: "blah",
       tags: [3,5],
-      date: "2016-02-02"
+      date: "2017-03-13"
     }
   ],
   tags: [
@@ -55,9 +55,9 @@ export default class ProfilePage extends Component {
       <div id="profile-page-container">
         <div className="col-md-3">
           <div id="personal-info-container">
-            <img src={data.avatar} className="img-circle" id="profile-picture"/>
-            <h1 id="name"> James Gill </h1>
-            <h4 id="description"> React Developer </h4>
+            <img src={data.avatar} className="img-circle" id="profile-picture" />
+            <h1 id="name">James Gill</h1>
+            <h4 id="description">React Developer</h4>
           </div>
           <div id="top-tags-container">
             <TopTags data={data} />
@@ -67,6 +67,6 @@ export default class ProfilePage extends Component {
           <StatsContainer data={data} />
         </div>
       </div>
-    )
+    );
   }
 }
