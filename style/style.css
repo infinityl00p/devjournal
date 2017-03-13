@@ -306,25 +306,23 @@ html, body {
 /*Profile Page Container */
 #profile-page-container {
   overflow: hidden;
+  padding-top: 30px;
   background-color: #fafafa;
 }
 
-/* Profile Pic styles */
-#personal-info-container {
-  padding-top: 30px;
+/* Personal-info styles */
+#profile-page-container #personal-info-container {
+  padding-top: 20px;
   text-align: center;
 }
 
-#profile-picture {
+#personal-info-container>#profile-picture {
   width: 200px;
   height: auto;
   display: block;
   margin: 0 auto;
 }
 
-#personal-info{
-  text-align: center;
-}
 /*Top Tags styles */
 #top-tags-container {
   display: block;
@@ -371,18 +369,39 @@ html, body {
 
 .stats-bar-item {
   display: inline-block;
+  padding-top : 10px;
   padding-right: 50px;
+  font-size: 30px;
 }
 
 .stats-bar-item:hover {
   border-bottom: 1px solid rgba(211,211,211, 0.5);
-  padding-bottom: 5px;
+  cursor: pointer;
 }
 
-#stats-bar .stats-bar-item .active {
-  color: red;
+.stats-bar-item.active {
+  color: grey;
 }
 
 .stats-bar-item p {
   display: inline-block;
+}
+
+/*Active View Component*/
+#stats-component .active-view-component {
+  padding-top: 30px;
+}
+
+/*Daily Stats*/
+#stats {
+  font-weight: bold;
+  padding-bottom: 40px;
+}
+
+#stats p {
+  font-size: 30px;
+}
+
+#stats #stats-count {
+  font-size: 30px;
 }

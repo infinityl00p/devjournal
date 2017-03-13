@@ -56,6 +56,6 @@ export default class TopTags extends Component {
         </h2>
         { this.sortTags() }
       </div>
-    )
+    );
   }
 }
