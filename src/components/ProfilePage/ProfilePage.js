@@ -8,19 +8,19 @@ const data = {
       id: 1,
       entryText: "<code> printf('hello world') </code>",
       tags: [1, 2, 4, 3],
-      date: '2017-01-30'
+      date: "2017-03-14T14:28:33.797555Z"
     },
     {
       id: 2,
       entryText: "<code> console.log('hello world') </code> ",
       tags: [3, 5, 4],
-      date: '2017-02-02'
+      date: "2017-03-14T14:28:33.797555Z"
     },
     {
       id: 3,
       entryText: "blah",
       tags: [3,5],
-      date: "2017-03-13"
+      date: '2017-03-13T14:28:33.797555Z'
     }
   ],
   tags: [
@@ -63,9 +63,7 @@ export default class ProfilePage extends Component {
             <TopTags data={data} />
           </div>
         </div>
-        <div className="col-md-9">
-          <StatsContainer data={data} />
-        </div>
+        <StatsContainer data={data} />
       </div>
     );
   }
