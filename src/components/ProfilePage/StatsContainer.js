@@ -49,7 +49,7 @@ export default class StatsContainer extends Component {
 
   render() {
     return(
-      <div id="stats-container">
+      <div id="stats-container" className="col-md-9">
         <StatsBar data={this.props.data} onClick={this.handleComponentSelection}/>
         <div id="stats-component">
           {this.renderActiveComponent()}

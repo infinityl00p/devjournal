@@ -6,7 +6,6 @@ export default class EntryView extends Component {
   constructor(props) {
     super(props);
 
-    console.log(props);
     this.getSelectorClass = this.getSelectorClass.bind(this);
     this.handleViewStateChange = this.handleViewStateChange.bind(this);
     this.renderEntryView = this.renderEntryView.bind(this);
