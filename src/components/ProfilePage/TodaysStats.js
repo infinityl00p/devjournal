@@ -5,14 +5,15 @@ export default class TodaysStats extends Component {
     super(props);
 
     this.todaysPostCount = this.todaysPostCount.bind(this);
-    this.renderTodaysStats = this.renderTodaysStats.bind(this);
   }
 
-  todaysPostCount(todaysDate) {
+  todaysPostCount() {
+    var date = new Date();
+    var todaysDate = this.props.concatDate(date);
     var postCount = 0;
 
-    this.props.data.entries.filter(function(entry) {
-      var entryDate = entry.date.split('T');
+    this.props.dates.forEach(function(date) {
+      var entryDate = date.split('T');
       if (todaysDate === entryDate[0]) {
         postCount++
       }
@@ -21,24 +22,13 @@ export default class TodaysStats extends Component {
     return postCount;
   }
 
-  renderTodaysStats() {
-    var todaysDate = this.props.todaysDate();
-    var todaysPostCount = this.todaysPostCount(todaysDate);
-
+  render() {
     return(
       <div className="col-md-12" id="stats">
         <p>Todays Post Count</p>
         <div id="stats-count">
-          {todaysPostCount}
+          {this.todaysPostCount()}
         </div>
-      </div>
-    );
-  }
-
-  render() {
-    return(
-      <div>
-        {this.renderTodaysStats()}
       </div>
     )
   }
