@@ -7,14 +7,13 @@ export default class PulseView extends Component {
   constructor(props) {
     super(props);
 
-    this.todaysDate = this.todaysDate.bind(this);
+    this.concatDate = this.concatDate.bind(this);
   }
 
-  todaysDate() {
-    var date = new Date();
+  concatDate(date) {
     var day = date.getDate();
     var month = date.getMonth() + 1;
-    if(month < 10){
+    if(month < 10) {
       month = "0" + month;
     };
     var year = date.getFullYear();
@@ -25,8 +24,9 @@ export default class PulseView extends Component {
   render() {
     return(
       <div className="active-stats-component">
-        <TodaysStats data={this.props.data} todaysDate={this.todaysDate} />
-        <TotalStats data={this.props.data} />
+        <TodaysStats dates={this.props.dates} concatDate={this.concatDate} />
+        <StreakStats dates={this.props.dates} concatDate={this.concatDate} />
+        <TotalStats data={this.props.data} dates={this.props.dates} />
        </div>
     );
   }

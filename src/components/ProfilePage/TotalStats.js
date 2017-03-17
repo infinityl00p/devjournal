@@ -4,32 +4,7 @@ export default class TotalStats extends Component {
   constructor(props){
     super(props);
 
-    this.renderTotals = this.renderTotals.bind(this);
     this.totals = this.totals.bind(this);
-
-  }
-
-  renderTotals() {
-    var totals = this.totals();
-    var totalPosts = totals.postCount;
-    var totalTags = totals.tagCount;
-
-    return(
-      <div className="col-md-12" id="stats">
-        <div className="col-md-6">
-          <p>Total Posts</p>
-          <div id="stats-count">
-            {totalPosts}
-          </div>
-        </div>
-        <div className="col-md-6">
-          <p>Total Number of Tags</p>
-          <div id="stats-count">
-            {totalTags}
-          </div>
-        </div>
-      </div>
-    )
   }
 
   totals() {
@@ -44,7 +19,6 @@ export default class TotalStats extends Component {
       tagCount++
     });
 
-
     return({
       postCount: postCount,
       tagCount: tagCount
@@ -52,9 +26,21 @@ export default class TotalStats extends Component {
   }
 
   render() {
+    var totals = this.totals();
     return(
-      <div>
-        {this.renderTotals()}
+      <div className="col-md-12" id="stats">
+        <div className="col-md-6">
+          <p>Total Posts</p>
+          <div id="stats-count">
+            {totals.postCount}
+          </div>
+        </div>
+        <div className="col-md-6">
+          <p>Total Number of Tags</p>
+          <div id="stats-count">
+            {totals.tagCount}
+          </div>
+        </div>
       </div>
     )
   }
