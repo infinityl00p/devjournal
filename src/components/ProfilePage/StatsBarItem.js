@@ -15,7 +15,7 @@ export default class StatsBarItem extends Component {
       this.setState({
         active: true
       });
-      this.props.onClick();
+      this.props.onClick(this.props.name);
     }
   render(){
     var classNames = "stats-bar-item " + (this.props.isActive ? "active" : "");

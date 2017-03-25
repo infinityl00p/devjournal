@@ -364,7 +364,9 @@ html, body {
   float: none;
   margin-left: auto;
   margin-right: auto;
-  display: inline-block;
+  display: block;
+  border-bottom: 1px solid rgba(211,211,211, 0.5);
+  margin-bottom: 20px;
 }
 
 .stats-bar-item {
@@ -375,12 +377,13 @@ html, body {
 }
 
 .stats-bar-item:hover {
-  border-bottom: 1px solid rgba(211,211,211, 0.5);
+  color: rgba(211,211,211, 0.5);
+  border-bottom: 1px solid #3d3330;
   cursor: pointer;
 }
 
 .stats-bar-item.active {
-  color: grey;
+  font-weight: bold;
 }
 
 .stats-bar-item p {
@@ -399,11 +402,11 @@ html, body {
 }
 
 #stats p {
-  font-size: 30px;
+  font-size: 20px;
 }
 
 #stats #stats-count {
-  font-size: 25px;
+  font-size: 15px;
   color: grey;
 }
 

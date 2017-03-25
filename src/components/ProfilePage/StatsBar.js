@@ -5,59 +5,46 @@ export default class StatsBar extends Component {
   constructor(props) {
     super(props);
 
-    this.handlePulseClick = this.handlePulseClick.bind(this);
-    this.handleWeeklyClick = this.handleWeeklyClick.bind(this);
-    this.handleMonthlyClick = this.handleMonthlyClick.bind(this);
+    this.setActiveView = this.setActiveView.bind(this);
 
     this.state = {
-      activeItem: [true, false, false]
+      activeItem: [true, false]
     }
   }
 
-  handlePulseClick() {
-    this.setState({
-      activeItem: [true, false, false]
-    });
+  setActiveView(name) {
+    if (name === "Summary") {
+      this.setState({
+        activeItem: [true, false]
+      });
 
-    this.props.onClick('pulseView');
-  }
+      this.props.onClick('summaryView');
+    }
 
-  handleWeeklyClick() {
-    this.setState({
-      activeItem: [false, true, false]
-    });
+    if (name === "Weekly") {
+      this.setState({
+        activeItem: [false, true]
+      });
 
-    this.props.onClick('weeklyView');
-  }
+      this.props.onClick('weeklyView');
+    }
 
-  handleMonthlyClick() {
-    this.setState({
-      activeItem: [false, false, true]
-    });
-
-    this.props.onClick('monthlyView');
   }
 
   render() {
     return(
       <div id="stats-bar">
         <StatsBarItem
-        name="Pulse"
+        name="Summary"
         icon="glyphicon-stats"
         isActive={this.state.activeItem[0]}
-        onClick={this.handlePulseClick}
+        onClick={this.setActiveView}
         />
         <StatsBarItem
-        name="Weekly Growth"
+        name="Weekly"
         icon="glyphicon-grain"
         isActive={this.state.activeItem[1]}
-        onClick={this.handleWeeklyClick}
-        />
-        <StatsBarItem
-        name="Monthly Timeline"
-        icon="glyphicon-calendar"
-        isActive={this.state.activeItem[2]}
-        onClick={this.handleMonthlyClick}
+        onClick={this.setActiveView}
         />
       </div>
     );
