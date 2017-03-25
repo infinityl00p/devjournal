@@ -41,7 +41,8 @@ export default class TopTags extends Component {
           <span className="frequency">
             {object.frequency}
           </span>
-        </li>)
+        </li>
+      )
     })
 
     return sortedArray;

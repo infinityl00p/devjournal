@@ -7,13 +7,25 @@ export default class SummaryView extends Component {
     super(props);
 
     this.concatDate = this.concatDate.bind(this);
+
     this.todaysPostCount = this.todaysPostCount.bind(this);
     this.totalPostCount = this.totalPostCount.bind(this);
     this.totalTagCount = this.totalTagCount.bind(this);
     this.previous30Days = this.previous30Days.bind(this);
     this.longestStreak = this.longestStreak.bind(this);
+    this.currentStreak = this.currentStreak.bind(this);
+
     this.priorDate = this.priorDate.bind(this);
     this.renderStatsComponent = this.renderStatsComponent.bind(this);
+
+    this.state = {
+      todaysPostCount: this.todaysPostCount(),
+      totalPostCount: this.totalPostCount(),
+      totalTagCount: this.totalTagCount(),
+      previous30Days: this.previous30Days(),
+      longestStreak: this.longestStreak(),
+      currentStreak: this.currentStreak()
+    }
   }
 
   concatDate(date) {
@@ -152,33 +164,33 @@ export default class SummaryView extends Component {
     var statsArray = [
       {
         name: "Todays Post Count",
-        count: this.todaysPostCount()
+        count: this.state.todaysPostCount
       },
       {
         name: "Total Post Count",
-        count: this.totalPostCount()
+        count: this.state.totalPostCount
       },
       {
         name: "Total Tag Count",
-        count: this.totalTagCount()
+        count: this.state.totalTagCount
       },
       {
         name: "30 Day Count",
-        count: this.previous30Days()
+        count: this.state.previous30Days
       },
       {
         name: "Current Streak",
-        count: this.currentStreak()
+        count: this.state.currentStreak
       },
       {
         name: "Longest Streak",
-        count: this.longestStreak()
+        count: this.state.longestStreak
       }
     ];
 
     statsComponentArray = statsArray.map(function(object) {
-      return(<StatsComponent key={object.name} name={object.name} count={object.count} />)
-    })
+      return( <StatsComponent key={object.name} name={object.name} count={object.count} /> )
+    });
 
     return(
       <div className="active-stats-component">
@@ -190,9 +202,11 @@ export default class SummaryView extends Component {
   render() {
     return(
       <div>
-          <HeatMap />
-          {this.renderStatsComponent()}
-        </div>
+          <HeatMap dates={this.props.dates}/>
+          <div id="stats">
+            {this.renderStatsComponent()}
+          </div>
+      </div>
     );
   }
 }

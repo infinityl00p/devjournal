@@ -3,7 +3,7 @@ import StatsBar from './StatsBar';
 import SummaryView from './SummaryView';
 
 
-export default class UserStatsComponent extends Component {
+export default class ActiveProfileView extends Component {
   constructor(props) {
     super(props);
 

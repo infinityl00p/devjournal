@@ -6,7 +6,7 @@ export default class StatsComponent extends Component {
     }
     render(){
       return(
-        <div className="col-md-4" id="stats">
+        <div className="col-md-4">
           <p>{this.props.name}</p>
           <div id="stats-count">
             {this.props.count}
