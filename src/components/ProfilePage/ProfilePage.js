@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import TopTags from './TopTags';
-import UserStatsComponent from './UserStatsComponent';
-import * as actionCreators from '../../actions/index';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import ActiveProfileView from './ActiveProfileView';
 
 const data = {
   entries: [
@@ -79,11 +76,7 @@ const data = {
 };
 
 
-class ProfilePage extends Component {
-  constructor(props){
-    super(props);
-  }
-
+export default class ProfilePage extends Component {
   render() {
     return(
       <div id="profile-page-container">
@@ -98,20 +91,8 @@ class ProfilePage extends Component {
             <TopTags data={data} />
           </div>
         </div>
-        <UserStatsComponent data={data} />
+        <ActiveProfileView data={data} />
       </div>
     );
   }
 }
-
-function mapStateToProps(state) {
-  return {
-    journal: state.entries
-  }
-}
-
-function mapDispatchToProps(dispatch) {
-  return { actions: bindActionCreators(actionCreators, dispatch) };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ProfilePage)
