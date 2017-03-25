@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import StatsBar from './StatsBar';
-import PulseView from './PulseView';
-import MonthlyView from './MonthlyView';
+import SummaryView from './SummaryView';
 
 
-export default class StatsContainer extends Component {
+export default class UserStatsComponent extends Component {
   constructor(props) {
     super(props);
 
@@ -13,7 +12,7 @@ export default class StatsContainer extends Component {
     this.getDates = this.getDates.bind(this);
 
     this.state = {
-      activeComponent: 'pulseView'
+      activeComponent: 'summaryView'
     }
   }
 
@@ -28,9 +27,9 @@ export default class StatsContainer extends Component {
 
   handleComponentSelection(selectedView) {
     switch(selectedView) {
-      case 'pulseView':
+      case 'summaryView':
         this.setState({
-          activeComponent: 'pulseView'
+          activeComponent: 'summaryView'
         });
         return;
 
@@ -39,25 +38,15 @@ export default class StatsContainer extends Component {
           activeComponent: 'weeklyView'
         });
         return;
-
-      case 'monthlyView':
-        this.setState({
-          activeComponent: 'monthlyView'
-        });
-        return;
     };
   }
 
   renderActiveComponent() {
     var activeComponent = this.state.activeComponent;
     switch (activeComponent) {
-      case 'pulseView':
+      case 'summaryView':
         return(
-          <PulseView data={this.props.data} dates={this.getDates()} />
-        );
-      case 'monthlyView':
-        return(
-          <MonthlyView data={this.props.data} dates={this.getDates()} />
+          <SummaryView data={this.props.data} dates={this.getDates()} />
         );
     }
   }
