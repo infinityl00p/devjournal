@@ -306,7 +306,6 @@ html, body {
 /* Profile Page Container */
 #profile-page-container {
   overflow: hidden;
-  padding-top: 30px;
   background-color: #fafafa;
 }
 
@@ -372,7 +371,7 @@ html, body {
 .stats-bar-item {
   display: inline-block;
   padding-top : 10px;
-  padding-right: 50px;
+  margin-right: 50px;
   font-size: 30px;
 }
 
@@ -383,10 +382,42 @@ html, body {
 }
 
 .stats-bar-item.active {
-  font-weight: bold;
+  color: rgba(211,211,211, 0.5);
+  border-bottom: 1px solid black;
 }
 
 .stats-bar-item p {
+  display: inline-block;
+}
+
+/* Time Bar */
+#time-bar {
+  float: none;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  border-bottom: 1px solid rgba(211,211,211, 0.5);
+  margin-bottom: 20px;
+}
+
+.time-bar-item {
+  display: inline-block;
+  padding-top : 10px;
+  margin-right: 50px;
+  font-size: 15px;
+}
+
+.time-bar-item:hover {
+  color: rgba(211,211,211, 0.5);
+  border-bottom: 1px solid #3d3330;
+  cursor: pointer;
+}
+
+.time-bar-item.active {
+  color: rgba(211,211,211, 0.5);
+}
+
+.time-bar-item p {
   display: inline-block;
 }
 
@@ -394,6 +425,19 @@ html, body {
 .active-stats-component {
   padding-top: 30px;
   padding-bottom: 30px;
+}
+
+/* Summary View */
+#stats-container #summary-view {
+    margin-top: 25px;
+    font-size: 21px;
+    text-align: center;
+    animation: fadein 1s;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
 }
 
 /* Daily Stats */
@@ -411,6 +455,12 @@ html, body {
 }
 
 /* Heatmap Styles */
+#heatmap {
+  margin-top: 70px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid rgba(211,211,211, 0.5);
+}
+
 .react-calendar-heatmap text {
   font-size: 10px;
   fill: #aaa;

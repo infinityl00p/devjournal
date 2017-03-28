@@ -201,11 +201,9 @@ export default class SummaryView extends Component {
 
   render() {
     return(
-      <div>
+      <div id="summary-view">
           <HeatMap dates={this.props.dates}/>
-          <div id="stats">
-            {this.renderStatsComponent()}
-          </div>
+          {this.renderStatsComponent()}
       </div>
     );
   }
