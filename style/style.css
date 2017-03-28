@@ -606,11 +606,7 @@ input[type="checkbox"]:focus{
 /* Profile Page Container */
 #profile-page-container {
   overflow: hidden;
-<<<<<<< HEAD
   padding-top: 30px;
-=======
-  background-color: #fafafa;
->>>>>>> added time-bar, refactored stats bar to be reusable for both time-bar and stats-bar
 }
 
 /* Profile Pic styles */
@@ -707,7 +703,7 @@ input[type="checkbox"]:focus{
   float: none;
   margin-left: auto;
   margin-right: auto;
-  display: block;
+  display: inline-block;
   border-bottom: 1px solid rgba(211,211,211, 0.5);
   margin-bottom: 20px;
 }
@@ -715,7 +711,8 @@ input[type="checkbox"]:focus{
 .time-bar-item {
   display: inline-block;
   padding-top : 10px;
-  margin-right: 50px;
+  margin-right: 25px;
+  margin-left: 25px;
   font-size: 15px;
 }
 
@@ -758,12 +755,21 @@ input[type="checkbox"]:focus{
 }
 
 #stats p {
-  font-size: 20px;
+  font-size: 17px;
 }
 
 #stats #stats-count {
   font-size: 15px;
   color: grey;
+}
+
+.active-stats-component {
+  display: inline-block;
+}
+
+/* Subhead styles */
+.subhead {
+  border-bottom: 1px solid rgba(211,211,211, 0.5);
 }
 
 /* Heatmap Styles */
@@ -783,69 +789,27 @@ input[type="checkbox"]:focus{
   stroke-width: 1px;
 }
 
-/*
- * Default color scale
- */
-
+/* Gitlab color scale */
 .react-calendar-heatmap .color-empty {
   fill: #eeeeee;
 }
 
-.react-calendar-heatmap .color-filled {
-  fill: #8cc665;
-}
-
-.react-calendar-heatmap .color-scale-1 {
-  fill: #d6e685;
-}
-
-.react-calendar-heatmap .color-scale-2 {
-  fill: #8cc665;
-}
-
-.react-calendar-heatmap .color-scale-3 {
-  fill: #44a340;
-}
-
-.react-calendar-heatmap .color-scale-4 {
-  fill: #1e6823;
-}
-/*
- * Github color scale
- */
-
-.react-calendar-heatmap .color-github-0 {
-  fill: #eeeeee;
-}
-.react-calendar-heatmap .color-github-1 {
-  fill: #d6e685;
-}
-.react-calendar-heatmap .color-github-2 {
-  fill: #8cc665;
-}
-.react-calendar-heatmap .color-github-3 {
-  fill: #44a340;
-}
-.react-calendar-heatmap .color-github-4 {
-  fill: #1e6823;
-}
-
-/*
- * Gitlab color scale
- */
-
 .react-calendar-heatmap .color-gitlab-0 {
   fill: #ededed;
 }
+
 .react-calendar-heatmap .color-gitlab-1 {
   fill: #acd5f2;
 }
+
 .react-calendar-heatmap .color-gitlab-2 {
   fill: #7fa8d1;
 }
+
 .react-calendar-heatmap .color-gitlab-3 {
   fill: #49729b;
 }
+
 .react-calendar-heatmap .color-gitlab-4 {
   fill: #254e77;
 }

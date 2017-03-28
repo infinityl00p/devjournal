@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import StatsBar from './StatsBar'
+import StatsBar from './StatsBar';
+import Progress from './Progress';
 
 export default class ActivityView extends Component {
   constructor(props) {
@@ -8,28 +9,27 @@ export default class ActivityView extends Component {
     this.handleComponentSelection=this.handleComponentSelection.bind(this);
 
     this.state = {
-      activeComponent: "weekly"
+      activeComponent: "week"
     }
   }
 
   handleComponentSelection(selectedView) {
-    console.log(selectedView);
     switch(selectedView) {
       case 'weekly':
         this.setState({
-          activeComponent: 'weekly'
+          activeComponent: 'Week'
         });
         return;
 
       case 'monthly':
         this.setState({
-          activeComponent: 'monthly'
+          activeComponent: 'Month'
         });
         return;
 
       case 'yearly':
         this.setState({
-          activeComponent: 'yearly'
+          activeComponent: 'Year'
         });
         return;
     };
@@ -38,9 +38,8 @@ export default class ActivityView extends Component {
   render() {
     return(
       <div>
-      {/*Activity Bar goes here*/}
         <StatsBar data={this.props.data} onClick={this.handleComponentSelection} type="time-bar"/>
-      {/*Render Page according to state of activity bar*/}
+        <Progress data={this.props.data} activeComponent={this.state.activeComponent} active={this.state.activeComponent}/>
       </div>
     )
   }
