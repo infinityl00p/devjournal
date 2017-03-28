@@ -80,7 +80,7 @@ export default class ProfilePage extends Component {
   render() {
     return(
       <div id="profile-page-container">
-        <div className="col-md-3">
+        <div className="col-md-3" id="user-profile">
           <div id="personal-info-container">
             <img src={data.avatar} className="img-circle" id="profile-picture" />
             <h1 id="name">{data.username}</h1>
@@ -91,7 +91,9 @@ export default class ProfilePage extends Component {
             <TopTags data={data} />
           </div>
         </div>
-        <ActiveProfileView data={data} />
+        <div className="col-md-9">
+          <ActiveProfileView data={data} />
+        </div>
       </div>
     );
   }

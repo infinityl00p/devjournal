@@ -6,9 +6,11 @@ export default class StatsBar extends Component {
     super(props);
 
     this.setActiveView = this.setActiveView.bind(this);
+    this.setActiveTimeView = this.setActiveTimeView.bind(this);
 
     this.state = {
-      activeItem: [true, false]
+      activeItem: [true, false],
+      activeTimeView: [true, false, false]
     }
   }
 
@@ -21,31 +23,95 @@ export default class StatsBar extends Component {
       this.props.onClick('summaryView');
     }
 
-    if (name === "Weekly") {
+    if (name === "Activity") {
       this.setState({
         activeItem: [false, true]
       });
 
-      this.props.onClick('weeklyView');
+      this.props.onClick('activityView');
+    }
+  }
+
+  setActiveTimeView(name) {
+    if (name === "Weekly") {
+      this.setState({
+        activeTimeView: [true, false, false]
+      });
+      this.props.onClick('weekly');
     }
 
+    if (name === "Monthly") {
+      this.setState({
+        activeTimeView: [false, true, false]
+      });
+
+      this.props.onClick('monthly');
+    }
+
+    if (name === "Yearly") {
+      this.setState({
+        activeTimeView: [false, false, true]
+      });
+
+      this.props.onClick('yearly');
+    }
+  }
+
+  renderStatsBar() {
+    if(this.props.type === "stats-bar") {
+      return(
+        <div id={this.props.type}>
+          <StatsBarItem
+          name="Summary"
+          type="stats-bar-item"
+          icon="glyphicon-stats"
+          isActive={this.state.activeItem[0]}
+          onClick={this.setActiveView}
+          />
+          <StatsBarItem
+          name="Activity"
+          type="stats-bar-item"
+          icon="glyphicon-grain"
+          isActive={this.state.activeItem[1]}
+          onClick={this.setActiveView}
+          />
+        </div>
+      )
+    }
+
+    if(this.props.type === "time-bar") {
+      return(
+        <div id={this.props.type}>
+          <StatsBarItem
+          name="Weekly"
+          type="time-bar-item"
+          icon=""
+          isActive={this.state.activeTimeView[0]}
+          onClick={this.setActiveTimeView}
+          />
+          <StatsBarItem
+          name="Monthly"
+          type="time-bar-item"
+          icon=""
+          isActive={this.state.activeTimeView[1]}
+          onClick={this.setActiveTimeView}
+          />
+          <StatsBarItem
+          name="Yearly"
+          type="time-bar-item"
+          icon=""
+          isActive={this.state.activeTimeView[2]}
+          onClick={this.setActiveTimeView}
+          />
+        </div>
+      )
+    }
   }
 
   render() {
     return(
-      <div id="stats-bar">
-        <StatsBarItem
-        name="Summary"
-        icon="glyphicon-stats"
-        isActive={this.state.activeItem[0]}
-        onClick={this.setActiveView}
-        />
-        <StatsBarItem
-        name="Weekly"
-        icon="glyphicon-grain"
-        isActive={this.state.activeItem[1]}
-        onClick={this.setActiveView}
-        />
+      <div>
+        {this.renderStatsBar()}
       </div>
     );
   }

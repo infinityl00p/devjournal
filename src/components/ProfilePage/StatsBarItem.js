@@ -11,14 +11,15 @@ export default class StatsBarItem extends Component {
     }
   }
 
-    handleClick() {
-      this.setState({
-        active: true
-      });
-      this.props.onClick(this.props.name);
-    }
+  handleClick() {
+    this.setState({
+      active: true
+    });
+    this.props.onClick(this.props.name);
+  }
+
   render(){
-    var classNames = "stats-bar-item " + (this.props.isActive ? "active" : "");
+    var classNames = this.props.type + " " + (this.props.isActive ? "active" : "");
     return(
       <div className={classNames} onClick={this.handleClick}>
         <span className={"glyphicon " + this.props.icon} />

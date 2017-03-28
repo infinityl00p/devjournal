@@ -49,15 +49,17 @@ export default class HeatMap extends Component {
           }
         return `color-scale-${value.count}`;
         }}
-        titleForValue={(value) => {
-          return value ? `Date  ${value.date} has ${value.count} posts` : null;
-        }}
         onClick={(value) => {
           if(value) {
-            alert(`Date  ${value.date} has ${value.count} posts`);
+            console.log(`${value.count}`)
+            if(`${value.count}` == 1) {
+              alert(`${value.count} entry on ${value.date}`);
+            }
+            else {
+              alert(`${value.count} entries on ${value.date}`);
+            }
           }
         }}
-      //  tooltipDataAttrs={customTooltipDataAttrs}
         />
       </div>
     )

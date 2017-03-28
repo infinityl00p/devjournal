@@ -606,7 +606,11 @@ input[type="checkbox"]:focus{
 /* Profile Page Container */
 #profile-page-container {
   overflow: hidden;
+<<<<<<< HEAD
   padding-top: 30px;
+=======
+  background-color: #fafafa;
+>>>>>>> added time-bar, refactored stats bar to be reusable for both time-bar and stats-bar
 }
 
 /* Profile Pic styles */
@@ -673,7 +677,9 @@ input[type="checkbox"]:focus{
 
 .stats-bar-item {
   display: inline-block;
-  padding-right: 50px;
+  padding-top : 10px;
+  margin-right: 50px;
+  font-size: 30px;
 }
 
 .stats-bar-item:hover {
@@ -688,10 +694,42 @@ input[type="checkbox"]:focus{
 }
 
 .stats-bar-item.active {
-  font-weight: bold;
+  color: rgba(211,211,211, 0.5);
+  border-bottom: 1px solid black;
 }
 
 .stats-bar-item p {
+  display: inline-block;
+}
+
+/* Time Bar */
+#time-bar {
+  float: none;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  border-bottom: 1px solid rgba(211,211,211, 0.5);
+  margin-bottom: 20px;
+}
+
+.time-bar-item {
+  display: inline-block;
+  padding-top : 10px;
+  margin-right: 50px;
+  font-size: 15px;
+}
+
+.time-bar-item:hover {
+  color: rgba(211,211,211, 0.5);
+  border-bottom: 1px solid #3d3330;
+  cursor: pointer;
+}
+
+.time-bar-item.active {
+  color: rgba(211,211,211, 0.5);
+}
+
+.time-bar-item p {
   display: inline-block;
 }
 
@@ -699,6 +737,19 @@ input[type="checkbox"]:focus{
 .active-stats-component {
   padding-top: 30px;
   padding-bottom: 30px;
+}
+
+/* Summary View */
+#stats-container #summary-view {
+    margin-top: 25px;
+    font-size: 21px;
+    text-align: center;
+    animation: fadein 1s;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
 }
 
 /* Daily Stats */
@@ -716,6 +767,12 @@ input[type="checkbox"]:focus{
 }
 
 /* Heatmap Styles */
+#heatmap {
+  margin-top: 70px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid rgba(211,211,211, 0.5);
+}
+
 .react-calendar-heatmap text {
   font-size: 10px;
   fill: #aaa;
