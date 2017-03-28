@@ -23,7 +23,7 @@ export default class StatsBar extends Component {
       this.props.onClick('summaryView');
     }
 
-    if (name === "Activity") {
+    if (name === "Progress") {
       this.setState({
         activeItem: [false, true]
       });
@@ -69,7 +69,7 @@ export default class StatsBar extends Component {
           onClick={this.setActiveView}
           />
           <StatsBarItem
-          name="Activity"
+          name="Progress"
           type="stats-bar-item"
           icon="glyphicon-grain"
           isActive={this.state.activeItem[1]}

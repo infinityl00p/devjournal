@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import StatsComponent from './StatsComponent';
 import HeatMap from './HeatMap'
+import RecentActivity from './RecentActivity'
 
 export default class SummaryView extends Component {
   constructor(props) {
@@ -202,8 +203,10 @@ export default class SummaryView extends Component {
   render() {
     return(
       <div id="summary-view">
-          <HeatMap dates={this.props.dates}/>
-          {this.renderStatsComponent()}
+        <HeatMap dates={this.props.dates}/>
+        {this.renderStatsComponent()}
+        <p className="subhead"> Most Recent Activity </p>
+        <RecentActivity data={this.props.data}/>
       </div>
     );
   }

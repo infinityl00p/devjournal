@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import CalendarHeatmap from 'react-calendar-heatmap';
+import $ from 'jquery';
 
 export default class HeatMap extends Component {
   constructor(props) {
@@ -35,7 +36,19 @@ export default class HeatMap extends Component {
   }
 
   render(){
-    //const customTooltipDataAttrs = { 'data-toggle': 'tooltip' };
+    const customTooltipDataAttrs = {'data-toggle': 'tooltip'}
+
+    function customTitleForValue(value) {
+      if(value) {
+        if(`${value.count}` == 1) {
+          return `${value.count} entry on ${value.date}`
+        }
+        else {
+          return `${value.count} entries on ${value.date}`
+        }
+      }
+    }
+
     return(
       <div id="heatmap">
         <CalendarHeatmap
@@ -47,19 +60,10 @@ export default class HeatMap extends Component {
           if (!value) {
             return 'color-empty';
           }
-        return `color-scale-${value.count}`;
+        return `color-gitlab-${value.count}`;
         }}
-        onClick={(value) => {
-          if(value) {
-            console.log(`${value.count}`)
-            if(`${value.count}` == 1) {
-              alert(`${value.count} entry on ${value.date}`);
-            }
-            else {
-              alert(`${value.count} entries on ${value.date}`);
-            }
-          }
-        }}
+        titleForValue={customTitleForValue}
+        tooltipDataAttrs={customTooltipDataAttrs}
         />
       </div>
     )
