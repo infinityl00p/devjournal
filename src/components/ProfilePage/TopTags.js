@@ -50,7 +50,7 @@ export default class TopTags extends Component {
 
   render() {
     return(
-      <div className="tag-list list-group">
+      <div className="list-group" id="tag-list">
         <h2 id="top-tags-header">
           <span className="glyphicon glyphicon-star"></span>
           Top Tags

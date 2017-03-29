@@ -232,7 +232,7 @@ html, body {
   margin-left: 100%%;
 }
 
-#entry-filter{
+#filter #entry-filter{
   overflow-y: scroll;
   height: 25vh;
   margin-bottom: 10px;
@@ -254,25 +254,25 @@ html, body {
   margin-bottom: 10px;
 }
 
-.filter-results {
+#filter .filter-results {
   position: relative;
   overflow-y: scroll;
   height:75vh;
 }
 
-.filter-tag:hover {
+.filter-list-item .filter-tag:hover {
   padding-right: 5px;
   background-color: rgba(211,211,211, 0.5);
   cursor: pointer;
 }
 
-.filter-results {
+.filter .filter-results {
   overflow-y: scroll;
   height:75vh;
 }
 
 /* Filter Tag Styles */
-.filter-tag.active {
+.filter-list-item .filter-tag.active {
   font-weight: bold;
   color: #0EBFE9;
 }
@@ -315,7 +315,7 @@ html, body {
   text-align: center;
 }
 
-#personal-info-container>#profile-picture {
+#personal-info-container > #profile-picture {
   width: 200px;
   height: auto;
   display: block;
@@ -323,27 +323,27 @@ html, body {
 }
 
 /* Top Tags styles */
-#top-tags-container {
+#top-tags-container > #tag-list {
   display: block;
   margin-top: 20px;
   border: 1px solid #A9A9A9;
 }
 
-#top-tags-header {
+#tag-list > #top-tags-header {
   text-align: center;
 }
 
-.list-group-item {
+.list-group .list-group-item {
   border-left: 0px;
   border-right: 0px;
 }
 
-.tag-list-item {
+.list-group > .tag-list-item {
   text-align: center;
   font-weight: bold;
 }
 
-.tag-list-item:hover {
+.list-group > .tag-list-item:hover {
   background-color: rgba(211,211,211, 0.5);
   cursor: pointer;
 }
@@ -355,11 +355,11 @@ html, body {
 }
 
 /* stats table stats */
-#stats-container {
+#profile-page-container #stats-container {
   text-align: center;
 }
 
-#stats-bar {
+#stats-container #stats-bar {
   float: none;
   margin-left: auto;
   margin-right: auto;
@@ -368,30 +368,30 @@ html, body {
   margin-bottom: 20px;
 }
 
-.stats-bar-item {
+#stats-bar .stats-bar-item {
   display: inline-block;
   padding-top : 10px;
   margin-right: 50px;
   font-size: 30px;
 }
 
-.stats-bar-item:hover {
+#stats-bar .stats-bar-item:hover {
   color: rgba(211,211,211, 0.5);
   border-bottom: 1px solid #3d3330;
   cursor: pointer;
 }
 
-.stats-bar-item.active {
+#stats-bar .stats-bar-item.active {
   color: rgba(211,211,211, 0.5);
   border-bottom: 1px solid black;
 }
 
-.stats-bar-item p {
+#stats-bar .stats-bar-item p {
   display: inline-block;
 }
 
 /* Time Bar */
-#time-bar {
+#stats-container #time-bar {
   float: none;
   margin-left: auto;
   margin-right: auto;
@@ -400,7 +400,7 @@ html, body {
   margin-bottom: 20px;
 }
 
-.time-bar-item {
+#stats-container .time-bar-item {
   display: inline-block;
   padding-top : 10px;
   margin-right: 25px;
@@ -408,17 +408,17 @@ html, body {
   font-size: 15px;
 }
 
-.time-bar-item:hover {
+#stats-container .time-bar-item:hover {
   color: rgba(211,211,211, 0.5);
   border-bottom: 1px solid #3d3330;
   cursor: pointer;
 }
 
-.time-bar-item.active {
+#time-bar > .time-bar-item.active {
   color: rgba(211,211,211, 0.5);
 }
 
-.time-bar-item p {
+#time-bar > .time-bar-item p {
   display: inline-block;
 }
 
@@ -442,25 +442,25 @@ html, body {
 }
 
 /* Daily Stats */
-#stats {
+#summary-view #stats {
   padding-bottom: 40px;
 }
 
-#stats p {
+#summary-view #stats p {
   font-size: 17px;
 }
 
-#stats #stats-count {
+#stats > #stats-count {
   font-size: 15px;
   color: grey;
 }
 
-.active-stats-component {
+#summary-view > .active-stats-component {
   display: inline-block;
 }
 
 /* Subhead styles */
-.subhead {
+#summary-view .subhead {
   border-bottom: 1px solid rgba(211,211,211, 0.5);
 }
 
@@ -481,7 +481,6 @@ html, body {
   stroke-width: 1px;
 }
 
-/* Gitlab color scale */
 .react-calendar-heatmap .color-empty {
   fill: #eeeeee;
 }
