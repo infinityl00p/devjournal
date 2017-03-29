@@ -10,7 +10,7 @@ export default class RecentActivity extends Component {
   renderEntries() {
     var entryArray=[]
     for (var i=0; i < 5; i++){
-      entryArray.push(<p>{this.props.data.entries[i].entryText}</p>);
+      entryArray.push(<p key={i}>{this.props.data.entries[i].entryText}</p>);
     }
     return entryArray;
   }

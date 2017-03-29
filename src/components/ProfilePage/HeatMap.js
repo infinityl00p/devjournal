@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import CalendarHeatmap from 'react-calendar-heatmap';
-import $ from 'jquery';
+import ReactTooltip from 'react-tooltip'
 
 export default class HeatMap extends Component {
   constructor(props) {
@@ -36,21 +36,34 @@ export default class HeatMap extends Component {
   }
 
   render(){
-    const customTooltipDataAttrs = {'data-toggle': 'tooltip'}
+    const customTooltipDataAttrs = {'data-tip': 'blah'}
 
     function customTitleForValue(value) {
       if(value) {
-        if(`${value.count}` == 1) {
-          return `${value.count} entry on ${value.date}`
+        if(value.count == 1) {
+          var obj = {
+            'data-tip' :  value.count + " entry on " + value.date
+          }
+          return obj;
+        }
+        else if(value.count > 1){
+          var obj = {
+            'data-tip' :  value.count + " entries on " + value.date
+          }
+          return obj;
         }
         else {
-          return `${value.count} entries on ${value.date}`
+          var obj = {
+            'data-tip' :  "No entry :("
+          }
+          return obj;
         }
       }
     }
 
     return(
       <div id="heatmap">
+      <ReactTooltip />
         <CalendarHeatmap
         endDate={new Date()}
         numDays={365}
@@ -58,12 +71,11 @@ export default class HeatMap extends Component {
         values={this.state.countPerDay}
         classForValue={(value) => {
           if (!value) {
-            return 'color-empty';
+            return "color-empty";
           }
-        return `color-gitlab-${value.count}`;
+        return "color-gitlab-" + value.count;
         }}
-        titleForValue={customTitleForValue}
-        tooltipDataAttrs={customTooltipDataAttrs}
+        tooltipDataAttrs={customTitleForValue}
         />
       </div>
     )
