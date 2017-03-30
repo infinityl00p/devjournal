@@ -357,6 +357,7 @@ html, body {
 /* stats table stats */
 #profile-page-container #stats-container {
   text-align: center;
+  margin-top: 10px;
 }
 
 #stats-container #stats-bar {
@@ -377,13 +378,15 @@ html, body {
 
 #stats-bar .stats-bar-item:hover {
   color: rgba(211,211,211, 0.5);
-  border-bottom: 1px solid #3d3330;
   cursor: pointer;
 }
 
 #stats-bar .stats-bar-item.active {
+  display: inline-flex;
   color: rgba(211,211,211, 0.5);
-  border-bottom: 1px solid black;
+  border-top: 5px solid black;
+  border-right: 1px solid rgba(211,211,211, 0.5);
+  border-left: 1px solid rgba(211,211,211, 0.5);
 }
 
 #stats-bar .stats-bar-item p {
@@ -459,6 +462,14 @@ html, body {
   display: inline-block;
 }
 
+/* Recent Entries */
+#summary-view .entry {
+  font-size: 15px;
+}
+#summary-view .entry:hover {
+  background-color: rgba(211,211,211, 0.5);
+}
+
 /* Subhead styles */
 #summary-view .subhead {
   border-bottom: 1px solid rgba(211,211,211, 0.5);
@@ -469,6 +480,13 @@ html, body {
   margin-top: 70px;
   padding-bottom: 30px;
   border-bottom: 1px solid rgba(211,211,211, 0.5);
+}
+
+/* linechart styles */
+.linechart {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .react-calendar-heatmap text {
