@@ -39,7 +39,7 @@ export default class ActivityView extends Component {
     return(
       <div>
         <StatsBar data={this.props.data} onClick={this.handleComponentSelection} type="time-bar"/>
-        <Progress data={this.props.data} activeComponent={this.state.activeComponent} active={this.state.activeComponent}/>
+        <Progress data={this.props.data} activeComponent={this.state.activeComponent} />
       </div>
     )
   }
