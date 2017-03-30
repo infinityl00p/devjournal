@@ -28,7 +28,7 @@ export default class StatsBar extends Component {
         activeItem: [false, true]
       });
 
-      this.props.onClick('activityView');
+      this.props.onClick('progressView');
     }
   }
 
@@ -110,7 +110,7 @@ export default class StatsBar extends Component {
 
   render() {
     return(
-      <div>
+      <div id="title-bar">
         {this.renderStatsBar()}
       </div>
     );
