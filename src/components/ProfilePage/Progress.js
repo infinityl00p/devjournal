@@ -8,8 +8,13 @@ export default class Progress extends Component {
 
     this.getData = this.getData.bind(this);
     this.getSunday = this.getSunday.bind(this);
+    this.getWeekData = this.getWeekData.bind(this);
+    this.getMonthData = this.getMonthData.bind(this);
+    this.getYearData = this.getYearData.bind(this);
     this.addDays = this.addDays.bind(this);
-    this.countPosts = this.countPosts.bind(this);
+    this.countDailyPosts = this.countDailyPosts.bind(this);
+    this.countWeeklyPosts = this.countWeeklyPosts.bind(this);
+    this.countMonthlyPosts = this.countMonthlyPosts.bind(this);
 
     this.state = {
       data: this.getData("Week")
@@ -25,43 +30,71 @@ export default class Progress extends Component {
 
   getData(activeComponent) {
     if(activeComponent === "Week") {
-      var dates = [];
-      var daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
-      var sunday = this.getSunday();
-      dates.push(sunday);
-      for (var i=1; i <= 6; i++) {
-        dates.push(this.addDays(sunday, i))
-      }
-      var self = this;
-      var i = 0;
-      var data = [];
-
-      dates.forEach(function (date) {
-        var count = self.countPosts(date)
-        data.push({
-          day: daysOfWeek[i],
-          count: count
-        })
-        i++
-      })
-      return data;
+      return this.getWeekData();
     }
 
     if(activeComponent === "Month") {
-      var data = [
-        {day: "Week 1", count:20},
-        {day: "Week 2", count:30},
-        {day: "Week 3", count:40},
-        {day: "Week 4", count:50}
-      ]
-      return data;
+      return this.getMonthData();
     }
 
     if(activeComponent === "Year") {
-      var data = [{day: "Jan", count:5}, {day: "Feb", count:5}, {day: "Mar", count:5},
-    {day: "Apr", count:5},{day: "May", count:5},{day: "Jun", count:5},{day: "Jul", count:5}
-  ,{day: "Aug", count:5},{day: "Sept", count:5},{day: "Oct", count:5},{day: "Nov", count:5},{day: "Dec", count:5}]
+      return this.getYearData();
     }
+  }
+
+  getWeekData() {
+    var dates = [];
+    var daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
+    var sunday = this.getSunday();
+    dates.push(sunday);
+    for (var i=1; i <= 6; i++) {
+      dates.push(this.addDays(sunday, i))
+    }
+    var self = this;
+    var i = 0;
+    var data = [];
+
+    dates.forEach((date) => {
+      var count = self.countDailyPosts(date)
+      data.push({
+        day: daysOfWeek[i],
+        count: count
+      })
+      i++
+    })
+    return data;
+  }
+
+  getMonthData() {
+    //Sunday morning to saturday night * 4, Compare Sunday <= Data < nextSunday
+    var weeks = ["Week 1", "Week 2", "Week 3", "Week 4", "Week 5"];
+    var i = 1;
+    var data = [];
+    weeks.forEach(() => {
+      var count = this.countWeeklyPosts(i*7)
+      data.push({
+        day: weeks[i-1],
+        count: count
+      })
+      i++;
+    })
+
+    return data;
+  }
+
+  getYearData() {
+    //get current year
+    var months = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"]
+    var i = 0;
+    var data = [];
+    months.forEach(() => {
+      var count = this.countMonthlyPosts(i)
+      data.push({
+        day: months[i],
+        count: count
+      })
+      i++
+    })
     return data;
   }
 
@@ -78,12 +111,43 @@ export default class Progress extends Component {
       return result;
   }
 
-  countPosts(date) {
+  countDailyPosts(date) {
     var count = 0;
     this.props.data.entries.forEach(function(object) {
       var date1 = new Date(object.date).setHours(0,0,0,0);
       var date2 = new Date(date).setHours(0,0,0,0);
       if(date1 === date2) {
+        count++;
+      }
+    })
+    return count ? count : 0;
+  }
+
+  countWeeklyPosts(week) {
+    //beginning of week
+    var startWeek = new Date();
+    var count = 0;
+    startWeek.setDate(week-6);
+    startWeek.setHours(0,0,0,0);
+    var endWeek = new Date();
+    endWeek.setDate(week+1);
+    endWeek.setHours(0,0,0,0);
+    this.props.data.entries.forEach(function(object) {
+      var date = new Date(object.date);
+      date.setHours(0,0,0,0);
+      if(startWeek.getTime() <= date.getTime() && date.getTime() <= endWeek.getTime()) {
+        count++;
+      }
+    })
+    //TODO: add some exception handling for last couple days of month
+    return count ? count : 0;
+  }
+
+  countMonthlyPosts(month) {
+    var count = 0;
+    this.props.data.entries.forEach(function(object) {
+      var date1 = new Date(object.date).getMonth();
+      if (date1 === month){
         count++;
       }
     })
