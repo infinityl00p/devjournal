@@ -6,52 +6,95 @@ export default class Progress extends Component {
   constructor(props) {
     super(props);
 
-    this.filterXAxis = this.filterXAxis.bind(this);
-    this.concatDate = this.concatDate.bind(this);
+    this.getData = this.getData.bind(this);
+    this.getSunday = this.getSunday.bind(this);
+    this.addDays = this.addDays.bind(this);
+    this.countPosts = this.countPosts.bind(this);
 
     this.state = {
-      data: [
-      {name: 'January', value: 4000},
-      {name: 'February', value: 3000},
-      {name: 'March', value: 2000},
-      {name: 'April', value: 2780},
-      {name: 'May', value: 1890},
-      {name: 'June', value: 2390},
-      {name: 'July', value: 3490},
-      ]
+      data: this.getData("Week")
     }
   }
 
-filterXAxis() {
-  console.log("here")
-  if(this.props.activeComponent == "Week") {
-    //sunday to saturday
+  componentWillReceiveProps(nextProps) {
+    var activeComponent = nextProps.activeComponent
+    this.setState({
+      data: this.getData(activeComponent)
+    })
+  }
+
+  getData(activeComponent) {
+    if(activeComponent === "Week") {
+      var dates = [];
+      var daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
+      var sunday = this.getSunday();
+      dates.push(sunday);
+      for (var i=1; i <= 6; i++) {
+        dates.push(this.addDays(sunday, i))
+      }
+      var self = this;
+      var i = 0;
+      var data = [];
+
+      dates.forEach(function (date) {
+        var count = self.countPosts(date)
+        data.push({
+          day: daysOfWeek[i],
+          count: count
+        })
+        i++
+      })
+      return data;
+    }
+
+    if(activeComponent === "Month") {
+      var data = [
+        {day: "Week 1", count:20},
+        {day: "Week 2", count:30},
+        {day: "Week 3", count:40},
+        {day: "Week 4", count:50}
+      ]
+      return data;
+    }
+
+    if(activeComponent === "Year") {
+      var data = [{day: "Jan", count:5}, {day: "Feb", count:5}, {day: "Mar", count:5},
+    {day: "Apr", count:5},{day: "May", count:5},{day: "Jun", count:5},{day: "Jul", count:5}
+  ,{day: "Aug", count:5},{day: "Sept", count:5},{day: "Oct", count:5},{day: "Nov", count:5},{day: "Dec", count:5}]
+    }
+    return data;
+  }
+
+  getSunday() {
     var now = new Date();
     var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-    var lastSunday = new Date(today.setDate(today.getDate()-today.getDay()));
-    lastSunday = this.concatDate(lastSunday);
-    console.log(lastSunday);
+    var sunday = new Date(today.setDate(today.getDate()-today.getDay()));
+    return sunday;
   }
-}
 
-concatDate(date) {
-  var day = date.getDate();
-  var month = date.getMonth() + 1;
-  if(month < 10) {
-    month = "0" + month;
-  };
-  var year = date.getFullYear();
-  var currentDate = year + "-" + month + "-" + day;
-  return currentDate;
-}
+  addDays(date, days) {
+      var result = new Date(date);
+      result.setDate(result.getDate() + days);
+      return result;
+  }
 
+  countPosts(date) {
+    var count = 0;
+    this.props.data.entries.forEach(function(object) {
+      var date1 = new Date(object.date).setHours(0,0,0,0);
+      var date2 = new Date(date).setHours(0,0,0,0);
+      if(date1 === date2) {
+        count++;
+      }
+    })
+    return count ? count : 0;
+  }
 
 //choose to filter data by tag, total posts, most used tag
   render() {
-    this.filterXAxis();
     return(
-      <div>
-        <p> This {this.props.activeComponent} </p>
+      <div className="data-visual">
+        <p className="graph-title"> This {this.props.activeComponent} </p>
         <DataVisual data={this.state.data}/>
       </div>
     )

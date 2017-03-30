@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import StatsBar from './StatsBar';
 import SummaryView from './SummaryView';
-import ActivityView from './ActivityView';
+import ProgressView from './ProgressView';
 
 export default class ActiveProfileView extends Component {
   constructor(props) {
@@ -33,9 +33,9 @@ export default class ActiveProfileView extends Component {
         });
         return;
 
-      case 'activityView':
+      case 'progressView':
         this.setState({
-          activeComponent: 'activityView'
+          activeComponent: 'progressView'
         });
         return;
     };
@@ -49,9 +49,9 @@ export default class ActiveProfileView extends Component {
           <SummaryView data={this.props.data} dates={this.getDates()} />
         );
 
-      case 'activityView':
+      case 'progressView':
         return(
-          <ActivityView data={this.props.data}/>
+          <ProgressView data={this.props.data}/>
         )
     }
   }

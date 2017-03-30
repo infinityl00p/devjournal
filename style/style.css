@@ -798,10 +798,16 @@ input[type="checkbox"]:focus{
 }
 
 /* linechart styles */
-.linechart {
+.graph-title {
+  font-weight: bold;
+  padding-top: 10px;
+}
+
+.linechart .recharts-wrapper {
   text-align: center;
   margin-left: auto;
   margin-right: auto;
+  padding-top: 20px;
 }
 
 .react-calendar-heatmap text {

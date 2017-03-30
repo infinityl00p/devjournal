@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import StatsBar from './StatsBar';
 import Progress from './Progress';
 
-export default class ActivityView extends Component {
+export default class ProgressView extends Component {
   constructor(props) {
     super(props);
 
-    this.handleComponentSelection=this.handleComponentSelection.bind(this);
+    this.handleComponentSelection = this.handleComponentSelection.bind(this);
 
     this.state = {
-      activeComponent: "week"
+      activeComponent: "Week"
     }
   }
 
@@ -38,7 +38,7 @@ export default class ActivityView extends Component {
   render() {
     return(
       <div>
-        <StatsBar data={this.props.data} onClick={this.handleComponentSelection} type="time-bar"/>
+        <StatsBar data={this.props.data} onClick={this.handleComponentSelection} type="time-bar" />
         <Progress data={this.props.data} activeComponent={this.state.activeComponent} />
       </div>
     )
