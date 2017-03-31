@@ -13,19 +13,20 @@ export default class TopTags extends Component {
     this.props.data.tags.forEach(function (tags) {
       tagTextArray[tags.id] = tags.tagText;
     })
-
     var entries = this.props.data.entries;
     for (var i = 0; i < entries.length; i++) {
-      for (var j = 0; j < entries[i].tags.length; j++) {
-        var tag = entries[i].tags[j];
-        if (frequencyArray[tag] === undefined) {
-          frequencyArray[tag] = {
-            id: tagTextArray[tag],
-            frequency: 1
-          };
-        }
-        else {
-          frequencyArray[tag].frequency = frequencyArray[tag].frequency + 1;
+      if (entries[i].tags){
+        for (var j = 0; j < entries[i].tags.length; j++) {
+          var tag = entries[i].tags[j];
+          if (frequencyArray[tag] === undefined) {
+            frequencyArray[tag] = {
+              id: tagTextArray[tag],
+              frequency: 1
+            };
+          }
+          else {
+            frequencyArray[tag].frequency = frequencyArray[tag].frequency + 1;
+          }
         }
       }
     }
@@ -35,14 +36,16 @@ export default class TopTags extends Component {
     });
 
     sortedArray = frequencyArray.map(function (object) {
-      return (
-        <li className="list-group-item tag-list-item" key={object.id}>
-          {object.id}
-          <span className="frequency">
-            {object.frequency}
-          </span>
-        </li>
-      )
+      if (object.id && object.frequency){
+        return (
+          <li className="list-group-item tag-list-item" key={object.id}>
+            {object.id}
+            <span className="frequency">
+              {object.frequency}
+            </span>
+          </li>
+        )
+      }
     })
 
     return sortedArray;

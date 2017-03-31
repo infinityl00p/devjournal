@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import marked from 'marked';
 
 export default class RecentActivity extends Component {
   constructor(props) {
@@ -9,17 +10,18 @@ export default class RecentActivity extends Component {
 
   renderEntries() {
     var entryArray=[]
-    for (var i=0; i < 5; i++){
+    var arrayLength = this.props.data.entries.length
+    for (var i = arrayLength - 1; i > arrayLength - 5; i--){
+      const entryText = marked(this.props.data.entries[i].entryText);
       entryArray.push(
         <div key={i}>
-          <p key={this.props.data.entries[i].entryText} className="entry">
-            {this.props.data.entries[i].entryText}
-          </p>
+          <p dangerouslySetInnerHTML={{__html: entryText}} key={this.props.data.entries[i].entryText} className="entry" />
         </div>
       );
     }
     return entryArray;
   }
+
   render() {
     return(
       <div>
