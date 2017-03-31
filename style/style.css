@@ -797,6 +797,59 @@ input[type="checkbox"]:focus{
   border-bottom: 1px solid rgba(211,211,211, 0.5);
 }
 
+/*Recent Activity Styles */
+#recent-activity-container {
+  overflow-y: scroll;
+  height: 30vh;
+}
+
+#recent-activity-container .entry-item-container {
+  border-bottom: 1px solid rgba(211,211,211, 0.5);
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+#recent-activity-container .entry-item-container .entry-text * {
+  font-size: 12px;
+}
+
+#recent-activity-container .entry-item-container a {
+  color: black;
+  text-decoration: none;
+}
+
+#recent-activity-container .entry-item-container:hover {
+  background-color: rgba(211,211,211, 0.5);
+}
+
+#recent-activity-container .entry-header {
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+#recent-activity-container .entry-date {
+  display: inline-block;
+  text-align: left;
+  font-weight: bold;
+}
+
+#recent-activity-container .tag-container {
+  float: right;
+  font-size: 14px;
+}
+
+#recent-activity-container .tag-container .entry-tag {
+  background-color: #0EBFE9;
+  border-radius: 4px;
+  color: white;
+  margin: 5px;
+  padding: 2px 4px;
+}
+
+#recent-activity-container .tag-container .entry-tag:hover {
+  font-weight: bold;
+}
+
 /* linechart styles */
 .graph-title {
   font-weight: bold;

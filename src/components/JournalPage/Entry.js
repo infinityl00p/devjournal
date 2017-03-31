@@ -19,7 +19,9 @@ export default class Entry extends Component {
       tags: this.props.tags
     }
 
-    this.props.onClick(entryAndTags);
+    if (this.props.onClick) {
+      this.props.onClick(entryAndTags);
+    }
   }
 
   render(){
