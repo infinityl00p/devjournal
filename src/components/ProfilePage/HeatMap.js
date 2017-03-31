@@ -73,6 +73,9 @@ export default class HeatMap extends Component {
           if (!value) {
             return "color-empty";
           }
+          if (value.count > 4) {
+            return "color-gitlab-4"
+          }
         return "color-gitlab-" + value.count;
         }}
         tooltipDataAttrs={customTitleForValue}

@@ -1,74 +1,13 @@
 import React, { Component } from 'react';
 import TopTags from './TopTags';
 import ActiveProfileView from './ActiveProfileView';
+import * as actionCreators from '../../actions/index';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import _ from 'lodash';
+
 
 const data = {
-  entries: [
-    {
-      id: 1,
-      entryText: "<code> printf('hello world') </code>",
-      tags: [1, 2, 4, 3],
-      date: "2017-03-30T14:28:33.797555Z"
-    },
-    {
-      id: 2,
-      entryText: "<code> console.log('hello world') </code> ",
-      tags: [3, 5, 4],
-      date: "2017-03-29T14:28:33.797555Z"
-    },
-    {
-      id: 3,
-      entryText: "blah",
-      tags: [3,5],
-      date: '2017-03-29T14:28:33.797555Z'
-    },
-    {
-      id: 4,
-      entryText: "blah",
-      tags: [3,5],
-      date: '2017-03-27T14:28:33.797555Z'
-    },
-    {
-      id: 5,
-      entryText: "blah",
-      tags: [3,5],
-      date: '2017-03-26T14:28:33.797555Z'
-    },
-    {
-      id: 6,
-      entryText: "blah",
-      tags: [3,5],
-      date: '2017-03-25T14:28:33.797555Z'
-    },
-    {
-      id: 5,
-      entryText: "blah",
-      tags: [3,5],
-      date: '2017-03-24T14:28:33.797555Z'
-    }
-  ],
-  tags: [
-    {
-      id: 1,
-      tagText: '#react'
-    },
-    {
-      id: 2,
-      tagText: '#javascript'
-    },
-    {
-      id: 3,
-      tagText: '#html'
-    },
-    {
-      id: 4,
-      tagText: '#css'
-    },
-    {
-      id: 5,
-      tagText: '#bootstrap'
-    }
-  ],
   avatar: "http://www.skyovnis.com/wp-content/uploads/2014/12/Profile-sky-ovnis.jpg",
   username: "James Gill",
   joinDate: "2017-03-09",
@@ -76,8 +15,24 @@ const data = {
 };
 
 
-export default class ProfilePage extends Component {
+class ProfilePage extends Component {
+  constructor(props) {
+    super(props);
+    this.props.actions.getEntriesAndTags();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      data: nextProps.journal
+    })
+  }
+
   render() {
+    if (!this.props.journal) {
+      return(
+        <div><h3>Loading...</h3></div>
+      );
+    }
     return(
       <div id="profile-page-container">
         <div className="col-md-3" id="user-profile">
@@ -88,13 +43,26 @@ export default class ProfilePage extends Component {
             <h6 id="joinDate"> Member Since: {data.joinDate}</h6>
           </div>
           <div id="top-tags-container">
-            <TopTags data={data} />
+            <TopTags data={this.state.data} />
           </div>
         </div>
         <div className="col-md-9">
-          <ActiveProfileView data={data} />
+          <ActiveProfileView data={this.state.data} />
         </div>
       </div>
     );
   }
 }
+
+
+function mapStateToProps(state) {
+  return {
+    journal: state.entries
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return { actions: bindActionCreators(actionCreators, dispatch) };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfilePage)
