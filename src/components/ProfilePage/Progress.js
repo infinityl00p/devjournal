@@ -158,7 +158,7 @@ export default class Progress extends Component {
   render() {
     return(
       <div className="data-visual">
-        <p className="graph-title"> This {this.props.activeComponent} </p>
+        <p className="graph-title"> Entries This {this.props.activeComponent} </p>
         <DataVisual data={this.state.data}/>
       </div>
     )

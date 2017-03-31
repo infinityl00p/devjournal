@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import marked from 'marked';
+import Entry from '../JournalPage/Entry';
+import _ from 'lodash';
 
 export default class RecentActivity extends Component {
   constructor(props) {
@@ -9,22 +11,19 @@ export default class RecentActivity extends Component {
   }
 
   renderEntries() {
-    var entryArray=[]
-    var arrayLength = this.props.data.entries.length
-    for (var i = arrayLength - 1; i > arrayLength - 5; i--){
-      const entryText = marked(this.props.data.entries[i].entryText);
-      entryArray.push(
-        <div key={i}>
-          <p dangerouslySetInnerHTML={{__html: entryText}} key={this.props.data.entries[i].entryText} className="entry" />
-        </div>
-      );
-    }
-    return entryArray;
+    var entries = this.props.data.entries.map((entry) => {
+      var tags = this.props.data.tags.filter(function (tag) {
+        return _.contains(entry.tags, tag.id)
+      });
+      return <Entry key={entry.id} entry={entry} tags={tags} />
+    });
+    return entries.reverse();
+
   }
 
   render() {
     return(
-      <div>
+      <div id="recent-activity-container">
         {this.renderEntries()}
       </div>
     )
