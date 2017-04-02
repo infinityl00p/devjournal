@@ -29,11 +29,7 @@
     "axios": "^0.15.3",
     "babel-preset-stage-1": "^6.1.18",
     "base62": "^1.1.2",
-<<<<<<< HEAD
     "css-loader": "^0.27.3",
-=======
-    "jquery": "^2.2.4",
->>>>>>> added graph api, framework for progress and summary
     "lodash": "^3.10.1",
     "marked": "^0.3.6",
     "moment": "^2.18.1",
@@ -44,6 +40,13 @@
     "react-router": "^2.0.1",
     "redux": "^3.0.4",
     "redux-promise": "^0.5.3",
-    "style-loader": "^0.16.0"
+    "style-loader": "^0.16.0",
+    "react-calendar-heatmap": "^1.1.0",
+    "react-dom": "^0.14.3",
+    "react-redux": "^4.0.0",
+    "react-router": "^2.0.1",
+    "react-tooltip": "^3.2.10",
+    "recharts": "^0.21.2",
+    "redux": "^3.0.4"
   }
 }
