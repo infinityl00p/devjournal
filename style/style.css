@@ -10,11 +10,60 @@ html, body {
   width: 100%;
 }
 
+/* ActionBar styles */
+#action-bar2 {
+  padding-top: 2px;
+  height: 40px;
+  background-color: #0EBFE9;
+  color: white;
+}
+
+#action-bar2 a {
+  color: white;
+  text-decoration: none;
+}
+
+#action-bar2 .navi div {
+  padding-top: 10px;
+  display: inline-block;
+  font-size: 10pt;
+}
+
+#action-bar2 .navi span {
+  margin-right: 20px;
+  padding-bottom: 2px;
+}
+
+#action-bar2 .preferences .profile a.active, #action-bar2 .preferences .profile a:hover {
+  padding-bottom: 2px;
+  border-bottom: 3px solid white;
+}
+
+#action-bar2 .navi span.active, #action-bar2 .navi span:hover,
+#action-bar2 .preferences .profile:hover,  #action-bar2 .preferences div.active {
+  border-bottom: 3px solid white;
+}
+
+#action-bar2 .action-input .input-group {
+  width: 70%;
+}
+
+#action-bar2 .preferences {
+  padding-top: 10px;
+}
+
+#action-bar2 .preferences p {
+  display: inline-block;
+  margin-left: 4px;
+}
+
 /* Sidebar styles */
-#sidebar {
-  padding: 0;
-  height: 100vh;
+#journal-sidebar {
   background-color: #fafafa;
+  height: 100vh;
+  padding-top: 30px;
+  padding-left: 30px;
+  border-right: 1px solid #f1f1f1;
 }
 
 #sidebar .sidebar-components {
@@ -118,7 +167,7 @@ html, body {
 
 #entry-list .entry-item-container:hover {
   border-right: 6px solid #0EBFE9;
-  background-color: rgba(211,211,211, 0.5);
+  background-color: #f3f3f3;
 }
 
 #entry-list .entry-header {
@@ -253,43 +302,29 @@ html, body {
   margin-left: 100%;
 }
 
-#entry-filter{
-  overflow-y: scroll;
-  height: 25vh;
+#entry-filter {
+  overflow-y: hidden;
   margin-bottom: 10px;
+}
+
+#entry-filter .sub-heading {
+  font-size: 10pt;
+  font-weight: light;
+  color: #b3b3b3;
 }
 
 #entry-filter ul {
   list-style: none;
   padding: 0;
-}
-
-#entry-filter .hide{
-  display: none;
-}
-
-#filter #filter-button {
-  display: block;
-  margin: 0 auto;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-#filter .filter-results {
-  position: relative;
+  max-height: 100px;
   overflow-y: scroll;
-  height:75vh;
+  font-size: 10pt;
 }
 
 .filter-list-item .filter-tag:hover {
   padding-right: 5px;
-  background-color: rgba(211,211,211, 0.5);
+  background-color: #f3f3f3;
   cursor: pointer;
-}
-
-.filter .filter-results {
-  overflow-y: scroll;
-  height:75vh;
 }
 
 /* Filter Tag Styles */
@@ -544,7 +579,7 @@ html, body {
   margin-bottom: 8px;
 }
 
-#task-list .tasks .create-item .create-item-input .project-icon {
+#task-list .tasks .create-item .create-item-input .tag-icon {
   color: #b3b3b3;
   padding-right: 10px;
   width: 10%;
@@ -567,18 +602,18 @@ html, body {
   border: none;
 }
 
-#task-list .tasks .create-item .create-item-input .project-selector {
+#task-list .tasks .create-item .create-item-input .tag-selector {
   margin-top: 5px;
   color: black;
   font-size: 11pt;
 }
 
-#task-list .tasks .create-item .create-item-input .project-selector .project {
+#task-list .tasks .create-item .create-item-input .tag-selector .tag {
   padding: 0 3px 0 3px;
 }
 
-#task-list .tasks .create-item .create-item-input .project-selector .project:hover,
-#task-list .tasks .create-item .create-item-input .project-selector .project.active {
+#task-list .tasks .create-item .create-item-input .tag-selector .tag:hover,
+#task-list .tasks .create-item .create-item-input .tag-selector .tag.active {
   font-weight: bold;
   border-bottom: 4px solid #0EBFE9;
 }
@@ -685,7 +720,7 @@ input[type="checkbox"]:focus{
 }
 
 #tag-list > .tag-list-item:hover {
-  background-color: rgba(211,211,211, 0.5);
+  background-color: #f3f3f3;
   cursor: pointer;
 }
 
@@ -854,7 +889,7 @@ input[type="checkbox"]:focus{
   font-size: 15px;
 }
 #summary-view .entry:hover {
-  background-color: rgba(211,211,211, 0.5);
+  background-color: #f3f3f3;
 }
 
 /* Subhead styles */

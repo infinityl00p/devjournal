@@ -7,9 +7,11 @@ export const GET_ENTRIES_AND_TAGS = 'GET_ENTRIES_AND_TAGS';
 export const DELETE_ENTRY = 'DELETE_ENTRY';
 export const UPDATE_ENTRY = 'UPDATE_ENTRY';
 
-export const GET_TAGS = 'GET_TAGS';
-export const CREATE_TAG = 'CREATE_TAG';
-export const DELETE_TAG = 'DELETE_TAG';
+export const GET_TASKS = 'GET_TASKS';
+export const CREATE_TASK = 'CREATE_TASK';
+export const CREATE_SUBTASK = 'CREATE_SUBTASK';
+export const UPDATE_TASK = 'UPDATE_TASK';
+export const UPDATE_SUBTASK = 'UPDATE_SUBTASK';
 
 const USER_ID = localStorage.getItem('userId');
 
@@ -30,9 +32,9 @@ export function createEntryAndTags(entry) {
     };
 }
 
-export function getEntriesAndTags() {
+export function getEntriesAndTags(userId) {
     const request = axios.get(
-        ROOT_URL + '/entries/' + USER_ID
+        ROOT_URL + '/entries/' + userId
     );
 
     return {
@@ -63,40 +65,6 @@ export function deleteEntry(entryId) {
     };
 }
 
-/*export function createTag(tag) {
-    const request = axios.post(
-        ROOT_URL + '/tags',
-        tag
-    );
-
-    return {
-        type: CREATE_TAG,
-        payload: request
-    };
-}
-
-export function getTags() {
-    const request = axios.get(
-        ROOT_URL + '/tags'
-    );
-
-    return {
-        type: GET_TAGS,
-        payload: request
-    };
-}
-
-export function deleteTag(tagId) {
-    const request = axios.post(
-        ROOT_URL + '/tags/' + tagId
-    );
-
-    return {
-        type: DELETE_TAG,
-        payload: request
-    };
-}*/
-
 export function createUser(user) {
     const request = axios.post(
         ROOT_URL + '/users/add',
@@ -117,6 +85,65 @@ export function loginUser(user) {
 
     return {
         type: LOGIN_USER,
+        payload: request
+    };
+}
+
+export function getTasks(userId) {
+    const request = axios.get(
+        ROOT_URL + '/tasks/' + userId
+    );
+
+    return {
+        type: GET_TASKS,
+        payload: request
+    };
+}
+
+export function createTask(task) {
+    const request = axios.post(
+        ROOT_URL + '/tasks',
+        task
+    );
+
+    return {
+        type: CREATE_TASK,
+        payload: request
+    };
+}
+
+export function createSubtask(subtask, userId) {
+    const request = axios.post(
+        ROOT_URL + '/tasks/' + userId + '/' + subtask.taskId + '/subtasks',
+        subtask
+    );
+
+    return {
+        type: CREATE_SUBTASK,
+        payload: request
+    };
+}
+
+export function updateTask(task, userId) {
+    const request = axios.post(
+        ROOT_URL + '/tasks/' + userId + '/' + task.id,
+        task
+    );
+
+    return {
+        type: UPDATE_TASK,
+        payload: request
+    };
+}
+
+export function updateSubtask(subtask, userId) {
+    const request = axios.post(
+        ROOT_URL + '/tasks/' + userId + '/' + subtask.taskId + '/subtasks/' + subtask.id,
+        subtask
+    );
+
+    return {
+        type: UPDATE_SUBTASK,
         payload: request
     };
 }

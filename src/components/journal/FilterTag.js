@@ -4,7 +4,7 @@ export default class FilterTag extends Component {
   constructor(props) {
     super(props);
 
-    this.toggleActive = this.toggleActive.bind(this);
+    this.updateFilter = this.updateFilter.bind(this);
 
     this.state = {
       active: false
@@ -17,13 +17,13 @@ export default class FilterTag extends Component {
     });
   }
 
-  toggleActive() {
-    this.props.onClick(this.props.id);
+  updateFilter() {
+    this.props.onSelect(this.props.id);
   }
 
   render() {
     return(
-        <span onClick={this.toggleActive} className={this.state.active ? "filter-tag active" : "filter-tag"}>
+        <span onClick={this.updateFilter} className={this.state.active ? "filter-tag active" : "filter-tag"}>
           {this.props.data.tagText}
         </span>
     );
@@ -33,6 +33,6 @@ export default class FilterTag extends Component {
 React.propTypes = {
   data: React.PropTypes.object,
   id: React.PropTypes.number,
-  onClick: React.PropTypes.func,
+  onSelect: React.PropTypes.func,
   active: React.PropTypes.bool
 }

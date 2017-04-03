@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import ActionBar from './ActionBar';
+import ActionList from './ActionList';
 import EntryForm from './EntryForm';
 import EntryList from './EntryList';
 import EntrySearch from './EntrySearch';
@@ -8,9 +9,9 @@ import EntryFilter from './EntryFilter';
 import CreateEntryModal from './CreateEntryModal';
 
 
-export default class Sidebar extends Component {
-  constructor(props) {
-    super(props);
+export default class JournalSidebar extends Component {
+  constructor() {
+    super();
 
     this.handleActionSelect = this.handleActionSelect.bind(this);
     this.renderActionComponent = this.renderActionComponent.bind(this);
@@ -105,22 +106,20 @@ export default class Sidebar extends Component {
 
   render() {
     return(
-      <div className="col-md-4" id="sidebar">
-        <ActionBar
+      <div className="col-md-3" id="journal-sidebar">
+        <ActionList />
+        <EntryFilter
           entries={this.props.entries}
           tags={this.props.tags}
-          onSelect={this.handleActionSelect}
+          onFilter={this.props.onFilter}
         />
-        <ul className="sidebar-components">
-          <li>{this.renderActionComponent()}</li>
-        </ul>
       </div>
     );
   }
 }
 
-Sidebar.propTypes = {
+JournalSidebar.propTypes = {
   entries: React.PropTypes.array,
   tags: React.PropTypes.array,
-  onEntryClick: React.PropTypes.func
+  onFilter: React.PropTypes.func
 }
