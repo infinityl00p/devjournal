@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import StatsComponent from './StatsComponent';
-import HeatMap from './HeatMap'
+import PostHeatMap from './PostHeatMap'
 import RecentActivity from './RecentActivity'
 
-export default class SummaryView extends Component {
+export default class ProfileSummaryView extends Component {
   constructor(props) {
     super(props);
 
@@ -35,6 +35,9 @@ export default class SummaryView extends Component {
     if(month < 10) {
       month = "0" + month;
     };
+    if(day < 10) {
+      day = "0" + day;
+    };
     var year = date.getFullYear();
     var currentDate = year + "-" + month + "-" + day;
     return currentDate;
@@ -44,14 +47,15 @@ export default class SummaryView extends Component {
     var date = new Date();
     var todaysDate = this.concatDate(date);
     var postCount = 0;
-
+    //TODO, make this more efficient, doesn't have to go through all of the days
     this.props.dates.forEach(function(date) {
       var entryDate = date.split('T');
-      if (todaysDate === entryDate[0]) {
-        postCount++
-      }
-    });
 
+      if (todaysDate === entryDate[0]) {
+        postCount++;
+      }
+
+    });
     return postCount;
   }
 
@@ -59,7 +63,7 @@ export default class SummaryView extends Component {
     var postCount = 0;
 
     this.props.data.entries.forEach(function() {
-      postCount++
+      postCount++;
     });
 
     return postCount;
@@ -69,7 +73,7 @@ export default class SummaryView extends Component {
     var tagCount = 0;
 
     this.props.data.tags.forEach(function() {
-      tagCount++
+      tagCount++;
     });
 
     return tagCount;
@@ -85,61 +89,60 @@ export default class SummaryView extends Component {
       if(entryDate >= priorDate) {
         dateCount++;
       }
-    })
+    });
 
     return dateCount;
   }
 
   currentStreak() {
     var streakCount = 0;
-    var previousDate = 'NULL';
+    var previousDate = null;
     var today = new Date();
     today = this.concatDate(today);
 
     this.props.dates.forEach(function(date) {
-      var entryDate = date.split('T')[0]
+      var entryDate = date.split('T')[0];
 
-      if (previousDate !== 'NULL') {
-        var date1 = new Date(previousDate)
-        var date2 = new Date(entryDate)
-        var timeDiff = Math.abs(date2.getTime() - date1.getTime())
-        var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24))
+      if (previousDate !== null) {
+        var date1 = new Date(previousDate);
+        var date2 = new Date(entryDate);
+        var timeDiff = Math.abs(date2.getTime() - date1.getTime());
+        var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
         if (diffDays == 1) {
-          streakCount++
-        }
-        else {
+          streakCount++;
+        } else {
           return streakCount;
         }
-      }
-      else if (today === entryDate && entryDate !== previousDate) {
-        streakCount++
+      } else if (today === entryDate && entryDate !== previousDate) {
+        streakCount++;
       }
 
-      previousDate = entryDate
+      previousDate = entryDate;
     });
+
     return streakCount;
   }
 
   longestStreak() {
     var currentStreakCount = 0;
     var highStreak = 0;
-    var previousDate = 'NULL';
+    var previousDate = null;
     var today = new Date();
     today = this.concatDate(today);
 
     this.props.dates.forEach(function(date) {
-      var entryDate = date.split('T')[0]
+      var entryDate = date.split('T')[0];
 
-      if(previousDate !== 'NULL') {
-        var date1 = new Date(previousDate)
-        var date2 = new Date(entryDate)
-        var timeDiff = Math.abs(date2.getTime() - date1.getTime())
-        var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24))
+      if(previousDate !== null ) {
+        var date1 = new Date(previousDate);
+        var date2 = new Date(entryDate);
+        var timeDiff = Math.abs(date2.getTime() - date1.getTime());
+        var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
 
         if (previousDate !== entryDate && diffDays == 1) {
-          currentStreakCount++
+          currentStreakCount++;
           if (currentStreakCount > highStreak) {
-            highStreak=currentStreakCount
+            highStreak=currentStreakCount;
           }
         }
       }
@@ -148,8 +151,9 @@ export default class SummaryView extends Component {
         highStreak++;
       }
 
-      previousDate = entryDate
+      previousDate = entryDate;
     });
+
     return highStreak;
   }
 
@@ -161,7 +165,7 @@ export default class SummaryView extends Component {
   }
 
   renderStatsComponent() {
-    var statsComponentArray = []
+    var statsComponentArray = [];
     var statsArray = [
       {
         name: "Todays Post Count",
@@ -190,7 +194,7 @@ export default class SummaryView extends Component {
     ];
 
     statsComponentArray = statsArray.map(function(object) {
-      return( <StatsComponent key={object.name} name={object.name} count={object.count} /> )
+      return(<StatsComponent key={object.name} name={object.name} count={object.count} />);
     });
 
     return(
@@ -203,7 +207,7 @@ export default class SummaryView extends Component {
   render() {
     return(
       <div id="summary-view">
-        <HeatMap dates={this.props.dates}/>
+        <PostHeatMap dates={this.props.dates}/>
         {this.renderStatsComponent()}
         <p className="subhead"> Most Recent Activity </p>
         <RecentActivity data={this.props.data}/>

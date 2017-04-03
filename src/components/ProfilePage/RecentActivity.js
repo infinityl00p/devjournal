@@ -4,8 +4,8 @@ import Entry from '../JournalPage/Entry';
 import _ from 'lodash';
 
 export default class RecentActivity extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.renderEntries = this.renderEntries.bind(this);
   }
@@ -18,7 +18,6 @@ export default class RecentActivity extends Component {
       return <Entry key={entry.id} entry={entry} tags={tags} />
     });
     return entries.reverse();
-
   }
 
   render() {
@@ -26,6 +25,6 @@ export default class RecentActivity extends Component {
       <div id="recent-activity-container">
         {this.renderEntries()}
       </div>
-    )
+    );
   }
 }

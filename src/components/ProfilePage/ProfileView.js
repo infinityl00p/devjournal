@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import StatsBar from './StatsBar';
-import SummaryView from './SummaryView';
-import ProgressView from './ProgressView';
+import ProfileSummaryView from './ProfileSummaryView';
+import ProfileProgressView from './ProfileProgressView';
 
 export default class ActiveProfileView extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.handleComponentSelection = this.handleComponentSelection.bind(this);
     this.renderActiveComponent = this.renderActiveComponent.bind(this);
@@ -19,40 +19,26 @@ export default class ActiveProfileView extends Component {
   getDates() {
     var dateArray = [];
 
-    this.props.data.entries.forEach(function (entry) {
-      dateArray.push(entry.date)
+    dateArray = this.props.data.entries.map(function (entry) {
+      return entry.date
     });
+
     return dateArray;
   }
 
   handleComponentSelection(selectedView) {
-    switch(selectedView) {
-      case 'summaryView':
-        this.setState({
-          activeComponent: 'summaryView'
-        });
-        return;
-
-      case 'progressView':
-        this.setState({
-          activeComponent: 'progressView'
-        });
-        return;
-    };
+    this.setState({
+      activeComponent: selectedView
+    });
   }
 
   renderActiveComponent() {
-    var activeComponent = this.state.activeComponent;
-    switch (activeComponent) {
+    switch (this.state.activeComponent) {
       case 'summaryView':
-        return(
-          <SummaryView data={this.props.data} dates={this.getDates()} />
-        );
+        return(<ProfileSummaryView data={this.props.data} dates={this.getDates()} />);
 
       case 'progressView':
-        return(
-          <ProgressView data={this.props.data}/>
-        )
+        return(<ProfileProgressView data={this.props.data}/>);
     }
   }
 

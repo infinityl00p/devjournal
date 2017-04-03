@@ -15,6 +15,7 @@ export default class StatsBarItem extends Component {
     this.setState({
       active: true
     });
+    
     this.props.onClick(this.props.name);
   }
 
@@ -22,7 +23,6 @@ export default class StatsBarItem extends Component {
     var classNames = this.props.type + " " + (this.props.isActive ? "active" : "");
     return(
       <div className={classNames} onClick={this.handleClick}>
-        <span className={"glyphicon " + this.props.icon} />
         <p>{this.props.name}</p>
       </div>
     );

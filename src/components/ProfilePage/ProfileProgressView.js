@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import StatsBar from './StatsBar';
-import Progress from './Progress';
+import ProgressContainer from './ProgressContainer';
 
-export default class ProgressView extends Component {
-  constructor(props) {
-    super(props);
+export default class ProfileProgressView extends Component {
+  constructor() {
+    super();
 
     this.handleComponentSelection = this.handleComponentSelection.bind(this);
 
@@ -39,8 +39,8 @@ export default class ProgressView extends Component {
     return(
       <div>
         <StatsBar data={this.props.data} onClick={this.handleComponentSelection} type="time-bar" />
-        <Progress data={this.props.data} activeComponent={this.state.activeComponent} />
+        <ProgressContainer data={this.props.data} activeComponent={this.state.activeComponent} />
       </div>
-    )
+    );
   }
 }

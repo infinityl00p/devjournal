@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import {LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts';
 
-export default class DataVisual extends Component {
-  constructor(props) {
-    super(props);
+export default class ProgressLineChart extends Component {
+  constructor() {
+    super();
   }
 
   render() {
@@ -17,6 +17,6 @@ export default class DataVisual extends Component {
           <Tooltip />
         </LineChart>
       </div>
-    )
+    );
   }
 }

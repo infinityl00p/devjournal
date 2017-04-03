@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import TopTags from './TopTags';
-import ActiveProfileView from './ActiveProfileView';
+import ProfileView from './ProfileView';
 import * as actionCreators from '../../actions/index';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import _ from 'lodash';
-
 
 const data = {
   avatar: "http://www.skyovnis.com/wp-content/uploads/2014/12/Profile-sky-ovnis.jpg",
@@ -14,17 +13,21 @@ const data = {
   occupation: "React Developer"
 };
 
-
 class ProfilePage extends Component {
   constructor(props) {
     super(props);
+
     this.props.actions.getEntriesAndTags();
+
+    this.state = {
+      data: props
+    }
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({
       data: nextProps.journal
-    })
+    });
   }
 
   render() {
@@ -47,7 +50,7 @@ class ProfilePage extends Component {
           </div>
         </div>
         <div className="col-md-9">
-          <ActiveProfileView data={this.state.data} />
+          <ProfileView data={this.state.data} />
         </div>
       </div>
     );
@@ -56,9 +59,7 @@ class ProfilePage extends Component {
 
 
 function mapStateToProps(state) {
-  return {
-    journal: state.entries
-  }
+  return { journal: state.entries }
 }
 
 function mapDispatchToProps(dispatch) {

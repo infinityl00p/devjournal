@@ -232,7 +232,7 @@ html, body {
   margin-left: 100%;
 }
 
-#filter #entry-filter{
+#entry-filter{
   overflow-y: scroll;
   height: 25vh;
   margin-bottom: 10px;
@@ -615,10 +615,7 @@ input[type="checkbox"]:focus{
   text-align: center;
 }
 
-#profile-picture {
-=======
 #personal-info-container > #profile-picture {
->>>>>>> cleaned up css, more specific selectors
   width: 200px;
   height: auto;
   display: block;
@@ -639,17 +636,17 @@ input[type="checkbox"]:focus{
   text-align: center;
 }
 
-.list-group .list-group-item {
+#tag-list .list-group-item {
   border-left: 0px;
   border-right: 0px;
 }
 
-.list-group > .tag-list-item {
+#tag-list > .tag-list-item {
   text-align: center;
   font-weight: bold;
 }
 
-.list-group > .tag-list-item:hover {
+#tag-list > .tag-list-item:hover {
   background-color: rgba(211,211,211, 0.5);
   cursor: pointer;
 }
@@ -682,16 +679,12 @@ input[type="checkbox"]:focus{
   font-size: 30px;
 }
 
-<<<<<<< HEAD
 .stats-bar-item:hover {
   border-bottom: 1px solid rgba(211,211,211, 0.5);
   padding-bottom: 5px;
 }
 
-#stats-bar .stats-bar-item .active {
-=======
 #stats-bar .stats-bar-item:hover {
->>>>>>> cleaned up css, more specific selectors
   color: rgba(211,211,211, 0.5);
   cursor: pointer;
 }
