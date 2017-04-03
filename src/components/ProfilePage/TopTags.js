@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import Tag from './Tag'
 
 export default class TopTags extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.sortTags = this.sortTags.bind(this);
     this.countFrequency = this.countFrequency.bind(this);
@@ -21,7 +21,8 @@ export default class TopTags extends Component {
           <Tag key={object.id} id={object.id} frequency={object.frequency} />
         )
       }
-    })
+    });
+
     return sortedArray;
   }
 
@@ -30,13 +31,14 @@ export default class TopTags extends Component {
 
     this.props.data.tags.forEach(function (tags) {
       tagTextArray[tags.id] = tags.tagText;
-    })
+    });
 
     var frequencyArray = this.countFrequency(tagTextArray);
 
     var sortedArray = frequencyArray.sort(function(a,b) {
       return (a.frequency < b.frequency) ? 1 : ((b.frequency < a.frequency) ? -1 : 0);
     });
+
     return sortedArray;
   }
 
@@ -44,23 +46,21 @@ export default class TopTags extends Component {
     var frequencyArray = [];
     var entries = this.props.data.entries;
 
-    for (var i = 0; i < entries.length; i++) {
-      if (entries[i].tags){
-        for (var j = 0; j < entries[i].tags.length; j++) {
-          var tag = entries[i].tags[j]
+    entries.forEach(function(entry, index) {
+      if(entry.tags) {
+        entry.tags.forEach(function(tag, index) {
+          var tag = tag;
           if (frequencyArray[tag] === undefined) {
             frequencyArray[tag] = {
               id: tagTextArray[tag],
               frequency: 1
-            }
+            };
+          }else {
+            frequencyArray[tag].frequency = frequencyArray[tag].frequency + 1;
           }
-          else {
-            frequencyArray[tag].frequency = frequencyArray[tag].frequency + 1
-          }
-        }
+        })
       }
-    }
-
+    });
     return frequencyArray;
   }
 

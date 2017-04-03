@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import StatsBarItem from './StatsBarItem'
 
 export default class StatsBar extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.setActiveView = this.setActiveView.bind(this);
     this.setActiveTimeView = this.setActiveTimeView.bind(this);
@@ -37,6 +37,7 @@ export default class StatsBar extends Component {
       this.setState({
         activeTimeView: [true, false, false]
       });
+
       this.props.onClick('weekly');
     }
 
@@ -60,51 +61,46 @@ export default class StatsBar extends Component {
   renderStatsBar() {
     if(this.props.type === "stats-bar") {
       return(
-        <div id={this.props.type}>
+        <div id={"stats-bar"}>
           <StatsBarItem
           name="Summary"
           type="stats-bar-item"
-          icon="glyphicon-stats"
           isActive={this.state.activeItem[0]}
           onClick={this.setActiveView}
           />
           <StatsBarItem
           name="Progress"
           type="stats-bar-item"
-          icon="glyphicon-grain"
           isActive={this.state.activeItem[1]}
           onClick={this.setActiveView}
           />
         </div>
-      )
+      );
     }
 
     if(this.props.type === "time-bar") {
       return(
-        <div id={this.props.type}>
+        <div id="time-bar">
           <StatsBarItem
-          name="Weekly"
-          type="time-bar-item"
-          icon=""
-          isActive={this.state.activeTimeView[0]}
-          onClick={this.setActiveTimeView}
+            name="Weekly"
+            type="time-bar-item"
+            isActive={this.state.activeTimeView[0]}
+            onClick={this.setActiveTimeView}
           />
           <StatsBarItem
-          name="Monthly"
-          type="time-bar-item"
-          icon=""
-          isActive={this.state.activeTimeView[1]}
-          onClick={this.setActiveTimeView}
+            name="Monthly"
+            type="time-bar-item"
+            isActive={this.state.activeTimeView[1]}
+            onClick={this.setActiveTimeView}
           />
           <StatsBarItem
-          name="Yearly"
-          type="time-bar-item"
-          icon=""
-          isActive={this.state.activeTimeView[2]}
-          onClick={this.setActiveTimeView}
+            name="Yearly"
+            type="time-bar-item"
+            isActive={this.state.activeTimeView[2]}
+            onClick={this.setActiveTimeView}
           />
         </div>
-      )
+      );
     }
   }
 

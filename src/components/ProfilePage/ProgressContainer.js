@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import DataVisual from './DataVisual';
+import ProgressLineChart from './ProgressLineChart';
 
-//this component will be a container for controlling data, "heavy lifting"
-export default class Progress extends Component {
+export default class ProgressContainer extends Component {
   constructor(props) {
     super(props);
 
     this.getData = this.getData.bind(this);
-    this.getSunday = this.getSunday.bind(this);
+    this.getSundayofCurrentWeek = this.getSundayofCurrentWeek.bind(this);
     this.getWeekData = this.getWeekData.bind(this);
     this.getMonthData = this.getMonthData.bind(this);
     this.getYearData = this.getYearData.bind(this);
@@ -22,22 +21,18 @@ export default class Progress extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    var activeComponent = nextProps.activeComponent
+    var activeComponent = nextProps.activeComponent;
     this.setState({
       data: this.getData(activeComponent)
-    })
+    });
   }
 
   getData(activeComponent) {
     if(activeComponent === "Week") {
       return this.getWeekData();
-    }
-
-    if(activeComponent === "Month") {
+    } else if(activeComponent === "Month") {
       return this.getMonthData();
-    }
-
-    if(activeComponent === "Year") {
+    } else if(activeComponent === "Year") {
       return this.getYearData();
     }
   }
@@ -45,60 +40,59 @@ export default class Progress extends Component {
   getWeekData() {
     var dates = [];
     var daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
-    var sunday = this.getSunday();
+    var sunday = this.getSundayofCurrentWeek();
     dates.push(sunday);
-    for (var i=1; i <= 6; i++) {
-      dates.push(this.addDays(sunday, i))
-    }
+    self=this;
+
+    daysOfWeek.forEach(function(currentValue, index) {
+      if (index != 0) {
+        dates.push(self.addDays(sunday, index));
+      }
+    });
+
     var self = this;
-    var i = 0;
     var data = [];
 
-    dates.forEach((date) => {
-      var count = self.countDailyPosts(date)
+    dates.forEach((date, index) => {
+      var count = self.countDailyPosts(date);
       data.push({
-        day: daysOfWeek[i],
+        day: daysOfWeek[index],
         count: count
-      })
-      i++
-    })
+      });
+    });
     return data;
   }
 
   getMonthData() {
-    //Sunday morning to saturday night * 4, Compare Sunday <= Data < nextSunday
     var weeks = ["Week 1", "Week 2", "Week 3", "Week 4", "Week 5"];
     var i = 1;
     var data = [];
     weeks.forEach(() => {
-      var count = this.countWeeklyPosts(i*7)
+      var count = this.countWeeklyPosts(i*7);
       data.push({
         day: weeks[i-1],
         count: count
-      })
+      });
       i++;
-    })
+    });
 
     return data;
   }
 
   getYearData() {
-    //get current year
-    var months = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"]
-    var i = 0;
+    var months = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
     var data = [];
-    months.forEach(() => {
-      var count = this.countMonthlyPosts(i)
+    months.forEach((currentValue, index) => {
+      var count = this.countMonthlyPosts(index);
       data.push({
-        day: months[i],
+        day: months[index],
         count: count
-      })
-      i++
-    })
+      });
+    });
     return data;
   }
 
-  getSunday() {
+  getSundayofCurrentWeek() {
     var now = new Date();
     var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
     var sunday = new Date(today.setDate(today.getDate()-today.getDay()));
@@ -112,55 +106,52 @@ export default class Progress extends Component {
   }
 
   countDailyPosts(date) {
-    var count = 0;
+    var currentWeek = 0;
     this.props.data.entries.forEach(function(object) {
       var date1 = new Date(object.date).setHours(0,0,0,0);
       var date2 = new Date(date).setHours(0,0,0,0);
       if(date1 === date2) {
-        count++;
+        currentWeek++;
       }
-    })
-    return count ? count : 0;
+    });
+    return currentWeek ? currentWeek : 0;
   }
 
   countWeeklyPosts(week) {
-    //beginning of week
-    var startWeek = new Date();
-    var count = 0;
-    startWeek.setDate(week-6);
-    startWeek.setHours(0,0,0,0);
-    var endWeek = new Date();
-    endWeek.setDate(week+1);
-    endWeek.setHours(0,0,0,0);
-    this.props.data.entries.forEach(function(object) {
-      var date = new Date(object.date);
-      date.setHours(0,0,0,0);
-      if(startWeek.getTime() <= date.getTime() && date.getTime() <= endWeek.getTime()) {
-        count++;
+    var firstDayOfWeek = new Date();
+    var postCount = 0;
+    firstDayOfWeek.setDate(week-6);
+    firstDayOfWeek.setHours(0,0,0,0);
+    var endOfWeek = new Date();
+    endOfWeek.setDate(week+1);
+    endOfWeek.setHours(0,0,0,0);
+    this.props.data.entries.forEach(function(entry) {
+      var entryDate = new Date(entry.date);
+      entryDate.setHours(0,0,0,0);
+      if(firstDayOfWeek.getTime() <= entryDate.getTime() && entryDate.getTime() <= endOfWeek.getTime()) {
+        postCount++;
       }
-    })
-    //TODO: add some exception handling for last couple days of month
-    return count ? count : 0;
+    });
+    return postCount ? postCount : 0;
   }
 
   countMonthlyPosts(month) {
-    var count = 0;
-    this.props.data.entries.forEach(function(object) {
-      var date1 = new Date(object.date).getMonth();
+    var postCount = 0;
+    this.props.data.entries.forEach(function(entry) {
+      var date1 = new Date(entry.date).getMonth();
       if (date1 === month){
-        count++;
+        postCount++;
       }
-    })
-    return count ? count : 0;
+    });
+    return postCount ? postCount : 0;
   }
 
-//choose to filter data by tag, total posts, most used tag
   render() {
     return(
-      <div className="data-visual">
-        <p className="graph-title"> Entries This {this.props.activeComponent} </p>
-        <DataVisual data={this.state.data}/>
+      <div className="progress-container">
+        <p className="graph-title">Entries This {this.props.activeComponent}</p>
+        <ProgressLineChart data={this.state.data} />
       </div>
-    )
+    );
   }
 }
