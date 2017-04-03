@@ -31,7 +31,7 @@ export default class EntryViewList extends Component {
   renderEntryList() {
     var entryItems = this.props.entries.map((entry) => {
       var tags = this.props.tags.filter(function (tag) {
-        return _.contains(entry.tags, tag.id)
+        return _.contains(entry.tags, tag.id);
       });
 
       var active = entry.id === this.props.activeEntryId;

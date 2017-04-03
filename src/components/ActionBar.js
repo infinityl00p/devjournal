@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import ActionBarItem from './ActionBarItem';
 
-
 export default class ActionBar extends Component {
   constructor(props) {
     super(props);
