@@ -99,10 +99,10 @@ export default class ProfileSummaryView extends Component {
     var previousDate = null;
     var today = new Date();
     today = this.concatDate(today);
+    var dates = this.props.dates.reverse();
 
-    this.props.dates.forEach(function(date) {
+    dates.forEach(function(date) {
       var entryDate = date.split('T')[0];
-
       if (previousDate !== null) {
         var date1 = new Date(previousDate);
         var date2 = new Date(entryDate);
@@ -113,10 +113,10 @@ export default class ProfileSummaryView extends Component {
         } else {
           return streakCount;
         }
-      } else if (today === entryDate && entryDate !== previousDate) {
+      }
+      else if (today === entryDate && entryDate !== previousDate) {
         streakCount++;
       }
-
       previousDate = entryDate;
     });
 

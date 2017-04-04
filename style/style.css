@@ -602,9 +602,10 @@ input[type="checkbox"]:focus{
 
 ::-webkit-scrollbar {
   display: none;
+}
 
 /* Profile Page Container */
-#profile-page-container {
+#profile-page-container{
   overflow: hidden;
   padding-top: 30px;
 }
