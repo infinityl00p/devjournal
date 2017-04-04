@@ -113,8 +113,7 @@ export default class ProfileSummaryView extends Component {
         } else {
           return streakCount;
         }
-      }
-      else if (today === entryDate && entryDate !== previousDate) {
+      } else if (today === entryDate && entryDate !== previousDate) {
         streakCount++;
       }
       previousDate = entryDate;

@@ -626,8 +626,9 @@ input[type="checkbox"]:focus{
 #personal-info{
   text-align: center;
 }
-/*Top Tags styles */
-#top-tags-container {
+
+/* Top Tags styles */
+#top-tags-container > #tag-list {
   display: block;
   margin-top: 20px;
   border: 1px solid #A9A9A9;
@@ -678,11 +679,6 @@ input[type="checkbox"]:focus{
   padding-top : 10px;
   margin-right: 50px;
   font-size: 30px;
-}
-
-.stats-bar-item:hover {
-  border-bottom: 1px solid rgba(211,211,211, 0.5);
-  padding-bottom: 5px;
 }
 
 #stats-bar .stats-bar-item:hover {
