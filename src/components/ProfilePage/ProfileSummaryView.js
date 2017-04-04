@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import StatsComponent from './StatsComponent';
-import PostHeatMap from './PostHeatMap'
-import RecentActivity from './RecentActivity'
+import PostHeatMap from './PostHeatMap';
+import RecentActivity from './RecentActivity';
+import PostByDate from './PostByDate';
 
 export default class ProfileSummaryView extends Component {
   constructor(props) {
@@ -20,6 +21,7 @@ export default class ProfileSummaryView extends Component {
     this.renderStatsComponent = this.renderStatsComponent.bind(this);
 
     this.state = {
+      data: this.props.data,
       todaysPostCount: this.todaysPostCount(),
       totalPostCount: this.totalPostCount(),
       totalTagCount: this.totalTagCount(),
@@ -210,10 +212,11 @@ export default class ProfileSummaryView extends Component {
     })
   }
 
+
   render() {
     return(
       <div id="summary-view">
-        <PostHeatMap dates={this.props.dates}/>
+        <PostByDate dates={this.props.dates} data={this.state.data} />
         {this.renderStatsComponent()}
         <div id="recent-activity-container">
           <p className="subhead">
@@ -226,7 +229,7 @@ export default class ProfileSummaryView extends Component {
             </select>
           </p>
           <RecentActivity
-            data={this.props.data}
+            data={this.state.data}
             display={this.state.display}
           />
         </div>

@@ -9,6 +9,7 @@ export default class HeatMap extends Component {
     this.countPerDay = this.countPerDay.bind(this);
     this.customTitleForValue = this.customTitleForValue.bind(this);
     this.customClassForValue = this.customClassForValue.bind(this);
+
     this.state = {
       countPerDay: this.countPerDay()
     }
@@ -73,7 +74,7 @@ export default class HeatMap extends Component {
   render(){
     return(
       <div id="heatmap">
-      <ReactTooltip />
+        <ReactTooltip />
         <CalendarHeatmap
           endDate={new Date()}
           numDays={365}
@@ -81,6 +82,7 @@ export default class HeatMap extends Component {
           values={this.state.countPerDay}
           classForValue={this.customClassForValue}
           tooltipDataAttrs={this.customTitleForValue}
+          onClick={this.props.onClick}
         />
       </div>
     );

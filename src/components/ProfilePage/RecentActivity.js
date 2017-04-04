@@ -8,6 +8,18 @@ export default class RecentActivity extends Component {
     super();
 
     this.renderEntries = this.renderEntries.bind(this);
+
+    this.state = {
+      reverse: false
+    }
+  }
+
+  componentWillReceiveProps() {
+    if(!this.state.reverse) {
+      this.setState({
+        reverse: true
+      });
+    }
   }
 
   renderEntries() {
@@ -15,14 +27,17 @@ export default class RecentActivity extends Component {
     if (displayedEntries === "Show All") {
       displayedEntries = this.props.data.entries.length;
     }
-    var entries = this.props.data.entries.reverse().map((entry, index) => {
+    if(!this.state.reverse) {
+      var reversedEntries = this.props.data.entries.reverse();
+    } else {
+      var reversedEntries = this.props.data.entries;
+    }
+
+    var entries = reversedEntries.map((entry, index) => {
       if (index < displayedEntries) {
         var tags = this.props.data.tags.filter((tag) => {
           return _.contains(entry.tags, tag.id)
         });
-      }
-
-      if (index < displayedEntries) {
         return <Entry key={entry.id} entry={entry} tags={tags} />
       }
     });
