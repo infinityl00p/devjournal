@@ -15,7 +15,7 @@ export default class ProfileSummaryView extends Component {
     this.previous30Days = this.previous30Days.bind(this);
     this.longestStreak = this.longestStreak.bind(this);
     this.currentStreak = this.currentStreak.bind(this);
-
+    this.getDropdownValue = this.getDropdownValue.bind(this);
     this.priorDate = this.priorDate.bind(this);
     this.renderStatsComponent = this.renderStatsComponent.bind(this);
 
@@ -25,7 +25,8 @@ export default class ProfileSummaryView extends Component {
       totalTagCount: this.totalTagCount(),
       previous30Days: this.previous30Days(),
       longestStreak: this.longestStreak(),
-      currentStreak: this.currentStreak()
+      currentStreak: this.currentStreak(),
+      display: 5
     }
   }
 
@@ -197,10 +198,16 @@ export default class ProfileSummaryView extends Component {
     });
 
     return(
-      <div className="active-stats-component">
+      <div className="stats-component">
         {statsComponentArray}
       </div>
     );
+  }
+
+  getDropdownValue() {
+    this.setState({
+      display: document.getElementById("recent-activity-dropdown").value
+    })
   }
 
   render() {
@@ -208,8 +215,21 @@ export default class ProfileSummaryView extends Component {
       <div id="summary-view">
         <PostHeatMap dates={this.props.dates}/>
         {this.renderStatsComponent()}
-        <p className="subhead"> Most Recent Activity </p>
-        <RecentActivity data={this.props.data}/>
+        <div id="recent-activity-container">
+          <p className="subhead">
+            Most Recent Activity
+            <select id="recent-activity-dropdown" onChange={this.getDropdownValue}>
+            <option defaultValue hidden>Display</option>
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="Show All">Show All</option>
+            </select>
+          </p>
+          <RecentActivity
+            data={this.props.data}
+            display={this.state.display}
+          />
+        </div>
       </div>
     );
   }

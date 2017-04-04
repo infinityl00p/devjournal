@@ -607,7 +607,12 @@ input[type="checkbox"]:focus{
 /* Profile Page Container */
 #profile-page-container{
   overflow: hidden;
-  padding-top: 30px;
+}
+
+/*User Profile*/
+#user-profile {
+  height: 100vh;
+  background-color: #f1f1f1;
 }
 
 /* Profile Pic styles */
@@ -677,8 +682,9 @@ input[type="checkbox"]:focus{
 #stats-bar .stats-bar-item {
   display: inline-block;
   padding-top : 10px;
-  margin-right: 50px;
-  font-size: 30px;
+  margin-left: 20px;
+  margin-right: 20px;
+  font-size: 35px;
 }
 
 #stats-bar .stats-bar-item:hover {
@@ -689,9 +695,7 @@ input[type="checkbox"]:focus{
 #stats-bar .stats-bar-item.active {
   display: inline-flex;
   color: rgba(211,211,211, 0.5);
-  border-top: 5px solid black;
-  border-right: 1px solid rgba(211,211,211, 0.5);
-  border-left: 1px solid rgba(211,211,211, 0.5);
+  border-bottom: 3px solid #0EBFE9;
 }
 
 #stats-bar .stats-bar-item p {
@@ -713,27 +717,22 @@ input[type="checkbox"]:focus{
   padding-top : 10px;
   margin-right: 25px;
   margin-left: 25px;
-  font-size: 15px;
+  font-size: 20px;
 }
 
 #stats-container .time-bar-item:hover {
   color: rgba(211,211,211, 0.5);
-  border-bottom: 1px solid #3d3330;
+  border-bottom: 1px solid #0EBFE9;
   cursor: pointer;
 }
 
 #time-bar > .time-bar-item.active {
   color: rgba(211,211,211, 0.5);
+  border-bottom: 1px solid #0EBFE9;
 }
 
 #time-bar > .time-bar-item p {
   display: inline-block;
-}
-
-/* Active View Component */
-.active-stats-component {
-  padding-top: 30px;
-  padding-bottom: 30px;
 }
 
 /* Summary View */
@@ -749,9 +748,56 @@ input[type="checkbox"]:focus{
     to   { opacity: 1; }
 }
 
+/* Heatmap Styles */
+#heatmap {
+  margin-top: 40px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid rgba(211,211,211, 0.5);
+}
+
+.react-calendar-heatmap text {
+  font-size: 13px;
+  fill: #aaa;
+}
+
+.react-calendar-heatmap rect:hover {
+  stroke: #555;
+  stroke-width: 1px;
+}
+
+.react-calendar-heatmap .color-empty {
+  fill: #eeeeee;
+}
+
+.react-calendar-heatmap .color-gitlab-0 {
+  fill: #ddf7ff;
+}
+
+.react-calendar-heatmap .color-gitlab-1 {
+  fill: #77dfff;
+}
+
+.react-calendar-heatmap .color-gitlab-2 {
+  fill: #00c3ff;
+}
+
+.react-calendar-heatmap .color-gitlab-3 {
+  fill: #21a5ce;
+}
+
+.react-calendar-heatmap .color-gitlab-4 {
+  fill: #007499;
+}
+
 /* Daily Stats */
+#summary-view .stats-component {
+  display: inline-block;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
 #summary-view #stats {
-  padding-bottom: 40px;
+  padding-bottom: 20px;
 }
 
 #summary-view #stats p {
@@ -761,10 +807,6 @@ input[type="checkbox"]:focus{
 #stats > #stats-count {
   font-size: 15px;
   color: grey;
-}
-
-#summary-view > .active-stats-component {
-  display: inline-block;
 }
 
 /* Recent Entries */
@@ -780,55 +822,58 @@ input[type="checkbox"]:focus{
   border-bottom: 1px solid rgba(211,211,211, 0.5);
 }
 
-/* Heatmap Styles */
-#heatmap {
-  margin-top: 70px;
-  padding-bottom: 30px;
-  border-bottom: 1px solid rgba(211,211,211, 0.5);
-}
-
 /*Recent Activity Styles */
 #recent-activity-container {
+    border: 1px solid rgba(211,211,211, 0.5);
+    margin-bottom: 30px;
+}
+
+#recent-activity {
   overflow-y: scroll;
   height: 30vh;
 }
 
-#recent-activity-container .entry-item-container {
+#recent-activity-dropdown {
+  font-size: 10px;
+  float: right;
+}
+
+#recent-activity .entry-item-container {
   border-bottom: 1px solid rgba(211,211,211, 0.5);
   margin-top: 5px;
   margin-bottom: 5px;
 }
 
-#recent-activity-container .entry-item-container .entry-text * {
+#recent-activity .entry-item-container .entry-text * {
   font-size: 12px;
 }
 
-#recent-activity-container .entry-item-container a {
+#recent-activity .entry-item-container a {
   color: black;
   text-decoration: none;
 }
 
-#recent-activity-container .entry-item-container:hover {
+#recent-activity .entry-item-container:hover {
   background-color: rgba(211,211,211, 0.5);
 }
 
-#recent-activity-container .entry-header {
+#recent-activity .entry-header {
   margin-bottom: 5px;
   font-size: 14px;
 }
 
-#recent-activity-container .entry-date {
+#recent-activity .entry-date {
   display: inline-block;
   text-align: left;
   font-weight: bold;
 }
 
-#recent-activity-container .tag-container {
+#recent-activity .tag-container {
   float: right;
   font-size: 14px;
 }
 
-#recent-activity-container .tag-container .entry-tag {
+#recent-activity .tag-container .entry-tag {
   background-color: #0EBFE9;
   border-radius: 4px;
   color: white;
@@ -836,13 +881,18 @@ input[type="checkbox"]:focus{
   padding: 2px 4px;
 }
 
-#recent-activity-container .tag-container .entry-tag:hover {
+#recent-activity .tag-container .entry-tag:hover {
   font-weight: bold;
 }
 
 /* linechart styles */
+.progress-container {
+  animation: fadein 1s;
+}
+
 .graph-title {
   font-weight: bold;
+  font-size: 18px;
   padding-top: 10px;
 }
 
@@ -851,38 +901,4 @@ input[type="checkbox"]:focus{
   margin-left: auto;
   margin-right: auto;
   padding-top: 20px;
-}
-
-.react-calendar-heatmap text {
-  font-size: 10px;
-  fill: #aaa;
-}
-
-.react-calendar-heatmap rect:hover {
-  stroke: #555;
-  stroke-width: 1px;
-}
-
-.react-calendar-heatmap .color-empty {
-  fill: #eeeeee;
-}
-
-.react-calendar-heatmap .color-gitlab-0 {
-  fill: #ededed;
-}
-
-.react-calendar-heatmap .color-gitlab-1 {
-  fill: #acd5f2;
-}
-
-.react-calendar-heatmap .color-gitlab-2 {
-  fill: #7fa8d1;
-}
-
-.react-calendar-heatmap .color-gitlab-3 {
-  fill: #49729b;
-}
-
-.react-calendar-heatmap .color-gitlab-4 {
-  fill: #254e77;
 }

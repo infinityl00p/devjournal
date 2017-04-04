@@ -12,13 +12,13 @@ export default class TopTags extends Component {
 
   renderTags() {
     var sortedArray = this.sortTags();
+    var visibleTagCount = 0;
 
-    var i = 0;
-    sortedArray = sortedArray.map(function (object) {
-      if (object.id && object.frequency && i < 5){
-        i++;
+    sortedArray = sortedArray.map(function (tagFrequency) {
+      if (tagFrequency.id && tagFrequency.frequency &&  visibleTagCount < 5){
+        visibleTagCount++;
         return (
-          <Tag key={object.id} id={object.id} frequency={object.frequency} />
+          <Tag key={tagFrequency.id} id={tagFrequency.id} frequency={tagFrequency.frequency} />
         )
       }
     });
@@ -32,7 +32,6 @@ export default class TopTags extends Component {
     this.props.data.tags.forEach(function (tags) {
       tagTextArray[tags.id] = tags.tagText;
     });
-
     var frequencyArray = this.countFrequency(tagTextArray);
 
     var sortedArray = frequencyArray.sort(function(a,b) {
@@ -44,9 +43,7 @@ export default class TopTags extends Component {
 
   countFrequency(tagTextArray) {
     var frequencyArray = [];
-    var entries = this.props.data.entries;
-
-    entries.forEach(function(entry, index) {
+    this.props.data.entries.forEach(function(entry, index) {
       if(entry.tags) {
         entry.tags.forEach(function(tag, index) {
           var tag = tag;

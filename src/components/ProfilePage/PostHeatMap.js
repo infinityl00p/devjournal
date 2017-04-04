@@ -9,7 +9,6 @@ export default class HeatMap extends Component {
     this.countPerDay = this.countPerDay.bind(this);
     this.customTitleForValue = this.customTitleForValue.bind(this);
     this.customClassForValue = this.customClassForValue.bind(this);
-
     this.state = {
       countPerDay: this.countPerDay()
     }

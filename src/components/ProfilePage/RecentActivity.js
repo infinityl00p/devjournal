@@ -11,18 +11,27 @@ export default class RecentActivity extends Component {
   }
 
   renderEntries() {
-    var entries = this.props.data.entries.map((entry) => {
-      var tags = this.props.data.tags.filter(function (tag) {
-        return _.contains(entry.tags, tag.id)
-      });
-      return <Entry key={entry.id} entry={entry} tags={tags} />
+    var displayedEntries = this.props.display;
+    if (displayedEntries === "Show All") {
+      displayedEntries = this.props.data.entries.length;
+    }
+    var entries = this.props.data.entries.reverse().map((entry, index) => {
+      if (index < displayedEntries) {
+        var tags = this.props.data.tags.filter((tag) => {
+          return _.contains(entry.tags, tag.id)
+        });
+      }
+
+      if (index < displayedEntries) {
+        return <Entry key={entry.id} entry={entry} tags={tags} />
+      }
     });
-    return entries.reverse();
+    return entries;
   }
 
   render() {
     return(
-      <div id="recent-activity-container">
+      <div id="recent-activity">
         {this.renderEntries()}
       </div>
     );
