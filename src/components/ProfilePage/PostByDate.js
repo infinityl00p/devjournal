@@ -23,7 +23,7 @@ export default class PostByDate extends Component {
     } else {
       this.setState({
         selectedDate: null
-      })
+      });
     }
   }
 
@@ -45,7 +45,7 @@ export default class PostByDate extends Component {
     if (this.state.selectedDate) {
       return(
         <div id="heatmap-and-entries">
-          <PostHeatMap dates={this.props.dates} onClick={this.handleClick}/>
+          <PostHeatMap dates={this.props.dates} onClick={this.handleClick} />
             <p className="subhead">
               Entries on {this.state.selectedDate}
             </p>
@@ -57,7 +57,7 @@ export default class PostByDate extends Component {
     }
     return(
       <div id="heatmap-and-entries">
-        <PostHeatMap dates={this.props.dates} onClick={this.handleClick}/>
+        <PostHeatMap dates={this.props.dates} onClick={this.handleClick} />
       </div>
     );
   }

@@ -212,22 +212,21 @@ export default class ProfileSummaryView extends Component {
     })
   }
 
-
   render() {
     return(
       <div id="summary-view">
         <PostByDate dates={this.props.dates} data={this.state.data} />
         {this.renderStatsComponent()}
         <div id="recent-activity-container">
-          <p className="subhead">
-            Most Recent Activity
+          <div id="recent-activity-header">
+            <p className="subhead"> Most Recent Activity </p>
             <select id="recent-activity-dropdown" onChange={this.getDropdownValue}>
             <option defaultValue hidden>Display</option>
               <option value="5">5</option>
               <option value="10">10</option>
               <option value="Show All">Show All</option>
             </select>
-          </p>
+          </div>
           <RecentActivity
             data={this.state.data}
             display={this.state.display}

@@ -24,7 +24,7 @@ export default class HeatMap extends Component {
       var entryDate = date.split('T')[0];
       if (previousDate === entryDate) {
         dateAndCountArray[index-1].count++;
-      }else {
+      } else {
         dateAndCountArray.push({
           date: entryDate,
           count: 1
