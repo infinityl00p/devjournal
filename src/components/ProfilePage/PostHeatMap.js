@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import CalendarHeatmap from 'react-calendar-heatmap';
-import ReactTooltip from 'react-tooltip'
+import ReactTooltip from 'react-tooltip';
 
 export default class HeatMap extends Component {
   constructor(props) {
@@ -76,7 +76,6 @@ export default class HeatMap extends Component {
       <div id="heatmap">
         <ReactTooltip />
         <CalendarHeatmap
-          endDate={this.date}
           numDays={365}
           horizontal={true}
           values={this.state.countPerDay}

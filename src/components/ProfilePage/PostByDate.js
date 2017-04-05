@@ -31,6 +31,7 @@ export default class PostByDate extends Component {
     if(this.state.selectedDate) {
       var entries = this.props.data.entries.map((entry) => {
         var entryDate = entry.date.split('T')[0];
+
         if (entryDate === this.state.selectedDate) {
           var tags = this.props.data.tags.filter((tag) => {
             return _.contains(entry.tags, tag.id)
@@ -38,9 +39,11 @@ export default class PostByDate extends Component {
           return <Entry key={entry.id} entry={entry} tags={tags} />
         }
       });
+
       return entries;
     }
   }
+
   render() {
     if (this.state.selectedDate) {
       return(

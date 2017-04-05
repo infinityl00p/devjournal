@@ -9,7 +9,6 @@ export default class ProfileSummaryView extends Component {
     super(props);
 
     this.concatDate = this.concatDate.bind(this);
-
     this.todaysPostCount = this.todaysPostCount.bind(this);
     this.totalPostCount = this.totalPostCount.bind(this);
     this.totalTagCount = this.totalTagCount.bind(this);
@@ -18,6 +17,7 @@ export default class ProfileSummaryView extends Component {
     this.currentStreak = this.currentStreak.bind(this);
     this.priorDate = this.priorDate.bind(this);
     this.renderStatsComponent = this.renderStatsComponent.bind(this);
+
     this.state = {
       todaysPostCount: this.todaysPostCount(),
       totalPostCount: this.totalPostCount(),

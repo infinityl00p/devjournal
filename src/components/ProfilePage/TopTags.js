@@ -32,6 +32,7 @@ export default class TopTags extends Component {
     this.props.data.tags.forEach(function (tags) {
       tagTextArray[tags.id] = tags.tagText;
     });
+
     var frequencyArray = this.countFrequency(tagTextArray);
 
     var sortedArray = frequencyArray.sort(function(a,b) {
@@ -43,6 +44,7 @@ export default class TopTags extends Component {
 
   countFrequency(tagTextArray) {
     var frequencyArray = [];
+
     this.props.data.entries.forEach(function(entry, index) {
       if(entry.tags) {
         entry.tags.forEach(function(tag, index) {
@@ -52,10 +54,10 @@ export default class TopTags extends Component {
               id: tagTextArray[tag],
               frequency: 1
             };
-          }else {
+          } else {
             frequencyArray[tag].frequency = frequencyArray[tag].frequency + 1;
           }
-        })
+        });
       }
     });
     return frequencyArray;

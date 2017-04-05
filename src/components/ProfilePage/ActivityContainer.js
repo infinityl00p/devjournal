@@ -5,8 +5,8 @@ import PostHeatMap from './PostHeatMap';
 import _ from 'lodash';
 
 export default class ActivityContainer extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.renderEntries = this.renderEntries.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -51,37 +51,25 @@ export default class ActivityContainer extends Component {
         selectedDate: null
       });
     }
-    if (!this.state.reverse) {
-      this.setState({
-        reverse: true
-      });
-    }
   }
 
   filterEntriesByDate() {
-    if(this.state.selectedDate) {
-      var entries = this.props.data.entries.map((entry) => {
-        var entryDate = entry.date.split('T')[0];
-        if (entryDate === this.state.selectedDate) {
-          var tags = this.props.data.tags.filter((tag) => {
-            return _.contains(entry.tags, tag.id)
-          });
-          return <Entry key={entry.id} entry={entry} tags={tags} />
-        }
-      });
-      return entries;
-    }
+    var entries = this.props.data.entries.map((entry) => {
+      var entryDate = entry.date.split('T')[0];
+      if (entryDate === this.state.selectedDate) {
+        var tags = this.props.data.tags.filter((tag) => {
+          return _.contains(entry.tags, tag.id)
+        });
+        return <Entry key={entry.id} entry={entry} tags={tags} />
+      }
+    });
+    return entries;
   }
 
   getDropdownValue() {
     this.setState({
       display: document.getElementById("recent-activity-dropdown").value
     });
-    if (!this.state.reverse) {
-      this.setState({
-        reverse: true
-      });
-    }
   }
 
   render() {
@@ -89,9 +77,7 @@ export default class ActivityContainer extends Component {
       return(
         <div id="heatmap-and-entries">
           <PostHeatMap dates={this.props.dates} onClick={this.handleClick} />
-            <p className="subhead">
-              Entries on {this.state.selectedDate}
-            </p>
+            <p className="subhead">Entries on {this.state.selectedDate}</p>
           <div id="heatmap-entries">
             {this.filterEntriesByDate()}
           </div>
@@ -104,9 +90,9 @@ export default class ActivityContainer extends Component {
           <PostHeatMap dates={this.props.dates} onClick={this.handleClick} />
         </div>
         <div id="recent-activity-header">
-          <p className="subhead"> Most Recent Activity </p>
+          <p className="subhead">Most Recent Activity</p>
           <select id="recent-activity-dropdown" onChange={this.getDropdownValue}>
-          <option defaultValue hidden>Display</option>
+            <option defaultValue hidden>Display</option>
             <option value="5">5</option>
             <option value="10">10</option>
             <option value="Show All">Show All</option>
