@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import StatsComponent from './StatsComponent';
 import PostHeatMap from './PostHeatMap';
-import RecentActivity from './RecentActivity';
+import ActivityContainer from './ActivityContainer';
 import PostByDate from './PostByDate';
 
 export default class ProfileSummaryView extends Component {
@@ -16,19 +16,15 @@ export default class ProfileSummaryView extends Component {
     this.previous30Days = this.previous30Days.bind(this);
     this.longestStreak = this.longestStreak.bind(this);
     this.currentStreak = this.currentStreak.bind(this);
-    this.getDropdownValue = this.getDropdownValue.bind(this);
     this.priorDate = this.priorDate.bind(this);
     this.renderStatsComponent = this.renderStatsComponent.bind(this);
-
     this.state = {
-      data: this.props.data,
       todaysPostCount: this.todaysPostCount(),
       totalPostCount: this.totalPostCount(),
       totalTagCount: this.totalTagCount(),
       previous30Days: this.previous30Days(),
       longestStreak: this.longestStreak(),
       currentStreak: this.currentStreak(),
-      display: 5
     }
   }
 
@@ -170,10 +166,6 @@ export default class ProfileSummaryView extends Component {
     var statsComponentArray = [];
     var statsArray = [
       {
-        name: "Todays Post Count",
-        count: this.state.todaysPostCount
-      },
-      {
         name: "Total Post Count",
         count: this.state.totalPostCount
       },
@@ -186,12 +178,16 @@ export default class ProfileSummaryView extends Component {
         count: this.state.previous30Days
       },
       {
+        name: "Longest Streak",
+        count: this.state.longestStreak
+      },
+      {
         name: "Current Streak",
         count: this.state.currentStreak
       },
       {
-        name: "Longest Streak",
-        count: this.state.longestStreak
+        name: "Todays Post Count",
+        count: this.state.todaysPostCount
       }
     ];
 
@@ -206,30 +202,14 @@ export default class ProfileSummaryView extends Component {
     );
   }
 
-  getDropdownValue() {
-    this.setState({
-      display: document.getElementById("recent-activity-dropdown").value
-    })
-  }
-
   render() {
     return(
       <div id="summary-view">
-        <PostByDate dates={this.props.dates} data={this.state.data} />
         {this.renderStatsComponent()}
         <div id="recent-activity-container">
-          <div id="recent-activity-header">
-            <p className="subhead"> Most Recent Activity </p>
-            <select id="recent-activity-dropdown" onChange={this.getDropdownValue}>
-            <option defaultValue hidden>Display</option>
-              <option value="5">5</option>
-              <option value="10">10</option>
-              <option value="Show All">Show All</option>
-            </select>
-          </div>
-          <RecentActivity
-            data={this.state.data}
-            display={this.state.display}
+          <ActivityContainer
+            data={this.props.data}
+            dates={this.props.dates}
           />
         </div>
       </div>

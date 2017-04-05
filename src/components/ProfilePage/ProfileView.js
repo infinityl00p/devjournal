@@ -38,7 +38,7 @@ export default class ActiveProfileView extends Component {
         return(<ProfileSummaryView data={this.props.data} dates={this.getDates()} />);
 
       case 'progressView':
-        return(<ProfileProgressView data={this.props.data}/>);
+        return(<ProfileProgressView data={this.props.data} />);
     }
   }
 

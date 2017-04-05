@@ -748,6 +748,27 @@ input[type="checkbox"]:focus{
     to   { opacity: 1; }
 }
 
+/* Daily Stats */
+#summary-view .stats-component {
+  display: inline-block;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#summary-view #stats {
+  padding-bottom: 18px;
+}
+
+#summary-view #stats p {
+  font-size: 18px;
+}
+
+#stats > #stats-count {
+  font-size: 30px;
+  font-weight: bold;
+  color: grey;
+}
+
 /* Heatmap Styles */
 #heatmap {
   margin-top: 40px;
@@ -795,26 +816,6 @@ input[type="checkbox"]:focus{
 
 .react-calendar-heatmap .color-gitlab-4 {
   fill: #007499;
-}
-
-/* Daily Stats */
-#summary-view .stats-component {
-  display: inline-block;
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-
-#summary-view #stats {
-  padding-bottom: 20px;
-}
-
-#summary-view #stats p {
-  font-size: 17px;
-}
-
-#stats > #stats-count {
-  font-size: 15px;
-  color: grey;
 }
 
 /* Recent Entries */

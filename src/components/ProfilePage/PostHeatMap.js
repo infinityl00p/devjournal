@@ -76,7 +76,7 @@ export default class HeatMap extends Component {
       <div id="heatmap">
         <ReactTooltip />
         <CalendarHeatmap
-          endDate={new Date()}
+          endDate={this.date}
           numDays={365}
           horizontal={true}
           values={this.state.countPerDay}
