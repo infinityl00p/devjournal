@@ -1,21 +1,18 @@
 import React, { Component } from 'react';
 import StatsComponent from './StatsComponent';
-import PostHeatMap from './PostHeatMap'
-import RecentActivity from './RecentActivity'
+import ActivityContainer from './ActivityContainer';
 
 export default class ProfileSummaryView extends Component {
   constructor(props) {
     super(props);
 
     this.concatDate = this.concatDate.bind(this);
-
     this.todaysPostCount = this.todaysPostCount.bind(this);
     this.totalPostCount = this.totalPostCount.bind(this);
     this.totalTagCount = this.totalTagCount.bind(this);
     this.previous30Days = this.previous30Days.bind(this);
     this.longestStreak = this.longestStreak.bind(this);
     this.currentStreak = this.currentStreak.bind(this);
-
     this.priorDate = this.priorDate.bind(this);
     this.renderStatsComponent = this.renderStatsComponent.bind(this);
 
@@ -25,7 +22,7 @@ export default class ProfileSummaryView extends Component {
       totalTagCount: this.totalTagCount(),
       previous30Days: this.previous30Days(),
       longestStreak: this.longestStreak(),
-      currentStreak: this.currentStreak()
+      currentStreak: this.currentStreak(),
     }
   }
 
@@ -97,11 +94,9 @@ export default class ProfileSummaryView extends Component {
   currentStreak() {
     var streakCount = 0;
     var previousDate = null;
-    var today = new Date();
-    today = this.concatDate(today);
     var dates = this.props.dates.reverse();
 
-    dates.forEach(function(date) {
+    dates.forEach(function(date, index) {
       var entryDate = date.split('T')[0];
       if (previousDate !== null) {
         var date1 = new Date(previousDate);
@@ -113,7 +108,7 @@ export default class ProfileSummaryView extends Component {
         } else {
           return streakCount;
         }
-      } else if (today === entryDate && entryDate !== previousDate) {
+      } else if (index === 0 && entryDate !== previousDate) {
         streakCount++;
       }
       previousDate = entryDate;
@@ -126,11 +121,13 @@ export default class ProfileSummaryView extends Component {
     var currentStreakCount = 0;
     var highStreak = 0;
     var previousDate = null;
-    var today = new Date();
-    today = this.concatDate(today);
 
-    this.props.dates.forEach(function(date) {
+    this.props.dates.forEach(function(date,index) {
       var entryDate = date.split('T')[0];
+
+      if (index === 0 || currentStreakCount === 0) {
+        currentStreakCount++;
+      }
 
       if(previousDate !== null ) {
         var date1 = new Date(previousDate);
@@ -141,15 +138,12 @@ export default class ProfileSummaryView extends Component {
         if (previousDate !== entryDate && diffDays == 1) {
           currentStreakCount++;
           if (currentStreakCount > highStreak) {
-            highStreak=currentStreakCount;
+            highStreak = currentStreakCount;
           }
+        } else if (diffDays > 1) {
+          currentStreakCount = 1;
         }
       }
-      else if(entryDate === today){
-        currentStreakCount++;
-        highStreak++;
-      }
-
       previousDate = entryDate;
     });
 
@@ -167,10 +161,6 @@ export default class ProfileSummaryView extends Component {
     var statsComponentArray = [];
     var statsArray = [
       {
-        name: "Todays Post Count",
-        count: this.state.todaysPostCount
-      },
-      {
         name: "Total Post Count",
         count: this.state.totalPostCount
       },
@@ -183,12 +173,16 @@ export default class ProfileSummaryView extends Component {
         count: this.state.previous30Days
       },
       {
+        name: "Longest Streak",
+        count: this.state.longestStreak
+      },
+      {
         name: "Current Streak",
         count: this.state.currentStreak
       },
       {
-        name: "Longest Streak",
-        count: this.state.longestStreak
+        name: "Todays Post Count",
+        count: this.state.todaysPostCount
       }
     ];
 
@@ -197,7 +191,7 @@ export default class ProfileSummaryView extends Component {
     });
 
     return(
-      <div className="active-stats-component">
+      <div className="stats-component">
         {statsComponentArray}
       </div>
     );
@@ -206,10 +200,13 @@ export default class ProfileSummaryView extends Component {
   render() {
     return(
       <div id="summary-view">
-        <PostHeatMap dates={this.props.dates}/>
         {this.renderStatsComponent()}
-        <p className="subhead"> Most Recent Activity </p>
-        <RecentActivity data={this.props.data}/>
+        <div id="recent-activity-container">
+          <ActivityContainer
+            data={this.props.data}
+            dates={this.props.dates}
+          />
+        </div>
       </div>
     );
   }

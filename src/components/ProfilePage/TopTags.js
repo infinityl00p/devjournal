@@ -11,19 +11,19 @@ export default class TopTags extends Component {
   }
 
   renderTags() {
-    var sortedArray = this.sortTags();
+    var sortedByTagFrequency = this.sortTags();
+    var visibleTagCount = 0;
 
-    var i = 0;
-    sortedArray = sortedArray.map(function (object) {
-      if (object.id && object.frequency && i < 5){
-        i++;
+    sortedByTagFrequency = sortedByTagFrequency.map(function (tagFrequency) {
+      if (tagFrequency.id && tagFrequency.frequency &&  visibleTagCount < 5){
+        visibleTagCount++;
         return (
-          <Tag key={object.id} id={object.id} frequency={object.frequency} />
+          <Tag key={tagFrequency.id} id={tagFrequency.id} frequency={tagFrequency.frequency} />
         )
       }
     });
 
-    return sortedArray;
+    return sortedByTagFrequency;
   }
 
   sortTags() {
@@ -44,9 +44,8 @@ export default class TopTags extends Component {
 
   countFrequency(tagTextArray) {
     var frequencyArray = [];
-    var entries = this.props.data.entries;
 
-    entries.forEach(function(entry, index) {
+    this.props.data.entries.forEach(function(entry, index) {
       if(entry.tags) {
         entry.tags.forEach(function(tag, index) {
           var tag = tag;
@@ -58,7 +57,7 @@ export default class TopTags extends Component {
           } else {
             frequencyArray[tag].frequency = frequencyArray[tag].frequency + 1;
           }
-        })
+        });
       }
     });
     return frequencyArray;

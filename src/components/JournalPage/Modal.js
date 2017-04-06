@@ -1,14 +1,23 @@
 import React, { Component } from 'react';
 
 export default class Modal extends Component {
+<<<<<<< HEAD
   constructor() {
     super();
+=======
+  constructor(props) {
+    super(props);
+>>>>>>> master
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleCheck = this.handleCheck.bind(this);
     this.state = {
+<<<<<<< HEAD
       notes: this.props.data.notes,
+=======
+      notes: this.props.data,
+>>>>>>> master
       success: this.props.data.success
     };
   }

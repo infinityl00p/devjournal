@@ -38,13 +38,13 @@ export default class ActiveProfileView extends Component {
         return(<ProfileSummaryView data={this.props.data} dates={this.getDates()} />);
 
       case 'progressView':
-        return(<ProfileProgressView data={this.props.data}/>);
+        return(<ProfileProgressView data={this.props.data} />);
     }
   }
 
   render() {
     return(
-      <div id="stats-container" className="col-md-9">
+      <div id="stats-container" className="col-md-12">
         <StatsBar data={this.props.data} onClick={this.handleComponentSelection} type="stats-bar"/>
         {this.renderActiveComponent()}
       </div>
