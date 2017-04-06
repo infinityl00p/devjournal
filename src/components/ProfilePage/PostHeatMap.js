@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import CalendarHeatmap from 'react-calendar-heatmap';
-import ReactTooltip from 'react-tooltip'
+import ReactTooltip from 'react-tooltip';
 
 export default class HeatMap extends Component {
   constructor(props) {
@@ -24,7 +24,7 @@ export default class HeatMap extends Component {
       var entryDate = date.split('T')[0];
       if (previousDate === entryDate) {
         dateAndCountArray[index-1].count++;
-      }else {
+      } else {
         dateAndCountArray.push({
           date: entryDate,
           count: 1
@@ -74,14 +74,14 @@ export default class HeatMap extends Component {
   render(){
     return(
       <div id="heatmap">
-      <ReactTooltip />
+        <ReactTooltip />
         <CalendarHeatmap
-          endDate={new Date()}
           numDays={365}
           horizontal={true}
           values={this.state.countPerDay}
           classForValue={this.customClassForValue}
           tooltipDataAttrs={this.customTitleForValue}
+          onClick={this.props.onClick}
         />
       </div>
     );

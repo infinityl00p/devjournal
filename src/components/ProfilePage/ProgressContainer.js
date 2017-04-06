@@ -107,8 +107,8 @@ export default class ProgressContainer extends Component {
 
   countDailyPosts(date) {
     var currentWeek = 0;
-    this.props.data.entries.forEach(function(object) {
-      var date1 = new Date(object.date).setHours(0,0,0,0);
+    this.props.data.entries.forEach(function(entry) {
+      var date1 = new Date(entry.date).setHours(0,0,0,0);
       var date2 = new Date(date).setHours(0,0,0,0);
       if(date1 === date2) {
         currentWeek++;
