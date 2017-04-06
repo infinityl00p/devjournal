@@ -4,12 +4,13 @@ import App from './components/app';
 import SharedEntryView from './components/JournalPage/SharedEntryView';
 import TodoList from './components/todo/TodoList';
 import ProfilePage from './components/ProfilePage/ProfilePage';
+import LoginPage from './components/LoginPage';
 
 const routes = [
   <Route key="/" path="/" component={App} />,
   <Route key="shared" path="s/:hash" component={SharedEntryView} />,
   <Route key="todo" path="todo" component={TodoList} />,
-  <Route key="/profile" path="/profile" component={ProfilePage} />
+  <Route key="/profile" path="/profile" component={ProfilePage} />,
   <Route key="login" path="login" component={LoginPage} />
 ];
 

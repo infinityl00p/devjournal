@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import Tag from './Tag';
+import Modal from './Modal';
 
 import axios from 'axios';
 import marked from 'marked';
@@ -15,6 +17,7 @@ export default class EntryViewItem extends Component {
 
     this.handleShare = this.handleShare.bind(this);
     this.renderSharedLinkInput = this.renderSharedLinkInput.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.handleClick = this.handleClick.bind(this);
 
@@ -51,6 +54,37 @@ export default class EntryViewItem extends Component {
     // Render edit Modal (or do it in the view)
     // var editedData = { 'something' };
     // this.props.onEdit(editedData);
+    var container = document.body.querySelector('#add-day-modal');
+    if (container === null) {
+      container = document.createElement('div');
+      container.id = 'add-day-modal';
+      document.body.appendChild(container);
+    }
+
+    var onCancel = (e) => {
+      e.stopPropagation();
+      ReactDOM.unmountComponentAtNode(container);
+    };
+
+    var onConfirm = (e, data) => {
+      ReactDOM.unmountComponentAtNode(container);
+      (data.success == true) ? data.success = 1 : data.success = 0;
+      this.props.onEditDay(data, this.props.dayNumber);
+      this.setState({
+        success: this.props.data.success
+      });
+    };
+
+    ReactDOM.render(
+      <Modal
+        onCancel={onCancel}
+        onConfirm={onConfirm}
+        dayNumber={"21"}
+        data={this.props.entryText}
+        title={"hahaha"}
+      />,
+      container
+    );
   }
 
   handleShare() {

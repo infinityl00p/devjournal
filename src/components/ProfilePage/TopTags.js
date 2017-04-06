@@ -55,7 +55,7 @@ export default class TopTags extends Component {
               id: tagTextArray[tag],
               frequency: 1
             };
-          }else {
+          } else {
             frequencyArray[tag].frequency = frequencyArray[tag].frequency + 1;
           }
         })
