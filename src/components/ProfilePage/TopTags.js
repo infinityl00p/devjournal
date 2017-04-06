@@ -11,10 +11,10 @@ export default class TopTags extends Component {
   }
 
   renderTags() {
-    var sortedArray = this.sortTags();
+    var sortedByTagFrequency = this.sortTags();
     var visibleTagCount = 0;
 
-    sortedArray = sortedArray.map(function (tagFrequency) {
+    sortedByTagFrequency = sortedByTagFrequency.map(function (tagFrequency) {
       if (tagFrequency.id && tagFrequency.frequency &&  visibleTagCount < 5){
         visibleTagCount++;
         return (
@@ -23,7 +23,7 @@ export default class TopTags extends Component {
       }
     });
 
-    return sortedArray;
+    return sortedByTagFrequency;
   }
 
   sortTags() {

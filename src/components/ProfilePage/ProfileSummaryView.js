@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import StatsComponent from './StatsComponent';
-import PostHeatMap from './PostHeatMap';
 import ActivityContainer from './ActivityContainer';
-import PostByDate from './PostByDate';
 
 export default class ProfileSummaryView extends Component {
   constructor(props) {
@@ -96,11 +94,9 @@ export default class ProfileSummaryView extends Component {
   currentStreak() {
     var streakCount = 0;
     var previousDate = null;
-    var today = new Date();
-    today = this.concatDate(today);
     var dates = this.props.dates.reverse();
 
-    dates.forEach(function(date) {
+    dates.forEach(function(date, index) {
       var entryDate = date.split('T')[0];
       if (previousDate !== null) {
         var date1 = new Date(previousDate);
@@ -112,7 +108,7 @@ export default class ProfileSummaryView extends Component {
         } else {
           return streakCount;
         }
-      } else if (today === entryDate && entryDate !== previousDate) {
+      } else if (index === 0 && entryDate !== previousDate) {
         streakCount++;
       }
       previousDate = entryDate;
@@ -125,11 +121,13 @@ export default class ProfileSummaryView extends Component {
     var currentStreakCount = 0;
     var highStreak = 0;
     var previousDate = null;
-    var today = new Date();
-    today = this.concatDate(today);
 
-    this.props.dates.forEach(function(date) {
+    this.props.dates.forEach(function(date,index) {
       var entryDate = date.split('T')[0];
+
+      if (index === 0 || currentStreakCount === 0) {
+        currentStreakCount++;
+      }
 
       if(previousDate !== null ) {
         var date1 = new Date(previousDate);
@@ -140,15 +138,12 @@ export default class ProfileSummaryView extends Component {
         if (previousDate !== entryDate && diffDays == 1) {
           currentStreakCount++;
           if (currentStreakCount > highStreak) {
-            highStreak=currentStreakCount;
+            highStreak = currentStreakCount;
           }
+        } else if (diffDays > 1) {
+          currentStreakCount = 1;
         }
       }
-      else if(entryDate === today){
-        currentStreakCount++;
-        highStreak++;
-      }
-
       previousDate = entryDate;
     });
 
