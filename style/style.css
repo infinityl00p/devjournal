@@ -278,8 +278,12 @@ html, body {
 }
 
 /* Modal styles */
-.modal, .modal-open {
+#add-edit-modal .modal, #add-edit-modal .modal-open {
   display: block;
+}
+
+#edit-modal .edit-entry-header {
+  font-size: 30px;
 }
 
 /* SharedEntry styles */

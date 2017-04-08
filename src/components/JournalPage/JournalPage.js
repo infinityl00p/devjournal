@@ -86,6 +86,7 @@ class JournalPage extends Component {
           tags={this.props.journal.tags}
           setActiveEntry={this.setActiveEntry}
           onDelete={this.props.actions.deleteEntry}
+          onEdit={this.props.actions.updateEntry}
         />
       </div>
     );

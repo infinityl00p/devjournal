@@ -23,8 +23,16 @@ export default class EntryViewItem extends Component {
 
     this.state = {
       sharedEntryUrl: '',
-      showLink: false
+      showLink: false,
+      entryText: this.props.entryText,
+      tags: this.props.tags
     }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      entryText: nextProps.entryText
+    });
   }
 
   formatDate(date) {
@@ -49,15 +57,14 @@ export default class EntryViewItem extends Component {
     }
   }
 
-  // TODO: add these as we build functionality. Should call action creator in JournalPage.
   handleEdit() {
     // Render edit Modal (or do it in the view)
     // var editedData = { 'something' };
     // this.props.onEdit(editedData);
-    var container = document.body.querySelector('#add-day-modal');
+    var container = document.body.querySelector('#add-edit-modal');
     if (container === null) {
       container = document.createElement('div');
-      container.id = 'add-day-modal';
+      container.id = 'add-edit-modal';
       document.body.appendChild(container);
     }
 
@@ -66,22 +73,27 @@ export default class EntryViewItem extends Component {
       ReactDOM.unmountComponentAtNode(container);
     };
 
-    var onConfirm = (e, data) => {
+    var onConfirm = (e, updatedEntryText) => {
       ReactDOM.unmountComponentAtNode(container);
-      (data.success == true) ? data.success = 1 : data.success = 0;
-      this.props.onEditDay(data, this.props.dayNumber);
       this.setState({
-        success: this.props.data.success
+        entryText: updatedEntryText
       });
+
+      var editedData = {
+        id: this.props.id,
+        date: this.props.date,
+        entryText: updatedEntryText,
+        tags: this.props.tags
+      }
+      this.props.onEdit(this.props.id, editedData)
     };
 
     ReactDOM.render(
       <Modal
         onCancel={onCancel}
         onConfirm={onConfirm}
-        dayNumber={"21"}
-        data={this.props.entryText}
-        title={"hahaha"}
+        entryText={this.props.entryText}
+        tags={this.props.tags}
       />,
       container
     );
@@ -121,7 +133,7 @@ export default class EntryViewItem extends Component {
   }
 
   render() {
-    const entryText = marked(this.props.entryText);
+    const entryText = marked(this.state.entryText);
     return(
       <div className="entry-view-item" onClick={this.handleClick}>
         <div className="entry">
@@ -135,7 +147,7 @@ export default class EntryViewItem extends Component {
           <div className="entry-text" dangerouslySetInnerHTML={{__html: entryText}} />
         </div>
         <div className="tag-container">
-          { this.props.tags.map((tag) => <Tag key={tag.id} data={tag} />) }
+          { this.state.tags.map((tag) => <Tag key={tag.id} data={tag} />) }
         </div>
       </div>
     );

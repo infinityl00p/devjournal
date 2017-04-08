@@ -30,6 +30,8 @@ const entries = (state = null, action) => {
                 tags: action.payload.data.data.tags
             };
         case actionCreators.UPDATE_ENTRY:
+            var response = action.payload.data.success;
+
         case actionCreators.DELETE_ENTRY:
           var response = action.payload.data.success;
           var entries = state.entries.filter(function(entry) {

@@ -53,6 +53,7 @@ export default class EntryView extends Component {
         entryText={this.props.currentEntry.entry.entryText}
         tags={this.props.currentEntry.tags}
         onDelete={this.props.onDelete}
+        onEdit={this.props.onEdit}
       />
     );
   }

@@ -61,40 +61,6 @@ export function deleteEntry(entryId) {
     };
 }
 
-// export function createTag(tag) {
-//     const request = axios.post(
-//         ROOT_URL + '/tags',
-//         tag
-//     );
-//
-//     return {
-//         type: CREATE_TAG,
-//         payload: request
-//     };
-// }
-
-// export function getTags() {
-//     const request = axios.get(
-//         ROOT_URL + '/tags'
-//     );
-//
-//     return {
-//         type: GET_TAGS,
-//         payload: request
-//     };
-// }
-
-// export function deleteTag(tagId) {
-//     const request = axios.post(
-//         ROOT_URL + '/tags/' + tagId
-//     );
-//
-//     return {
-//         type: DELETE_TAG,
-//         payload: request
-//     };
-// }
-
 export function createTag(tag) {
     const request = axios.post(
         ROOT_URL + '/tags',
