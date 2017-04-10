@@ -44,11 +44,9 @@ export default class EntryViewList extends Component {
         onClick: this.props.onClick,
         onDelete: this.props.onDelete
       };
-
       if (active) {
         props.ref = "activeEntry";
       }
-
       return <EntryViewItem {...props} />
     });
 

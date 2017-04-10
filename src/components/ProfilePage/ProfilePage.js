@@ -18,6 +18,7 @@ class ProfilePage extends Component {
     super(props);
 
     this.props.actions.getEntriesAndTags();
+    this.sortByDate = this.sortByDate.bind(this);
 
     this.state = {
       data: props
@@ -25,9 +26,18 @@ class ProfilePage extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    nextProps = this.sortByDate(nextProps);
     this.setState({
       data: nextProps.journal
     });
+  }
+
+  sortByDate(props) {
+    props.journal.entries.sort(function(a,b) {
+      return new Date(a.date) - new Date(b.date);
+    })
+
+    return props;
   }
 
   render() {
@@ -56,7 +66,6 @@ class ProfilePage extends Component {
     );
   }
 }
-
 
 function mapStateToProps(state) {
   return { journal: state.entries }

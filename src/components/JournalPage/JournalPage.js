@@ -36,6 +36,7 @@ class JournalPage extends Component {
 
     this.handleEntrySelect = this.handleEntrySelect.bind(this);
     this.setActiveEntry = this.setActiveEntry.bind(this);
+    this.sortByDate = this.sortByDate.bind(this);
     // TODO: update this to set state to:
     // this.props.journal.entries.slice(-1)[0] after successful getEntriesAndTags()
     this.state = {
@@ -45,6 +46,7 @@ class JournalPage extends Component {
 
   // TODO: make this better: create helper method to filter by tag
   componentWillReceiveProps(nextProps) {
+    nextProps = this.sortByDate(nextProps);
     var firstEntry = nextProps.journal.entries.slice(-1).pop();
     var firstEntryTags = nextProps.journal.tags.filter(function (tag) {
       return _.contains(firstEntry.tags, tag.id)
@@ -62,6 +64,14 @@ class JournalPage extends Component {
 
   handleEntrySelect(entryAndTags) {
     this.setState({ selectedEntry: entryAndTags });
+  }
+
+  sortByDate(props) {
+    props.journal.entries.sort(function(a,b) {
+      return new Date(a.date) - new Date(b.date);
+    })
+
+    return props;
   }
 
   render() {

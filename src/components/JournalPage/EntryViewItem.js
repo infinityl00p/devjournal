@@ -36,8 +36,9 @@ export default class EntryViewItem extends Component {
   }
 
   formatDate(date) {
-    var truncatedDate = date.substring(0, date.indexOf('T'));
-    var fullDate = new Date(truncatedDate).toDateString();
+    var splitDate = date.substring(0, date.indexOf('T')).split('-');
+    var reformattedDate = new Date(splitDate[0], splitDate[1]-1, splitDate[2])
+    var fullDate = new Date(reformattedDate).toDateString();
     return fullDate;
   }
 
