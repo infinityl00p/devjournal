@@ -95,24 +95,32 @@ export default class ProfileSummaryView extends Component {
     var streakCount = 0;
     var previousDate = null;
     var dates = this.props.dates.reverse();
+    var yesterday = new Date();
+    yesterday.setDate(yesterday.getDate()-1);
+    yesterday.setHours(0,0,0,0);
+    var lastPostDate = new Date(dates[0]);
+    lastPostDate.setHours(0,0,0,0);
 
-    dates.forEach(function(date, index) {
-      var entryDate = date.split('T')[0];
-      if (previousDate !== null) {
-        var date1 = new Date(previousDate);
-        var date2 = new Date(entryDate);
-        var timeDiff = Math.abs(date2.getTime() - date1.getTime());
-        var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
-        if (diffDays == 1) {
+    if (lastPostDate.getTime() === yesterday.getTime()) {
+      dates.forEach(function(date, index) {
+        var entryDate = date.split('T')[0];
+        if (previousDate !== null) {
+          var date1 = new Date(previousDate);
+          var date2 = new Date(entryDate);
+          var timeDiff = Math.abs(date2.getTime() - date1.getTime());
+          var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+          if (diffDays == 1) {
+            streakCount++;
+          } else {
+            return streakCount;
+          }
+        } else if (index === 0 && entryDate !== previousDate) {
           streakCount++;
-        } else {
-          return streakCount;
         }
-      } else if (index === 0 && entryDate !== previousDate) {
-        streakCount++;
-      }
-      previousDate = entryDate;
-    });
+        previousDate = entryDate;
+      });
+      return streakCount;
+    }
 
     return streakCount;
   }

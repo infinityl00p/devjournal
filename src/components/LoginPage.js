@@ -25,7 +25,6 @@ export default class LoginPage extends Component {
     }
     // TODO: redirect only on login, catch login errors and display message
     actionCreators.loginUser(user);
-
   }
 
   handleEmailChange(e) {
@@ -38,19 +37,19 @@ export default class LoginPage extends Component {
 
   render() {
     return(
-      <div id="login-page" className="col-md-12">
-        <form className="form-signin col-md-4 col-md-offset-4" onSubmit={this.handleSubmit} >
-          <h2 className="form-signin-heading">Please sign in</h2>
-          <label htmlFor="inputEmail" className="sr-only">Email address</label>
-          <input value={this.state.email} onChange={this.handleEmailChange} type="email" id="inputEmail" className="form-control" placeholder="Email address" required autofocus />
-          <label htmlFor="inputPassword" className="sr-only">Password</label>
-          <input value={this.state.password} onChange={this.handlePasswordChange} type="password" id="inputPassword" className="form-control" placeholder="Password" required />
+      <div id="login-page" className="col-md-12 col-sm-12 col-xs-12">
+        <form id="login-form" className="form-signin col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-4 col-xs-offset-4"onSubmit={this.handleSubmit} >
+          <h1 className="devjournal-title">Log in to Devjournal</h1>
+          <label className="entry-field" htmlFor="inputEmail">Email address</label>
+          <input value={this.state.email} onChange={this.handleEmailChange} type="email" className="form-control login-input" placeholder="eg. you@devjournal.co" required autofocus />
+          <label className="entry-field" htmlFor="inputPassword">Password</label>
+          <input value={this.state.password} onChange={this.handlePasswordChange} type="login-password login-input" className="form-control" placeholder="*******" required />
           <div className="checkbox">
-            <label>
+            <label className="remember-me">
               <input type="checkbox" value="remember-me" /> Remember me
             </label>
           </div>
-          <button className="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+          <button className="btn btn-lg btn-info btn-block" type="submit">Sign in</button>
         </form>
       </div>
     );

@@ -31,7 +31,22 @@ const entries = (state = null, action) => {
             };
         case actionCreators.UPDATE_ENTRY:
             var response = action.payload.data.success;
+            //return entries with updated entry
+            var min = 0;
+            var max = state.entries.length - 1;
 
+            while (min <= max) {
+              var guess = Math.floor((max + min) / 2);
+              if (state.entries[guess].id === response.id) {
+                break;
+              } else if (state.entries[guess].id < response.id) {
+                min = guess + 1;
+              } else {
+                max = guess - 1;
+              }
+            }
+            state.entries[guess].entryText = response.entryText;
+            return Object.assign({}, state);
         case actionCreators.DELETE_ENTRY:
           var response = action.payload.data.success;
           var entries = state.entries.filter(function(entry) {
@@ -40,7 +55,6 @@ const entries = (state = null, action) => {
               return entry
             }
           })
-
           var tags = state.tags;
           var updatedState = {
             entries,
@@ -49,7 +63,8 @@ const entries = (state = null, action) => {
           return Object.assign({}, state, updatedState);
         case actionCreators.CREATE_USER:
         case actionCreators.LOGIN_USER:
-            var response = action.payload.data
+            var response = action.payload.data;
+            console.log("resoponse: " + response)
             return Object.assign({}, state, {
                 user: {
                     id: response.userId,
