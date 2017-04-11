@@ -51,6 +51,7 @@ class JournalPage extends Component {
     var firstEntryTags = nextProps.journal.tags.filter(function (tag) {
       return _.contains(firstEntry.tags, tag.id)
     });
+
     var firstEntry = {
       entry: firstEntry,
       tags: firstEntryTags

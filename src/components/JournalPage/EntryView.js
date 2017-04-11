@@ -21,6 +21,17 @@ export default class EntryView extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      activeEntryData: {
+        id: nextProps.currentEntry.entry.id,
+        date: nextProps.currentEntry.entry.date,
+        entryText: nextProps.currentEntry.entry.entryText,
+        tags: nextProps.currentEntry.tags
+      }
+    })
+  }
+
   handleViewStateChange() {
     var prevState = this.state.multiViewState;
     this.setState({ multiViewState: !prevState });
@@ -48,10 +59,10 @@ export default class EntryView extends Component {
     }
     return(
       <EntryViewItem
-        id={this.props.currentEntry.entry.id}
-        date={this.props.currentEntry.entry.date}
-        entryText={this.props.currentEntry.entry.entryText}
-        tags={this.props.currentEntry.tags}
+        id={this.state.activeEntryData.id}
+        date={this.state.activeEntryData.date}
+        entryText={this.state.activeEntryData.entryText}
+        tags={this.state.activeEntryData.tags}
         onDelete={this.props.onDelete}
         onEdit={this.props.onEdit}
       />

@@ -31,7 +31,8 @@ export default class EntryViewItem extends Component {
 
   componentWillReceiveProps(nextProps) {
     this.setState({
-      entryText: nextProps.entryText
+      entryText: nextProps.entryText,
+      tags: nextProps.tags
     });
   }
 
