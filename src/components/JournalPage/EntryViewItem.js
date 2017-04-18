@@ -81,12 +81,18 @@ export default class EntryViewItem extends Component {
         entryText: updatedEntryText
       });
 
+      var tagIds = [];
+      tagIds = this.props.tags.map((tagObject) => {
+        return tagObject.id
+      })
+
       var editedData = {
         id: this.props.id,
         date: this.props.date,
         entryText: updatedEntryText,
-        tags: this.props.tags
+        tags: tagIds
       }
+
       this.props.onEdit(this.props.id, editedData)
     };
 

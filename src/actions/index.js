@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from 'axios';
 
 const ROOT_URL = 'http://shielded-basin-84367.herokuapp.com';
 
@@ -15,6 +15,7 @@ const USER_ID = 2;
 
 export const CREATE_USER = 'CREATE_USER';
 export const LOGIN_USER = 'LOGIN_USER';
+export const CHECK_LOGIN = 'CHECK_LOGIN';
 
 // TODO: ADD ERROR HANDLING
 export function createEntryAndTags(entry) {

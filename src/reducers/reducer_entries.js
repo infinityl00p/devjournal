@@ -64,8 +64,8 @@ const entries = (state = null, action) => {
         case actionCreators.CREATE_USER:
         case actionCreators.LOGIN_USER:
             var response = action.payload.data;
-            console.log("resoponse: " + response)
             return Object.assign({}, state, {
+              ...state,
                 user: {
                     id: response.userId,
                     loggedIn: true

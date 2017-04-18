@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import * as actionCreators from '../actions/index';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-// TODO: add loged in to global state; add logic to redirect here if not logged in.
-export default class LoginPage extends Component {
+// TODO: add logged in to global state; add logic to redirect here if not logged in.
+class LoginPage extends Component {
   constructor() {
     super();
 
@@ -23,8 +25,17 @@ export default class LoginPage extends Component {
       email: this.state.email,
       password: this.state.password
     }
+
     // TODO: redirect only on login, catch login errors and display message
-    actionCreators.loginUser(user);
+
+    /*
+      shielded-basin-84367::DATABASE=> SELECT * FROM users;
+      id |         email         | password
+      ----+-----------------------+----------
+      1 | sim@simbrar.com       | password
+      2 | jamesgggill@gmail.com | password
+      3 | james@devjournal.co   | jgjg!234
+    */
   }
 
   handleEmailChange(e) {
@@ -55,3 +66,15 @@ export default class LoginPage extends Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    journal: state
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return { actions: bindActionCreators(actionCreators, dispatch) };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage)
