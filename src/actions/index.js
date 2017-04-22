@@ -11,7 +11,7 @@ export const GET_TAGS = 'GET_TAGS';
 export const CREATE_TAG = 'CREATE_TAG';
 export const DELETE_TAG = 'DELETE_TAG';
 
-const USER_ID = 2;
+const USER_ID = localStorage.getItem('userId');
 
 export const CREATE_USER = 'CREATE_USER';
 export const LOGIN_USER = 'LOGIN_USER';
@@ -32,7 +32,7 @@ export function createEntryAndTags(entry) {
 export function getEntriesAndTags() {
     const request = axios.get(
         ROOT_URL + '/entries/' + USER_ID
-    );
+    )
 
     return {
         type: GET_ENTRIES_AND_TAGS,

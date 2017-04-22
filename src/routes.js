@@ -8,8 +8,12 @@ import LoginPage from './components/LoginPage';
 
 function loggedIn() {
   //if user is logged in return true
-  //else return false
-  return true;
+  var loggedIn = localStorage.getItem('userId');
+  if (loggedIn) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
 function requireAuth(nextState, replace) {

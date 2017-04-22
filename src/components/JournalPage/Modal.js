@@ -29,31 +29,6 @@ export default class Modal extends Component {
     });
   }
 
-  /*handleTagsChange(e) {
-    this.setState({
-      tags: e.target.value
-    });
-  }*/
-
-/*  tagsToString(tags) {
-    var tagString;
-    tags.forEach((tag, index) => {
-      if (index === 0) {
-        tagString=tag.tagText
-      } else {
-        tagString = tagString + " " + tag.tagText;
-      }
-    })
-    return tagString;
-  }
-
-  splitTags(tagString) {
-    if (tagString) {
-      var tagArray = tagString.match(/#\S+/g);
-    }
-    return tagArray;
-  }*/
-
   render() {
     return (
       <div id="edit-modal" className="modal" role="dialog">
@@ -63,8 +38,7 @@ export default class Modal extends Component {
               <form onSubmit={this.handleSubmit}>
                 <div className="form-group">
                   <label className="edit-entry-header">Edit Entry: </label>
-                  <textarea rows="6" onChange={this.handleEntryChange} value={this.state.entryText} className="form-control entry-textarea"></textarea>
-                  {/*<textarea rows="1" onChange={this.handleTagsChange} value={this.state.tags} className="form-control entry-textarea"></textarea>*/}
+                  <textarea rows="15" onChange={this.handleEntryChange} value={this.state.entryText} className="form-control entry-textarea"></textarea>
                 </div>
                 <button type="button" onClick={this.props.onCancel} className="btn btn-default" data-dismiss="modal">Close</button>
                 <button type="submit" className="btn btn-default" data-dismiss="modal">Save and Close</button>
@@ -78,10 +52,3 @@ export default class Modal extends Component {
     );
   }
 }
-
-/*
-Modal.propTypes = {
-  onCancel: React.PropTypes.func.isRequired,
-  onConfirm: React.PropTypes.func.isRequired
-};
-*/

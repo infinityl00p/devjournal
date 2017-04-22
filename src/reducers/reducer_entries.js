@@ -64,13 +64,26 @@ const entries = (state = null, action) => {
         case actionCreators.CREATE_USER:
         case actionCreators.LOGIN_USER:
             var response = action.payload.data;
-            return Object.assign({}, state, {
-              ...state,
-                user: {
-                    id: response.userId,
-                    loggedIn: true
-                }
-            });
+            if (response) {
+              var userId = response.userId
+              localStorage.setItem('userId', JSON.stringify(userId));
+
+              return Object.assign({}, state, {
+                ...state,
+                  user: {
+                      id: response.userId,
+                      loggedIn: true
+                  }
+              });
+            }
+            else {
+              return Object.assign({}, state, {
+                ...state,
+                  user: {
+                      loggedIn: false
+                  }
+              });
+            }
     }
     return state;
 }

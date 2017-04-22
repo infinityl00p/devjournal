@@ -5,8 +5,9 @@ import { bindActionCreators } from 'redux';
 
 // TODO: add logged in to global state; add logic to redirect here if not logged in.
 class LoginPage extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    this.props.actions.getEntriesAndTags();
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleEmailChange = this.handleEmailChange.bind(this);
@@ -15,6 +16,19 @@ class LoginPage extends Component {
     this.state = {
         email: '',
         password: ''
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.journal.entries.user) {
+      if(nextProps.journal.entries.user.loggedIn) {
+        //good change for a redirect and store the cookies
+      /*  var unsignedToken = base64url(header) + "." + base64url(data)
+        JWT = unsignedToken + "." + base64url(HMAC256(unsignedToken, secret))*/
+        alert("logged in")
+      } else (
+        alert("wrong username or password")
+      )
     }
   }
 
@@ -27,7 +41,7 @@ class LoginPage extends Component {
     }
 
     // TODO: redirect only on login, catch login errors and display message
-
+    this.props.actions.loginUser(user);
     /*
       shielded-basin-84367::DATABASE=> SELECT * FROM users;
       id |         email         | password
@@ -36,7 +50,8 @@ class LoginPage extends Component {
       2 | jamesgggill@gmail.com | password
       3 | james@devjournal.co   | jgjg!234
     */
-  }
+
+}
 
   handleEmailChange(e) {
     this.setState({ email: e.target.value });
@@ -52,15 +67,16 @@ class LoginPage extends Component {
         <form id="login-form" className="form-signin col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-4 col-xs-offset-4"onSubmit={this.handleSubmit} >
           <h1 className="devjournal-title">Log in to Devjournal</h1>
           <label className="entry-field" htmlFor="inputEmail">Email address</label>
-          <input value={this.state.email} onChange={this.handleEmailChange} type="email" className="form-control login-input" placeholder="eg. you@devjournal.co" required autofocus />
+          <input value={this.state.email} onChange={this.handleEmailChange} id="email" type="email" className="form-control login-input" placeholder="eg. you@devjournal.co" required autofocus />
           <label className="entry-field" htmlFor="inputPassword">Password</label>
-          <input value={this.state.password} onChange={this.handlePasswordChange} type="login-password login-input" className="form-control" placeholder="*******" required />
+          <input value={this.state.password} onChange={this.handlePasswordChange} id="password" type="password" className="form-control" placeholder="*******" required />
           <div className="checkbox">
             <label className="remember-me">
               <input type="checkbox" value="remember-me" /> Remember me
             </label>
           </div>
           <button className="btn btn-lg btn-info btn-block" type="submit">Sign in</button>
+          <button className="btn btn-info btn-block btn-sm"> Create an Account </button>
         </form>
       </div>
     );
