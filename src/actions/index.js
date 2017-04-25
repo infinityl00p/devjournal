@@ -23,6 +23,7 @@ export function createEntryAndTags(entry) {
         ROOT_URL + '/entries/' + USER_ID,
         entry
     );
+
     return {
         type: CREATE_ENTRY_AND_TAGS,
         payload: request

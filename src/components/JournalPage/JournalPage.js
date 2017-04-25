@@ -6,25 +6,32 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import _ from 'lodash';
 
-var tempEntry = {
+var currentEntry = {
   entry: {
     date: "2017-02-22T04:50:46.729656Z",
-    entryText:"Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
-    id: 28,
-    tags: [29, 31, 34]
+    entryText:"Default entry, create an entry to remove this text",
+    id: 1,
+    tags: [1]
   },
   tags: [
     {
-      id: 29,
-      tagText: '#first'
-    },
+      id: 1,
+      tagText: '#defaultEntry'
+    }
+  ]
+}
+
+var Entries = {
+  entries: [{
+    date: "2017-02-22T04:50:46.729656Z",
+    entryText:"Default entry, create an entry to remove this text",
+    id: 1,
+    tags: [1]
+  }],
+  tags: [
     {
-      id: 31,
-      tagText: '#second'
-    },
-    {
-      id: 34,
-      tagText: '#third'
+      id: 1,
+      tagText: '#defaultEntry'
     }
   ]
 };
@@ -40,7 +47,7 @@ class JournalPage extends Component {
     // TODO: update this to set state to:
     // this.props.journal.entries.slice(-1)[0] after successful getEntriesAndTags()
     this.state = {
-      selectedEntry: tempEntry
+      selectedEntry: currentEntry
     }
   }
 
@@ -79,7 +86,23 @@ class JournalPage extends Component {
     // TODO: Make this UX better.
     if (!this.props.journal) {
       return(
-        <div><h3>Loading...</h3></div>
+        <div id="journal-page-container">
+          <Sidebar
+            actions={this.props.actions}
+            entries={Entries.entries}
+            tags={Entries.tags}
+            props={this.props}
+            onEntryClick={this.handleEntrySelect}
+          />
+          <EntryView
+            currentEntry={this.state.selectedEntry}
+            entries={Entries.entries}
+            tags={Entries.tags}
+            setActiveEntry={this.setActiveEntry}
+            onDelete={this.props.actions.deleteEntry}
+            onEdit={this.props.actions.updateEntry}
+          />
+        </div>
       );
     }
     return(

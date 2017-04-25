@@ -12,6 +12,7 @@ class LoginPage extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
+    this.loadCreateAccountPage = this.loadCreateAccountPage.bind(this);
 
     this.state = {
         email: '',
@@ -61,6 +62,10 @@ class LoginPage extends Component {
     this.setState({ password: e.target.value });
   }
 
+  loadCreateAccountPage() {
+    location.href = "http://localhost:8080/createaccount";
+  }
+
   render() {
     return(
       <div id="login-page" className="col-md-12 col-sm-12 col-xs-12">
@@ -76,7 +81,7 @@ class LoginPage extends Component {
             </label>
           </div>
           <button className="btn btn-lg btn-info btn-block" type="submit">Sign in</button>
-          <button className="btn btn-info btn-block btn-sm"> Create an Account </button>
+          <button className="btn btn-info btn-block btn-sm" onClick={this.loadCreateAccountPage}> Create an Account </button>
         </form>
       </div>
     );

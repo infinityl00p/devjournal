@@ -943,12 +943,12 @@ input[type="checkbox"]:focus{
 }
 
 /* LoginPage styles */
-#login-page {
+#login-page, #create-account-page {
   height: 100vh;
   background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
 }
 
-#login-form {
+#login-form, #create-account-form {
   position: relative;
   top: 50%;
   transform: translateY(-50%);
@@ -957,7 +957,7 @@ input[type="checkbox"]:focus{
   box-shadow: 3px 3px 5px black;
 }
 
-#login-page .devjournal-title {
+#login-page .devjournal-title, #create-account-form .devjournal-title {
   color: white;
   font-family: "Arial Black";
   text-align: center;
@@ -966,11 +966,11 @@ input[type="checkbox"]:focus{
   margin-bottom: 30px;
 }
 
-#login-page .login-input {
+#login-page .login-input, #create-account-form .login-input {
   margin-bottom: 20px;
 }
 
-#login-page .entry-field {
+#login-page .entry-field, #create-account-form .entry-field {
   color: white;
   font-weight: normal;
 }
