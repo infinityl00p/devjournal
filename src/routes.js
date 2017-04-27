@@ -8,9 +8,9 @@ import LoginPage from './components/LoginPage';
 import CreateAccountPage from './components/CreateAccountPage';
 
 function loggedIn() {
-  //if user is logged in return true
   var loggedIn = localStorage.getItem('userId');
-  if (loggedIn) {
+
+  if (loggedIn && loggedIn != 0) {
     return true;
   } else {
     return false;

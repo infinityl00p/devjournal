@@ -145,6 +145,15 @@ class JournalPage extends Component {
     return tagArray;
   }
 
+  logout() {
+    var USER_ID = localStorage.getItem('userId');
+    localStorage.setItem('userId', JSON.stringify(0));
+    if(localStorage.getItem('userId') == 0) {
+      alert("successfully logged out")
+      location.href = "http://localhost:8080/login";
+    }
+  }
+
   render() {
     // TODO: Make this UX better.
     if (!this.props.journal) {
@@ -170,6 +179,7 @@ class JournalPage extends Component {
     }
     return(
       <div id="journal-page-container">
+      <button onClick={this.logout}> logout </button>
         <Sidebar
           actions={this.props.actions}
           entries={this.props.journal.entries}
