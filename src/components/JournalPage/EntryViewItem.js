@@ -20,6 +20,7 @@ export default class EntryViewItem extends Component {
     this.handleEdit = this.handleEdit.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.renderGlyphicons = this.renderGlyphicons.bind(this);
 
     this.state = {
       sharedEntryUrl: '',
@@ -140,22 +141,54 @@ export default class EntryViewItem extends Component {
      this.props.onDelete(this.props.id);
   }
 
+  renderGlyphicons() {
+    if(this.props.singleView) {
+      return(
+        <div className="action-bar">
+          <span className="glyphicon glyphicon-arrow-left" title="Left" onClick={this.props.handleLeftClick}/>
+          <span className="glyphicon glyphicon-edit" title="edit" onClick={this.handleEdit} />
+          <span className="glyphicon glyphicon-share" title="share" onClick={this.handleShare} />
+          <span className="glyphicon glyphicon-trash" title="delete" onClick={this.handleDelete} />
+          <span className="glyphicon glyphicon-arrow-right" title="Right" onClick={this.props.handleRightClick}/>
+        </div>
+      )
+    }
+    return(
+      <div className="action-bar">
+        <span className="glyphicon glyphicon-edit" title="edit" onClick={this.handleEdit} />
+        <span className="glyphicon glyphicon-share" title="share" onClick={this.handleShare} />
+        <span className="glyphicon glyphicon-trash" title="delete" onClick={this.handleDelete} />
+      </div>
+    )
+  }
+
   render() {
     const entryText = marked(this.state.entryText);
+    if(this.props.singleView) {
+      return(
+        <div className="entry-view-item" onClick={this.handleClick}>
+          <div className="entry">
+            <h4 className="date-text">{this.formatDate(this.props.date)}</h4>
+            {this.renderGlyphicons()}
+            <div className="shared-link-container">{this.renderSharedLinkInput()}</div>
+            <div className="entry-text" dangerouslySetInnerHTML={{__html: entryText}} />
+          </div>
+          <div className="tag-container">
+            { this.state.tags.map((tag) => <Tag key={tag.id} data={tag} />) }
+          </div>
+        </div>
+      );
+    }
     return(
       <div className="entry-view-item" onClick={this.handleClick}>
         <div className="entry">
           <h4 className="date-text">{this.formatDate(this.props.date)}</h4>
-          <div className="action-bar">
-            <span className="glyphicon glyphicon-edit" title="edit" onClick={this.handleEdit} />
-            <span className="glyphicon glyphicon-share" title="share" onClick={this.handleShare} />
-            <span className="glyphicon glyphicon-trash" title="delete" onClick={this.handleDelete} />
+          {this.renderGlyphicons()}
+          <div className="tag-container">
+            { this.state.tags.map((tag) => <Tag key={tag.id} data={tag} />) }
           </div>
           <div className="shared-link-container">{this.renderSharedLinkInput()}</div>
           <div className="entry-text" dangerouslySetInnerHTML={{__html: entryText}} />
-        </div>
-        <div className="tag-container">
-          { this.state.tags.map((tag) => <Tag key={tag.id} data={tag} />) }
         </div>
       </div>
     );

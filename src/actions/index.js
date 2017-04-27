@@ -102,7 +102,7 @@ export function createUser(user) {
         ROOT_URL + '/users/add',
         user
     );
-
+    
     return {
         type: CREATE_USER,
         payload: request

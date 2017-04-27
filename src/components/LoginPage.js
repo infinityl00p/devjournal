@@ -7,12 +7,12 @@ import { bindActionCreators } from 'redux';
 class LoginPage extends Component {
   constructor(props) {
     super(props);
-    this.props.actions.getEntriesAndTags();
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.loadCreateAccountPage = this.loadCreateAccountPage.bind(this);
+    this.loadToDoPage = this.loadToDoPage.bind(this);
 
     this.state = {
         email: '',
@@ -27,6 +27,7 @@ class LoginPage extends Component {
       /*  var unsignedToken = base64url(header) + "." + base64url(data)
         JWT = unsignedToken + "." + base64url(HMAC256(unsignedToken, secret))*/
         alert("logged in")
+        this.loadToDoPage();
       } else (
         alert("wrong username or password")
       )
@@ -51,8 +52,7 @@ class LoginPage extends Component {
       2 | jamesgggill@gmail.com | password
       3 | james@devjournal.co   | jgjg!234
     */
-
-}
+  }
 
   handleEmailChange(e) {
     this.setState({ email: e.target.value });
@@ -66,10 +66,14 @@ class LoginPage extends Component {
     location.href = "http://localhost:8080/createaccount";
   }
 
+  loadToDoPage() {
+    location.href = "http://localhost:8080/todo";
+  }
+
   render() {
     return(
       <div id="login-page" className="col-md-12 col-sm-12 col-xs-12">
-        <form id="login-form" className="form-signin col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-4 col-xs-offset-4"onSubmit={this.handleSubmit} >
+        <form id="login-form" className="form-signin col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-4 col-xs-offset-4" onSubmit={this.handleSubmit} >
           <h1 className="devjournal-title">Log in to Devjournal</h1>
           <label className="entry-field" htmlFor="inputEmail">Email address</label>
           <input value={this.state.email} onChange={this.handleEmailChange} id="email" type="email" className="form-control login-input" placeholder="eg. you@devjournal.co" required autofocus />

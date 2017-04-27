@@ -43,7 +43,7 @@ class ProfilePage extends Component {
   render() {
     if (!this.props.journal) {
       return(
-        <div><h3>Loading...</h3></div>
+        <div><h3>Create a Post to Unlock this Page</h3></div>
       );
     }
     return(

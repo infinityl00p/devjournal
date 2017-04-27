@@ -18,17 +18,17 @@ function loggedIn() {
 }
 
 function requireAuth(nextState, replace) {
-  if (!loggedIn()) {
-    replace({
-      pathname: '/login'
-    })
-  }
-  /*if (loggedIn() && nextState.location.pathname === "/login") {
+  if (loggedIn() && nextState.location.pathname === "/login") {
     alert("already logged in, redirecting...");
     replace({
       pathname: '/todo'
     })
-  }*/
+  }
+  else if (!loggedIn() && nextState.location.pathname != "/login") {
+    replace({
+      pathname: '/login'
+    })
+  }
 }
 
 const routes = [

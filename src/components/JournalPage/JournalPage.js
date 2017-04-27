@@ -44,6 +44,11 @@ class JournalPage extends Component {
     this.handleEntrySelect = this.handleEntrySelect.bind(this);
     this.setActiveEntry = this.setActiveEntry.bind(this);
     this.sortByDate = this.sortByDate.bind(this);
+    this.renderNewerEntry = this.renderNewerEntry.bind(this);
+    this.renderOlderEntry = this.renderOlderEntry.bind(this);
+    this.getEntryIndex = this.getEntryIndex.bind(this);
+    this.getEntryTags = this.getEntryTags.bind(this);
+
     // TODO: update this to set state to:
     // this.props.journal.entries.slice(-1)[0] after successful getEntriesAndTags()
     this.state = {
@@ -80,6 +85,64 @@ class JournalPage extends Component {
     })
 
     return props;
+  }
+
+  renderNewerEntry() {
+    var entryIndex = this.getEntryIndex();
+
+    var entriesArrayLength = this.props.journal.entries.length;
+
+    if (entryIndex < entriesArrayLength - 1) {
+      var tagArray = this.getEntryTags(entryIndex+1);
+
+      var entriesAndTags = {
+        entry: this.props.journal.entries[entryIndex+1],
+        tags: tagArray
+      };
+
+      this.setState({ selectedEntry: entriesAndTags})
+    }
+  }
+
+  renderOlderEntry() {
+    var entryIndex = this.getEntryIndex();
+
+    if (entryIndex > 0) {
+      var tagArray = this.getEntryTags(entryIndex-1);
+
+      var entriesAndTags = {
+        entry: this.props.journal.entries[entryIndex-1],
+        tags: tagArray
+      };
+
+      this.setState({ selectedEntry: entriesAndTags})
+    }
+  }
+
+  getEntryIndex() {
+    var entryIndex;
+
+    this.props.journal.entries.forEach((entry, index) => {
+        if (entry === this.state.selectedEntry.entry) {
+          entryIndex = index;
+        }
+    });
+
+    return entryIndex;
+  }
+
+  getEntryTags(entryIndex) {
+    var tagArray = [];
+
+    this.props.journal.tags.forEach((tag1) => {
+      this.props.journal.entries[entryIndex].tags.forEach((tag2) => {
+        if(tag1.id === tag2) {
+          tagArray.push(tag1)
+        }
+      })
+    });
+
+    return tagArray;
   }
 
   render() {
@@ -121,6 +184,8 @@ class JournalPage extends Component {
           setActiveEntry={this.setActiveEntry}
           onDelete={this.props.actions.deleteEntry}
           onEdit={this.props.actions.updateEntry}
+          renderNewerEntry={this.renderNewerEntry}
+          renderOlderEntry={this.renderOlderEntry}
         />
       </div>
     );

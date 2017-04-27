@@ -156,13 +156,19 @@ html, body {
 #entry-view-list .entry-view-item {
   padding: 15px 0 15px 0;
   border-bottom: 3px solid #f7f7f7;
+  overflow-y: hidden;
+  height: 30vh;
 }
 
 #entry-view-list .entry-view-item:hover {
-  border-right: 6px solid #0EBFE9;
   padding-right: 5px;
   background-color: rgba(211,211,211, 0.5);
   cursor: pointer;
+}
+
+#entry-view-list .tag-container {
+  margin: auto;
+  text-align: center;
 }
 
 #entry-view .entry-view-item {
@@ -212,7 +218,7 @@ html, body {
   font-size: 12pt;
 }
 
-#entry-view .tag-container {
+.entry-view-selector #entry-view .tag-container {
   margin-top: 30px;
 }
 

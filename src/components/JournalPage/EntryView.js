@@ -65,6 +65,9 @@ export default class EntryView extends Component {
         tags={this.state.activeEntryData.tags}
         onDelete={this.props.onDelete}
         onEdit={this.props.onEdit}
+        handleLeftClick={this.props.renderOlderEntry}
+        handleRightClick={this.props.renderNewerEntry}
+        singleView={true}
       />
     );
   }
