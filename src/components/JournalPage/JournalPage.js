@@ -6,35 +6,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import _ from 'lodash';
 
-var currentEntry = {
-  entry: {
-    date: "2017-02-22T04:50:46.729656Z",
-    entryText:"Default entry, create an entry to remove this text",
-    id: 1,
-    tags: [1]
-  },
-  tags: [
-    {
-      id: 1,
-      tagText: '#defaultEntry'
-    }
-  ]
-}
-
-var Entries = {
-  entries: [{
-    date: "2017-02-22T04:50:46.729656Z",
-    entryText:"Default entry, create an entry to remove this text",
-    id: 1,
-    tags: [1]
-  }],
-  tags: [
-    {
-      id: 1,
-      tagText: '#defaultEntry'
-    }
-  ]
-};
+const LOGIN_URL = "http://localhost:8080/login";
 
 class JournalPage extends Component {
   constructor(props) {
@@ -48,12 +20,6 @@ class JournalPage extends Component {
     this.renderOlderEntry = this.renderOlderEntry.bind(this);
     this.getEntryIndex = this.getEntryIndex.bind(this);
     this.getEntryTags = this.getEntryTags.bind(this);
-
-    // TODO: update this to set state to:
-    // this.props.journal.entries.slice(-1)[0] after successful getEntriesAndTags()
-    this.state = {
-      selectedEntry: currentEntry
-    }
   }
 
   // TODO: make this better: create helper method to filter by tag
@@ -80,7 +46,7 @@ class JournalPage extends Component {
   }
 
   sortByDate(props) {
-    props.journal.entries.sort(function(a,b) {
+    props.journal.entries.sort((a,b) => {
       return new Date(a.date) - new Date(b.date);
     })
 
@@ -90,14 +56,14 @@ class JournalPage extends Component {
   renderNewerEntry() {
     var entryIndex = this.getEntryIndex();
 
-    var entriesArrayLength = this.props.journal.entries.length;
+    var entryCount = this.props.journal.entries.length;
 
-    if (entryIndex < entriesArrayLength - 1) {
-      var tagArray = this.getEntryTags(entryIndex+1);
+    if (entryIndex < entryCount - 1) {
+      var entryTagArray = this.getEntryTags(entryIndex+1);
 
       var entriesAndTags = {
         entry: this.props.journal.entries[entryIndex+1],
-        tags: tagArray
+        tags: entryTagArray
       };
 
       this.setState({ selectedEntry: entriesAndTags})
@@ -108,11 +74,11 @@ class JournalPage extends Component {
     var entryIndex = this.getEntryIndex();
 
     if (entryIndex > 0) {
-      var tagArray = this.getEntryTags(entryIndex-1);
+      var entryTagArray = this.getEntryTags(entryIndex-1);
 
       var entriesAndTags = {
         entry: this.props.journal.entries[entryIndex-1],
-        tags: tagArray
+        tags: entryTagArray
       };
 
       this.setState({ selectedEntry: entriesAndTags})
@@ -137,7 +103,7 @@ class JournalPage extends Component {
     this.props.journal.tags.forEach((tag1) => {
       this.props.journal.entries[entryIndex].tags.forEach((tag2) => {
         if(tag1.id === tag2) {
-          tagArray.push(tag1)
+          tagArray.push(tag1);
         }
       })
     });
@@ -145,41 +111,14 @@ class JournalPage extends Component {
     return tagArray;
   }
 
-  logout() {
-    var USER_ID = localStorage.getItem('userId');
-    localStorage.setItem('userId', JSON.stringify(0));
-    if(localStorage.getItem('userId') == 0) {
-      alert("successfully logged out")
-      location.href = "http://localhost:8080/login";
-    }
-  }
-
   render() {
     // TODO: Make this UX better.
     if (!this.props.journal) {
       return(
-        <div id="journal-page-container">
-          <Sidebar
-            actions={this.props.actions}
-            entries={Entries.entries}
-            tags={Entries.tags}
-            props={this.props}
-            onEntryClick={this.handleEntrySelect}
-          />
-          <EntryView
-            currentEntry={this.state.selectedEntry}
-            entries={Entries.entries}
-            tags={Entries.tags}
-            setActiveEntry={this.setActiveEntry}
-            onDelete={this.props.actions.deleteEntry}
-            onEdit={this.props.actions.updateEntry}
-          />
-        </div>
-      );
-    }
+        <h1>Loading...</h1>
+    )}
     return(
       <div id="journal-page-container">
-      <button onClick={this.logout}> logout </button>
         <Sidebar
           actions={this.props.actions}
           entries={this.props.journal.entries}

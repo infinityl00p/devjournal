@@ -1,25 +1,22 @@
 import React, { Component } from 'react';
+import MarkdownPreview from './MarkdownPreview';
 
-export default class Modal extends Component {
+export default class CreateEntryModal extends Component {
   constructor(props) {
     super(props);
 
     this.handleEntryChange = this.handleEntryChange.bind(this);
-    //this.handleTagsChange = this.handleTagsChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-  //  this.tagsToString = this.tagsToString.bind(this);
-    //this.splitTags = this.splitTags.bind(this);
+    this.handleChange = this.handleChange.bind(this);
 
     this.state = {
-      entryText: this.props.entryText
+      entryText: ""
       //tags: this.tagsToString(this.props.tags)
     };
   }
 
-  //TODO: update tags on submit
   handleSubmit(e) {
     e.preventDefault();
-    //var entryTags = this.splitTags(this.state.tags);
     this.props.onConfirm(e, this.state.entryText);
   }
 
@@ -27,6 +24,13 @@ export default class Modal extends Component {
     this.setState({
       entryText: e.target.value
     });
+  }
+
+  handleChange(e) {
+    var entryRef = this.refs.entry;
+    this.setState({
+      entryText: entryRef.value
+    })
   }
 
   render() {
@@ -37,8 +41,10 @@ export default class Modal extends Component {
             <div className="modal-body">
               <form onSubmit={this.handleSubmit}>
                 <div className="form-group">
-                  <label className="edit-entry-header">Edit Entry: </label>
+                  <label className="edit-entry-header">Add a new entry: </label>
                   <textarea rows="15" onChange={this.handleEntryChange} value={this.state.entryText} className="form-control entry-textarea"></textarea>
+                  <input className="form-control tags-input" placeholder="#enter #tags #separated #byspace" ref="tags"/>
+                  <MarkdownPreview entryText={this.state.entryText} />
                 </div>
                 <button type="button" onClick={this.props.onCancel} className="btn btn-default" data-dismiss="modal">Close</button>
                 <button type="submit" className="btn btn-default" data-dismiss="modal">Save and Close</button>

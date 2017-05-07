@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import CreateEntryModal from './CreateEntryModal';
 
 export default class EntryForm extends Component {
   constructor(props) {
     super(props);
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.createModal = this.createModal.bind(this);
     this.createEntryAndTags = this.createEntryAndTags.bind(this);
     this.getNewAndExistingTags = this.getNewAndExistingTags.bind(this);
     this.splitTags = this.splitTags.bind(this);
     this.todaysDate = this.todaysDate.bind(this);
+
+    this.createModal();
   }
 
   handleSubmit(e) {
@@ -33,7 +38,44 @@ export default class EntryForm extends Component {
     tagsRef.value = "";
   }
 
-  createEntryAndTags(newEntryAndTags){
+  createModal() {
+    var container = document.body.querySelector('#add-edit-modal');
+    if (container === null) {
+      container = document.createElement('div');
+      container.id = 'add-edit-modal';
+      document.body.appendChild(container);
+    }
+
+    var onCancel = (e) => {
+      e.stopPropagation();
+      ReactDOM.unmountComponentAtNode(container);
+    };
+
+    var onConfirm = (e, updatedEntryText) => {
+      ReactDOM.unmountComponentAtNode(container);
+      this.setState({
+        entryText: updatedEntryText
+      });
+
+      var editedData = {
+        id: this.props.id,
+        date: this.props.date,
+        entryText: updatedEntryText,
+      }
+    };
+
+    ReactDOM.render(
+      <CreateEntryModal
+        onCancel={onCancel}
+        onConfirm={onConfirm}
+        entryText={this.props.entryText}
+        tags={this.props.tags}
+      />,
+      container
+    );
+  }
+
+  createEntryAndTags(newEntryAndTags) {
     var newAndExistingTags;
 
     var existingTagsMap = _.reduce(this.props.tags, function (existingTagsMap, tag) {
@@ -86,12 +128,6 @@ export default class EntryForm extends Component {
   render(){
     return(
       <div className="entry-form-container">
-        <form id="entry-form" className="input-group" onSubmit={this.handleSubmit}>
-          <h2 className="entry-form-title">Add a new entry:</h2>
-          <textarea rows="6" className="form-control entry-textarea" placeholder="" ref="entry"></textarea>
-          <input className="form-control tags-input" placeholder="#enter #tags #separated #byspace" ref="tags"/>
-          <button type="submit" className="btn btn-info pull-right" >Save</button>
-        </form>
         <p className="markdown-text">Note - DevJournal supports <a href="https://guides.github.com/features/mastering-markdown/">Markdown</a>:</p>
         <div className="markdown well">
           # This is an h1 tag<br/>
@@ -101,7 +137,7 @@ export default class EntryForm extends Component {
           * List Item 1<br/>
           * List Item 2<br/>
           > Block quote<br/>
-          ``` code inside here ````<br/>
+          ``` code inside here ```<br/>
         </div>
       </div>
     );

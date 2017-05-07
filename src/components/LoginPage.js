@@ -3,6 +3,9 @@ import * as actionCreators from '../actions/index';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+const CREATE_ACCOUNT_URL = "http://localhost:8080/createaccount";
+const TODO_URL = "http://localhost:8080/todo";
+
 // TODO: add logged in to global state; add logic to redirect here if not logged in.
 class LoginPage extends Component {
   constructor(props) {
@@ -12,7 +15,6 @@ class LoginPage extends Component {
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.loadCreateAccountPage = this.loadCreateAccountPage.bind(this);
-    this.loadToDoPage = this.loadToDoPage.bind(this);
 
     this.state = {
         email: '',
@@ -23,11 +25,8 @@ class LoginPage extends Component {
   componentWillReceiveProps(nextProps) {
     if(nextProps.journal.entries.user) {
       if(nextProps.journal.entries.user.loggedIn) {
-        //good change for a redirect and store the cookies
-      /*  var unsignedToken = base64url(header) + "." + base64url(data)
-        JWT = unsignedToken + "." + base64url(HMAC256(unsignedToken, secret))*/
         alert("logged in")
-        this.loadToDoPage();
+        location.href = TODO_URL;
       } else (
         alert("wrong username or password")
       )
@@ -44,14 +43,6 @@ class LoginPage extends Component {
 
     // TODO: redirect only on login, catch login errors and display message
     this.props.actions.loginUser(user);
-    /*
-      shielded-basin-84367::DATABASE=> SELECT * FROM users;
-      id |         email         | password
-      ----+-----------------------+----------
-      1 | sim@simbrar.com       | password
-      2 | jamesgggill@gmail.com | password
-      3 | james@devjournal.co   | jgjg!234
-    */
   }
 
   handleEmailChange(e) {
@@ -63,11 +54,7 @@ class LoginPage extends Component {
   }
 
   loadCreateAccountPage() {
-    location.href = "http://localhost:8080/createaccount";
-  }
-
-  loadToDoPage() {
-    location.href = "http://localhost:8080/todo";
+    location.href = CREATE_ACCOUNT_URL;
   }
 
   render() {
@@ -81,11 +68,11 @@ class LoginPage extends Component {
           <input value={this.state.password} onChange={this.handlePasswordChange} id="password" type="password" className="form-control" placeholder="*******" required />
           <div className="checkbox">
             <label className="remember-me">
-              <input type="checkbox" value="remember-me" /> Remember me
+              <input type="checkbox" value="remember-me" />Remember me
             </label>
           </div>
           <button className="btn btn-lg btn-info btn-block" type="submit">Sign in</button>
-          <button className="btn btn-info btn-block btn-sm" onClick={this.loadCreateAccountPage}> Create an Account </button>
+          <button className="btn btn-info btn-block btn-sm" onClick={this.loadCreateAccountPage}>Create an Account</button>
         </form>
       </div>
     );

@@ -80,7 +80,7 @@ html, body {
   color: darkslategray;
 }
 
-.entry-form-container .markdown {
+.entry-form-container .markdown, #markdown-preview .markdown {
   margin: 5px 15px 0 15px;
 }
 
@@ -153,22 +153,29 @@ html, body {
   overflow-y: scroll;
 }
 
-#entry-view-list .entry-view-item {
+#entry-view-list .entry .date-and-text {
   padding: 15px 0 15px 0;
   border-bottom: 3px solid #f7f7f7;
   overflow-y: hidden;
   height: 30vh;
 }
 
+#entry-view-list .fadeout {
+    position: relative;
+    bottom: 4em;
+    height: 4em;
+    background: -webkit-linear-gradient(rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+}
+
 #entry-view-list .entry-view-item:hover {
   padding-right: 5px;
-  background-color: rgba(211,211,211, 0.5);
   cursor: pointer;
 }
 
 #entry-view-list .tag-container {
   margin: auto;
-  text-align: center;
+  margin-top: -40px;
+  text-align: left;
 }
 
 #entry-view .entry-view-item {
@@ -948,7 +955,7 @@ input[type="checkbox"]:focus{
   padding-top: 20px;
 }
 
-/* LoginPage styles */
+/* LoginPage and CreateAccountPage styles */
 #login-page, #create-account-page {
   height: 100vh;
   background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);

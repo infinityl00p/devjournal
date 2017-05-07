@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Tag from './Tag';
-import Modal from './Modal';
+import EditModal from './EditModal';
 
 import axios from 'axios';
 import marked from 'marked';
@@ -61,9 +61,6 @@ export default class EntryViewItem extends Component {
   }
 
   handleEdit() {
-    // Render edit Modal (or do it in the view)
-    // var editedData = { 'something' };
-    // this.props.onEdit(editedData);
     var container = document.body.querySelector('#add-edit-modal');
     if (container === null) {
       container = document.createElement('div');
@@ -98,7 +95,7 @@ export default class EntryViewItem extends Component {
     };
 
     ReactDOM.render(
-      <Modal
+      <EditModal
         onCancel={onCancel}
         onConfirm={onConfirm}
         entryText={this.props.entryText}
@@ -145,11 +142,11 @@ export default class EntryViewItem extends Component {
     if(this.props.singleView) {
       return(
         <div className="action-bar">
-          <span className="glyphicon glyphicon-arrow-left" title="Left" onClick={this.props.handleLeftClick}/>
+          <span className="glyphicon glyphicon-arrow-left" title="left" onClick={this.props.handleLeftClick}/>
           <span className="glyphicon glyphicon-edit" title="edit" onClick={this.handleEdit} />
           <span className="glyphicon glyphicon-share" title="share" onClick={this.handleShare} />
           <span className="glyphicon glyphicon-trash" title="delete" onClick={this.handleDelete} />
-          <span className="glyphicon glyphicon-arrow-right" title="Right" onClick={this.props.handleRightClick}/>
+          <span className="glyphicon glyphicon-arrow-right" title="right" onClick={this.props.handleRightClick}/>
         </div>
       )
     }
@@ -182,13 +179,16 @@ export default class EntryViewItem extends Component {
     return(
       <div className="entry-view-item" onClick={this.handleClick}>
         <div className="entry">
-          <h4 className="date-text">{this.formatDate(this.props.date)}</h4>
-          {this.renderGlyphicons()}
+          <div className="date-and-text">
+            <h4 className="date-text">{this.formatDate(this.props.date)}</h4>
+            {this.renderGlyphicons()}
+            <div className="shared-link-container">{this.renderSharedLinkInput()}</div>
+            <div className="entry-text" dangerouslySetInnerHTML={{__html: entryText}} />
+          </div>
+          <div className="fadeout"></div>
           <div className="tag-container">
             { this.state.tags.map((tag) => <Tag key={tag.id} data={tag} />) }
           </div>
-          <div className="shared-link-container">{this.renderSharedLinkInput()}</div>
-          <div className="entry-text" dangerouslySetInnerHTML={{__html: entryText}} />
         </div>
       </div>
     );

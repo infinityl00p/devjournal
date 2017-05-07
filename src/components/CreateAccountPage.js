@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import * as actionCreators from '../actions/index';
+import { EmailSignUpForm } from 'redux-auth/bootstrap-theme'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+
+const LOGIN_PAGE_URL = "http://localhost:8080/login";
 
 class CreateAccountPage extends Component {
   constructor() {
@@ -26,12 +29,12 @@ class CreateAccountPage extends Component {
       var user = {
         email: this.state.email,
         password: this.state.password,
-      }
+      };
 
       this.props.actions.createUser(user);
-      // TODO: error handling
+      // TODO: error handling, before login
       alert("Account Successfully Created, Redirecting to login...");
-      location.href = "http://localhost:8080/login";
+      location.href = LOGIN_PAGE_URL;
     } else {
       alert("Passwords do not match");
     }
@@ -50,7 +53,6 @@ class CreateAccountPage extends Component {
   }
 
   render() {
-    //TODO: Email, Password, confirm password
     return(
       <div id="create-account-page" className="col-md-12 col-sm-12 col-xs-12">
         <form id="create-account-form" className="form-signin col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-4 col-xs-offset-4" onSubmit={this.handleSubmit} >

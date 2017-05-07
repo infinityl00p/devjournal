@@ -13,7 +13,7 @@ export default class Sidebar extends Component {
     this.renderActionComponent = this.renderActionComponent.bind(this);
 
     this.state = {
-      activeComponent: 'EntryForm'
+      activeComponent: 'EntryList'
     }
   }
 

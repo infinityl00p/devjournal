@@ -1,5 +1,17 @@
 import * as actionCreators from '../actions/index';
 
+const defaultEntry = [{
+  date: "2017-02-22T04:50:46.729656Z",
+  entryText:"Default entry, create an entry to remove this text",
+  id: 1,
+  tags: [1]
+}];
+
+const defaultTags = [{
+    id: 1,
+    tagText: '#defaultEntry'
+}]
+
 const entries = (state = null, action) => {
     switch(action.type) {
         case actionCreators.CREATE_ENTRY_AND_TAGS:
@@ -25,6 +37,12 @@ const entries = (state = null, action) => {
             });
         case actionCreators.GET_ENTRIES_AND_TAGS:
             var response = action.payload.data.data;
+            if (response.entries.length === 0) {
+              return {
+                entries: defaultEntry,
+                tags: defaultTags
+              }
+            }
             return {
                 entries: action.payload.data.data.entries,
                 tags: action.payload.data.data.tags
