@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
 export default class EditModal extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.handleEntryChange = this.handleEntryChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);

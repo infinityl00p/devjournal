@@ -26,6 +26,7 @@ class LoginPage extends Component {
     if(nextProps.journal.entries.user) {
       if(nextProps.journal.entries.user.loggedIn) {
         alert("logged in");
+        //TODO: Use react router here
         location.href = TODO_URL;
       } else {
         alert("wrong username or password");

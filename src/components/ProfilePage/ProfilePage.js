@@ -26,9 +26,9 @@ class ProfilePage extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    nextProps = this.sortByDate(nextProps);
+    var sortedProps = this.sortByDate(nextProps);
     this.setState({
-      data: nextProps.journal
+      data: sortedProps.journal
     });
   }
 

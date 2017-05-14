@@ -28,7 +28,7 @@ class CreateAccountPage extends Component {
     if (this.state.password === this.state.passwordConfirmation) {
       var user = {
         email: this.state.email,
-        password: this.state.password,
+        password: this.state.password
       };
 
       this.props.actions.createUser(user);

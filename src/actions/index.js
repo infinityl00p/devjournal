@@ -63,7 +63,7 @@ export function deleteEntry(entryId) {
     };
 }
 
-export function createTag(tag) {
+/*export function createTag(tag) {
     const request = axios.post(
         ROOT_URL + '/tags',
         tag
@@ -95,7 +95,7 @@ export function deleteTag(tagId) {
         type: DELETE_TAG,
         payload: request
     };
-}
+}*/
 
 export function createUser(user) {
     const request = axios.post(

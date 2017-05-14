@@ -52,7 +52,7 @@ const entries = (state = null, action) => {
             //return entries with updated entry
             var min = 0;
             var max = state.entries.length - 1;
-
+            //TODO: look at this again, do i need it???
             while (min <= max) {
               var guess = Math.floor((max + min) / 2);
               if (state.entries[guess].id === response.id) {
@@ -80,6 +80,7 @@ const entries = (state = null, action) => {
           };
           return Object.assign({}, state, updatedState);
         case actionCreators.CREATE_USER:
+          return state;
         case actionCreators.LOGIN_USER:
             var response = action.payload.data;
             if (response) {
@@ -102,6 +103,7 @@ const entries = (state = null, action) => {
                   }
               });
             }
+            return state;
     }
     return state;
 }

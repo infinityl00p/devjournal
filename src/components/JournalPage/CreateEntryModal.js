@@ -3,8 +3,8 @@ import MarkdownPreview from './MarkdownPreview';
 import marked from 'marked';
 
 export default class CreateEntryModal extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.handleEntryChange = this.handleEntryChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -46,7 +46,7 @@ export default class CreateEntryModal extends Component {
 
     var existingTagsMap = _.reduce(this.props.tags, function (existingTagsMap, tag) {
       existingTagsMap[tag.tagText] = tag.id;
-      return existingTagsMap;
+      return existingTagsMap
     }, {});
 
     if (newEntryAndTags.tags !== null && newEntryAndTags.tags.length > 0) {

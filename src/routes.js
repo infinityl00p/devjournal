@@ -9,7 +9,7 @@ import CreateAccountPage from './components/CreateAccountPage';
 
 function loggedIn() {
   var loggedIn = localStorage.getItem('userId');
-
+  //Comparison is string number
   if (loggedIn && loggedIn != 0) {
     return true;
   } else {
@@ -19,6 +19,7 @@ function loggedIn() {
 
 function requireAuth(nextState, replace) {
   if (loggedIn() && nextState.location.pathname === "/login") {
+    //TODO: use bootstrap flash or bootstrap notice
     alert("already logged in, redirecting...");
     replace({
       pathname: '/todo'

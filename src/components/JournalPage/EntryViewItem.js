@@ -39,7 +39,7 @@ export default class EntryViewItem extends Component {
 
   formatDate(date) {
     var splitDate = date.substring(0, date.indexOf('T')).split('-');
-    var reformattedDate = new Date(splitDate[0], splitDate[1]-1, splitDate[2])
+    var reformattedDate = new Date(splitDate[0], splitDate[1]-1, splitDate[2]);
     var fullDate = new Date(reformattedDate).toDateString();
     return fullDate;
   }
@@ -155,7 +155,7 @@ export default class EntryViewItem extends Component {
         <span className="glyphicon glyphicon-share" title="share" onClick={this.handleShare} />
         <span className="glyphicon glyphicon-trash" title="delete" onClick={this.handleDelete} />
       </div>
-    )
+    );
   }
 
   render() {
