@@ -19,7 +19,7 @@ class CreateAccountPage extends Component {
       email: '',
       password: '',
       passwordConfirmation: ''
-    }
+    };
   }
 
   handleSubmit(e) {
@@ -55,14 +55,37 @@ class CreateAccountPage extends Component {
   render() {
     return(
       <div id="create-account-page" className="col-md-12 col-sm-12 col-xs-12">
-        <form id="create-account-form" className="form-signin col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-4 col-xs-offset-4" onSubmit={this.handleSubmit} >
+        <form
+          id="create-account-form"
+          className="form-signin col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-4 col-xs-offset-4"
+          onSubmit={this.handleSubmit}
+        >
           <h1 className="devjournal-title">Create an Account</h1>
           <label className="entry-field" htmlFor="inputEmail">Email address</label>
-          <input value={this.state.email} onChange={this.handleEmailChange} id="email" type="email" className="form-control login-input" placeholder="eg. you@devjournal.co" required autofocus />
+          <input value={this.state.email}
+            onChange={this.handleEmailChange}
+            id="email"
+            type="email"
+            className="form-control login-input"
+            placeholder="eg. you@devjournal.co" required autofocus
+          />
           <label className="entry-field" htmlFor="inputPassword">Password</label>
-          <input value={this.state.password} onChange={this.handlePasswordChange} id="password" type="password" className="form-control" placeholder="*******" required />
+          <input value={this.state.password}
+            onChange={this.handlePasswordChange}
+            id="password"
+            type="password"
+            className="form-control"
+            placeholder="*******" required
+          />
           <label className="entry-field" htmlFor="inputPassword">Confirm Password</label>
-          <input value={this.state.passwordConfirmation} onChange={this.handlePasswordConfirmationChange} id="password" type="password" className="form-control" placeholder="*******" required />
+          <input
+            value={this.state.passwordConfirmation}
+            onChange={this.handlePasswordConfirmationChange}
+            id="password"
+            type="password"
+            className="form-control"
+            placeholder="*******" required
+          />
           **Note: Please save email and password for your records, a confirmation email will not be sent
           <button className="btn btn-lg btn-info btn-block" type="submit">Submit</button>
         </form>
@@ -74,7 +97,7 @@ class CreateAccountPage extends Component {
 function mapStateToProps(state) {
   return {
     journal: state
-  }
+  };
 }
 
 function mapDispatchToProps(dispatch) {

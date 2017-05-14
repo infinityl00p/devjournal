@@ -94,7 +94,7 @@ export default class ProfileSummaryView extends Component {
   currentStreak() {
     var streakCount = 0;
     var previousDate = null;
-    var dates = [...this.props.dates]
+    var dates = [...this.props.dates];
     var dates = this.props.dates.reverse();
     var yesterday = new Date();
     yesterday.setDate(yesterday.getDate()-1);

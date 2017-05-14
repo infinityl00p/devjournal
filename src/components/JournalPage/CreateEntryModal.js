@@ -32,7 +32,7 @@ export default class CreateEntryModal extends Component {
       entry,
       tags,
       date
-    }
+    };
 
     this.createEntryAndTags(newEntryAndTags);
     this.props.onConfirm();

@@ -80,6 +80,7 @@ html, body {
   color: darkslategray;
 }
 
+/* Markdown Preview styles */
 #markdown-preview {
   max-height: 250px;
   overflow-y: scroll;

@@ -33,9 +33,9 @@ class ProfilePage extends Component {
   }
 
   sortByDate(props) {
-    props.journal.entries.sort(function(a,b) {
+    props.journal.entries.sort((a,b) => {
       return new Date(a.date) - new Date(b.date);
-    })
+    });
 
     return props;
   }
@@ -68,7 +68,7 @@ class ProfilePage extends Component {
 }
 
 function mapStateToProps(state) {
-  return { journal: state.entries }
+  return { journal: state.entries };
 }
 
 function mapDispatchToProps(dispatch) {

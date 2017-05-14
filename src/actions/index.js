@@ -33,7 +33,7 @@ export function createEntryAndTags(entry) {
 export function getEntriesAndTags() {
     const request = axios.get(
         ROOT_URL + '/entries/' + USER_ID
-    )
+    );
 
     return {
         type: GET_ENTRIES_AND_TAGS,

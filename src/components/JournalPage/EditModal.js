@@ -5,21 +5,15 @@ export default class EditModal extends Component {
     super(props);
 
     this.handleEntryChange = this.handleEntryChange.bind(this);
-    //this.handleTagsChange = this.handleTagsChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-  //  this.tagsToString = this.tagsToString.bind(this);
-    //this.splitTags = this.splitTags.bind(this);
 
     this.state = {
       entryText: this.props.entryText
-      //tags: this.tagsToString(this.props.tags)
     };
   }
 
-  //TODO: update tags on submit
   handleSubmit(e) {
     e.preventDefault();
-    //var entryTags = this.splitTags(this.state.tags);
     this.props.onConfirm(e, this.state.entryText);
   }
 

@@ -5,6 +5,7 @@ export default class MarkdownPreview extends Component {
   constructor(props) {
     super(props);
   }
+
   render() {
     const entryText = marked(this.props.entryText);
     return(

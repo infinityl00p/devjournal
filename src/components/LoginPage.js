@@ -19,17 +19,17 @@ class LoginPage extends Component {
     this.state = {
         email: '',
         password: ''
-    }
+    };
   }
 
   componentWillReceiveProps(nextProps) {
     if(nextProps.journal.entries.user) {
       if(nextProps.journal.entries.user.loggedIn) {
-        alert("logged in")
+        alert("logged in");
         location.href = TODO_URL;
-      } else (
-        alert("wrong username or password")
-      )
+      } else {
+        alert("wrong username or password");
+      }
     }
   }
 
@@ -39,7 +39,7 @@ class LoginPage extends Component {
     var user = {
       email: this.state.email,
       password: this.state.password
-    }
+    };
 
     // TODO: redirect only on login, catch login errors and display message
     this.props.actions.loginUser(user);
@@ -82,7 +82,7 @@ class LoginPage extends Component {
 function mapStateToProps(state) {
   return {
     journal: state
-  }
+  };
 }
 
 function mapDispatchToProps(dispatch) {

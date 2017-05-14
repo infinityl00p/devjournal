@@ -82,14 +82,14 @@ export default class EntryViewItem extends Component {
       var tagIds = [];
       tagIds = this.props.tags.map((tagObject) => {
         return tagObject.id
-      })
+      });
 
       var editedData = {
         id: this.props.id,
         date: this.props.date,
         entryText: updatedEntryText,
         tags: tagIds
-      }
+      };
 
       this.props.onEdit(this.props.id, editedData)
     };
@@ -120,7 +120,6 @@ export default class EntryViewItem extends Component {
     }
   }
 
-  // TODO: maybe render this as a modal or some other thing.
   renderSharedLinkInput() {
     if (this.state.showLink) {
       return(

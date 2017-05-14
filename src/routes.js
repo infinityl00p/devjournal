@@ -22,12 +22,12 @@ function requireAuth(nextState, replace) {
     alert("already logged in, redirecting...");
     replace({
       pathname: '/todo'
-    })
+    });
   }
   else if (!loggedIn() && nextState.location.pathname != "/login") {
     replace({
       pathname: '/login'
-    })
+    });
   }
 }
 

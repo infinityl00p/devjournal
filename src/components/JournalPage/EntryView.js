@@ -18,7 +18,7 @@ export default class EntryView extends Component {
         entryText: this.props.currentEntry.entry.entryText,
         tags: this.props.currentEntry.tags
       }
-    }
+    };
   }
 
   componentWillReceiveProps(nextProps) {
@@ -29,7 +29,7 @@ export default class EntryView extends Component {
         entryText: nextProps.currentEntry.entry.entryText,
         tags: nextProps.currentEntry.tags
       }
-    })
+    });
   }
 
   handleViewStateChange() {
