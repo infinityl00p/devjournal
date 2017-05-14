@@ -80,8 +80,13 @@ html, body {
   color: darkslategray;
 }
 
+#markdown-preview {
+  max-height: 250px;
+  overflow-y: scroll;
+}
+
 .entry-form-container .markdown, #markdown-preview .markdown {
-  margin: 5px 15px 0 15px;
+  margin: 15px 0 15px;
 }
 
 /* EntryList styles */

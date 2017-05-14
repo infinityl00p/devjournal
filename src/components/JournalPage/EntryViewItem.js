@@ -163,7 +163,7 @@ export default class EntryViewItem extends Component {
     const entryText = marked(this.state.entryText);
     if(this.props.singleView) {
       return(
-        <div className="entry-view-item" onClick={this.handleClick}>
+        <div className="entry-view-item">
           <div className="entry">
             <h4 className="date-text">{this.formatDate(this.props.date)}</h4>
             {this.renderGlyphicons()}
