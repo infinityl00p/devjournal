@@ -6,28 +6,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import _ from 'lodash';
 
-var tempEntry = {
-  entry: {
-    date: "2017-02-22T04:50:46.729656Z",
-    entryText:"Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
-    id: 28,
-    tags: [29, 31, 34]
-  },
-  tags: [
-    {
-      id: 29,
-      tagText: '#first'
-    },
-    {
-      id: 31,
-      tagText: '#second'
-    },
-    {
-      id: 34,
-      tagText: '#third'
-    }
-  ]
-};
+const LOGIN_URL = "http://localhost:8080/login";
 
 class JournalPage extends Component {
   constructor(props) {
@@ -36,19 +15,21 @@ class JournalPage extends Component {
 
     this.handleEntrySelect = this.handleEntrySelect.bind(this);
     this.setActiveEntry = this.setActiveEntry.bind(this);
-    // TODO: update this to set state to:
-    // this.props.journal.entries.slice(-1)[0] after successful getEntriesAndTags()
-    this.state = {
-      selectedEntry: tempEntry
-    }
+    this.sortByDate = this.sortByDate.bind(this);
+    this.renderNewerEntry = this.renderNewerEntry.bind(this);
+    this.renderOlderEntry = this.renderOlderEntry.bind(this);
+    this.getEntryIndex = this.getEntryIndex.bind(this);
+    this.getEntryTags = this.getEntryTags.bind(this);
   }
 
   // TODO: make this better: create helper method to filter by tag
   componentWillReceiveProps(nextProps) {
+    nextProps = this.sortByDate(nextProps);
     var firstEntry = nextProps.journal.entries.slice(-1).pop();
     var firstEntryTags = nextProps.journal.tags.filter(function (tag) {
       return _.contains(firstEntry.tags, tag.id)
     });
+
     var firstEntry = {
       entry: firstEntry,
       tags: firstEntryTags
@@ -64,13 +45,78 @@ class JournalPage extends Component {
     this.setState({ selectedEntry: entryAndTags });
   }
 
+  sortByDate(props) {
+    props.journal.entries.sort((a,b) => {
+      return new Date(a.date) - new Date(b.date);
+    })
+
+    return props;
+  }
+
+  renderNewerEntry() {
+    var entryIndex = this.getEntryIndex();
+
+    var entryCount = this.props.journal.entries.length;
+
+    if (entryIndex < entryCount - 1) {
+      var entryTagArray = this.getEntryTags(entryIndex+1);
+
+      var entriesAndTags = {
+        entry: this.props.journal.entries[entryIndex+1],
+        tags: entryTagArray
+      };
+
+      this.setState({ selectedEntry: entriesAndTags})
+    }
+  }
+
+  renderOlderEntry() {
+    var entryIndex = this.getEntryIndex();
+
+    if (entryIndex > 0) {
+      var entryTagArray = this.getEntryTags(entryIndex-1);
+
+      var entriesAndTags = {
+        entry: this.props.journal.entries[entryIndex-1],
+        tags: entryTagArray
+      };
+
+      this.setState({ selectedEntry: entriesAndTags})
+    }
+  }
+
+  getEntryIndex() {
+    var entryIndex;
+
+    this.props.journal.entries.forEach((entry, index) => {
+        if (entry === this.state.selectedEntry.entry) {
+          entryIndex = index;
+        }
+    });
+
+    return entryIndex;
+  }
+
+  getEntryTags(entryIndex) {
+    var tagArray = [];
+
+    this.props.journal.tags.forEach((tag1) => {
+      this.props.journal.entries[entryIndex].tags.forEach((tag2) => {
+        if(tag1.id === tag2) {
+          tagArray.push(tag1);
+        }
+      })
+    });
+
+    return tagArray;
+  }
+
   render() {
     // TODO: Make this UX better.
     if (!this.props.journal) {
       return(
-        <div><h3>Loading...</h3></div>
-      );
-    }
+        <h1>Loading...</h1>
+    )}
     return(
       <div id="journal-page-container">
         <Sidebar
@@ -86,6 +132,9 @@ class JournalPage extends Component {
           tags={this.props.journal.tags}
           setActiveEntry={this.setActiveEntry}
           onDelete={this.props.actions.deleteEntry}
+          onEdit={this.props.actions.updateEntry}
+          renderNewerEntry={this.renderNewerEntry}
+          renderOlderEntry={this.renderOlderEntry}
         />
       </div>
     );

@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-// import { storeData } from './entries'
-
 import JournalPage from './JournalPage/JournalPage';
 
 export default class App extends Component {
