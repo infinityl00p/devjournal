@@ -18,7 +18,6 @@ class ProfilePage extends Component {
     super(props);
 
     this.props.actions.getEntriesAndTags();
-    this.sortByDate = this.sortByDate.bind(this);
 
     this.state = {
       data: props
@@ -26,24 +25,15 @@ class ProfilePage extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    var sortedProps = this.sortByDate(nextProps);
     this.setState({
-      data: sortedProps.journal
+      data: nextProps.journal
     });
-  }
-
-  sortByDate(props) {
-    props.journal.entries.sort((a,b) => {
-      return new Date(a.date) - new Date(b.date);
-    });
-
-    return props;
   }
 
   render() {
     if (!this.props.journal) {
       return(
-        <div><h3>Create a Post to Unlock this Page</h3></div>
+        <div><h3>Loading...</h3></div>
       );
     }
     return(
@@ -67,8 +57,9 @@ class ProfilePage extends Component {
   }
 }
 
+
 function mapStateToProps(state) {
-  return { journal: state.entries };
+  return { journal: state.entries }
 }
 
 function mapDispatchToProps(dispatch) {

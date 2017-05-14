@@ -56,7 +56,7 @@ html, body {
 }
 
 #entry-form .entry-form-title {
-  font-size: 25px;
+  font-size: 20px;
   font-weight: 300;
 }
 
@@ -80,14 +80,8 @@ html, body {
   color: darkslategray;
 }
 
-/* Markdown Preview styles */
-#markdown-preview {
-  max-height: 250px;
-  overflow-y: scroll;
-}
-
-.entry-form-container .markdown, #markdown-preview .markdown {
-  margin: 15px 0 15px;
+.entry-form-container .markdown {
+  margin: 5px 15px 0 15px;
 }
 
 /* EntryList styles */
@@ -150,8 +144,6 @@ html, body {
 #entry-view {
   padding-left: 50px;
   margin-top: 30px;
-  height: 100vh;
-  overflow-y: scroll;
 }
 
 #entry-view-list {
@@ -159,29 +151,16 @@ html, body {
   overflow-y: scroll;
 }
 
-#entry-view-list .entry .date-and-text {
+#entry-view-list .entry-view-item {
   padding: 15px 0 15px 0;
   border-bottom: 3px solid #f7f7f7;
-  overflow-y: hidden;
-  height: 30vh;
-}
-
-#entry-view-list .fadeout {
-    position: relative;
-    bottom: 4em;
-    height: 4em;
-    background: -webkit-linear-gradient(rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
 }
 
 #entry-view-list .entry-view-item:hover {
+  border-right: 6px solid #0EBFE9;
   padding-right: 5px;
+  background-color: rgba(211,211,211, 0.5);
   cursor: pointer;
-}
-
-#entry-view-list .tag-container {
-  margin: auto;
-  margin-top: -40px;
-  text-align: left;
 }
 
 #entry-view .entry-view-item {
@@ -231,7 +210,7 @@ html, body {
   font-size: 12pt;
 }
 
-.entry-view-selector #entry-view .tag-container {
+#entry-view .tag-container {
   margin-top: 30px;
 }
 
@@ -297,16 +276,6 @@ html, body {
   font-weight: bold;
   color: #0EBFE9;
 }
-
-/* Modal styles */
-#add-edit-modal .modal, #add-edit-modal .modal-open {
-  display: block;
-}
-
-#edit-modal .edit-entry-header {
-  font-size: 30px;
-}
-
 /* SharedEntry styles */
 #shared-entry-view {
   height: 100vh;
@@ -959,42 +928,4 @@ input[type="checkbox"]:focus{
   margin-left: auto;
   margin-right: auto;
   padding-top: 20px;
-}
-
-/* LoginPage and CreateAccountPage styles */
-#login-page, #create-account-page {
-  height: 100vh;
-  background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
-}
-
-#login-form, #create-account-form {
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-  padding: 30px;
-  background-color: rgba(119, 229, 255, 0.5);
-  box-shadow: 3px 3px 5px black;
-}
-
-#login-page .devjournal-title, #create-account-form .devjournal-title {
-  color: white;
-  font-family: "Arial Black";
-  text-align: center;
-  font-weight: bold;
-  font-size: 30px;
-  margin-bottom: 30px;
-}
-
-#login-page .login-input, #create-account-form .login-input {
-  margin-bottom: 20px;
-}
-
-#login-page .entry-field, #create-account-form .entry-field {
-  color: white;
-  font-weight: normal;
-}
-
-#login-page .remember-me {
-  color: white;
-  margin-bottom: 20px;
 }
