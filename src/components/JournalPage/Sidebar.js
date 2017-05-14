@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import ActionBar from './ActionBar';
 import EntryForm from './EntryForm';
 import EntryList from './EntryList';
 import EntrySearch from './EntrySearch';
 import EntryFilter from './EntryFilter';
+import CreateEntryModal from './CreateEntryModal';
+
 
 export default class Sidebar extends Component {
   constructor(props) {
@@ -11,15 +14,46 @@ export default class Sidebar extends Component {
 
     this.handleActionSelect = this.handleActionSelect.bind(this);
     this.renderActionComponent = this.renderActionComponent.bind(this);
+    this.createModal = this.createModal.bind(this);
 
     this.state = {
-      activeComponent: 'EntryForm'
+      activeComponent: 'EntryList'
     }
+  }
+
+  createModal() {
+    var container = document.body.querySelector('#add-edit-modal');
+    if (container === null) {
+      container = document.createElement('div');
+      container.id = 'add-edit-modal';
+      document.body.appendChild(container);
+    }
+
+    var onCancel = (e) => {
+      e.stopPropagation();
+      ReactDOM.unmountComponentAtNode(container);
+    };
+
+    var onConfirm = () => {
+      ReactDOM.unmountComponentAtNode(container);
+    };
+
+    ReactDOM.render(
+      <CreateEntryModal
+        onCancel={onCancel}
+        onConfirm={onConfirm}
+        entries={this.props.entries}
+        tags={this.props.tags}
+        handleCreate={this.props.actions.createEntryAndTags}
+      />,
+      container
+    );
   }
 
   handleActionSelect(actionType) {
     switch(actionType) {
       case 'create':
+        this.createModal();
         this.setState({ activeComponent: 'EntryForm' });
         return;
       case 'search':
@@ -39,11 +73,7 @@ export default class Sidebar extends Component {
     switch(ac) {
       case 'EntryForm':
         return(
-          <EntryForm
-            entries={this.props.entries}
-            tags={this.props.tags}
-            handleCreate={this.props.actions.createEntryAndTags}
-          />
+          <EntryForm />
         );
 
       case 'EntrySearch':

@@ -11,7 +11,7 @@ export default class ActionBar extends Component {
     this.handleListClick = this.handleListClick.bind(this);
 
     this.state = {
-      activeItem: [true, false, false, false]
+      activeItem: [false, false, false, true]
     }
   }
 
