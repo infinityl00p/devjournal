@@ -42,9 +42,11 @@ export default class ActionBar extends Component {
   }
 
   onInputChange(e) {
-    this.setState({ actionText: e.target.value });
-    // TODO: Change this from search to an actioner that parse commands from the string
-    this.onSearch(this.state.actionText);
+    var actionText = e.target.value;
+    this.setState({ actionText: actionText });
+
+    // TODO: Change this from search to an `actioner` that parse commands from the string
+    this.onSearch(actionText);
   }
 
   onSearch(searchTerm) {

@@ -59,16 +59,22 @@ class App extends Component {
   handleSearch(searchTerm, componentType) {
     switch(componentType) {
       case 'journal':
-        var searchEntries = this.props.journal.entries.filter(function (entry) {
+        var searchEntries = this.props.entries.entries.filter(function (entry) {
           return _.contains(entry.entryText.toLowerCase(), searchTerm.toLowerCase())
         });
 
-        this.setState({ entries: searchEntries });
+        var searchResults = {
+          entries: searchEntries,
+          tags: this.state.entries.tags
+        };
+
+        this.setState({ entries: searchResults });
         return;
       case 'todo':
-        // console.log(searchTerm);
         return;
       case 'profile':
+        return;
+      default:
         return;
     }
   }
