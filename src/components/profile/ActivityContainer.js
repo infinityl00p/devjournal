@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import marked from 'marked';
-import Entry from '../JournalPage/Entry';
+import Entry from '../journal/Entry';
 import PostHeatMap from './PostHeatMap';
 import _ from 'lodash';
 

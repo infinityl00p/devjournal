@@ -8,7 +8,7 @@ import JournalPage from './journal/JournalPage';
 import TodoList from './todo/TodoList';
 import ProfilePage from './profile/ProfilePage';
 
-const USER_ID = 2;
+const USER_ID = localStorage.getItem('userId');
 
 class App extends Component {
   constructor(props) {
