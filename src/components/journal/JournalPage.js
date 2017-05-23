@@ -7,7 +7,6 @@ export default class JournalPage extends Component {
   constructor(props) {
     super(props);
 
-    this.handleFilter = this.handleFilter.bind(this);
     this.setActiveEntry = this.setActiveEntry.bind(this);
 
     var firstEntry = this.props.entries.slice(-1).pop();
@@ -29,19 +28,6 @@ export default class JournalPage extends Component {
     this.setState({ selectedEntry: visibleEntry });
   }
 
-  handleFilter(filteredTagIds) {
-    if (filteredTagIds.length > 0) {
-      var filteredEntries = this.props.entries.filter(function (entry) {
-        var intersectedTags = _.intersection(entry.tags, filteredTagIds);
-        return intersectedTags > 0;
-      });
-
-      this.setState({ filteredEntries: filteredEntries });
-    } else {
-      this.setState({ filteredEntries: this.props.entries });
-    }
-  }
-
   render() {
     return(
       <div id="journal-page-container">
@@ -50,7 +36,7 @@ export default class JournalPage extends Component {
           entries={this.props.entries}
           tags={this.props.tags}
           props={this.props}
-          onFilter={this.handleFilter}
+          onFilter={this.props.onFilter}
         />
         <EntryView
           currentEntry={this.state.selectedEntry}
