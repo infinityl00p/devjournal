@@ -382,13 +382,17 @@ html, body {
   border-right: 1px solid #f1f1f1;
 }
 
-#folder-list .sub-heading {
+#folder-list, #action-list {
+  margin-bottom: 20px;
+}
+
+#folder-list .sub-heading, #action-list .sub-heading {
   font-size: 10pt;
   font-weight: light;
   color: #b3b3b3;
 }
 
-#folder-list .folder-list-item {
+#folder-list .folder-list-item, #action-list .action-list-item {
   font-size: 12pt;
   padding: 10px 0 0 10px;
   line-height: 20px;
@@ -396,13 +400,14 @@ html, body {
   border: 1px solid transparent;
 }
 
-#folder-list .folder-list-item p {
+#folder-list .folder-list-item p, #action-list .action-list-item p {
   display: inline-block;
   margin-left: 15px;
   margin-right: 8px;
 }
 
-#folder-list .folder-list-item .glyphicon {
+#folder-list .folder-list-item .glyphicon,
+#action-list .action-list-item .glyphicon {
   color: #b3b3b3;
 }
 
@@ -411,6 +416,15 @@ html, body {
   color: #b3b3b3;
 }
 
+#action-list .action-list-item.active {
+  background-color: #ffffff;
+  border: 1px solid #f1f1f1;
+}
+
+#action-list .action-list-item:hover {
+  font-weight: bold;
+  cursor: pointer;
+}
 
 #folder-list .folder-list-item.active, #folder-list .folder-list-item:hover {
   font-weight: bold;

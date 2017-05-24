@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import JournalSidebar from './JournalSidebar';
+import Sidebar from './Sidebar';
 import EntryView from './EntryView';
 import _ from 'lodash';
 
@@ -31,7 +31,7 @@ export default class JournalPage extends Component {
   render() {
     return(
       <div id="journal-page-container">
-        <JournalSidebar
+        <Sidebar
           actions={this.props.actions}
           entries={this.props.entries}
           tags={this.props.tags}

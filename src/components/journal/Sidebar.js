@@ -3,9 +3,10 @@ import ReactDOM from 'react-dom';
 import EntrySearch from './EntrySearch';
 import EntryFilter from './EntryFilter';
 import CreateEntryModal from './CreateEntryModal';
+import SidebarActionList from './SidebarActionList';
 
 
-export default class JournalSidebar extends Component {
+export default class Sidebar extends Component {
   constructor() {
     super();
 
@@ -46,10 +47,10 @@ export default class JournalSidebar extends Component {
     );
   }
 
-  // TODO: Probably remove this
   handleActionSelect(actionType) {
+    console.log(actionType);
     switch(actionType) {
-      case 'create':
+      case 'Create':
         this.createModal();
         this.setState({ activeComponent: 'EntryForm' });
         return;
@@ -61,6 +62,9 @@ export default class JournalSidebar extends Component {
   render() {
     return(
       <div className="col-md-3" id="journal-sidebar">
+        <SidebarActionList
+          onItemClick={this.handleActionSelect}
+        />
         <EntryFilter
           entries={this.props.entries}
           tags={this.props.tags}
@@ -71,7 +75,7 @@ export default class JournalSidebar extends Component {
   }
 }
 
-JournalSidebar.propTypes = {
+Sidebar.propTypes = {
   entries: React.PropTypes.array,
   tags: React.PropTypes.array,
   onFilter: React.PropTypes.func
