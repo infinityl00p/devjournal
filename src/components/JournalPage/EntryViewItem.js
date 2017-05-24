@@ -21,12 +21,14 @@ export default class EntryViewItem extends Component {
     this.handleDelete = this.handleDelete.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.renderGlyphicons = this.renderGlyphicons.bind(this);
+    this.toggleExpandedEntry = this.toggleExpandedEntry.bind(this);
 
     this.state = {
       sharedEntryUrl: '',
       showLink: false,
       entryText: this.props.entryText,
-      tags: this.props.tags
+      tags: this.props.tags,
+      isExpanded: false
     }
   }
 
@@ -158,6 +160,12 @@ export default class EntryViewItem extends Component {
     );
   }
 
+  toggleExpandedEntry() {
+    if (this.state.isExpanded) {
+      this.state.isExpanded = false;
+    } else { this.state.isExpanded = true; }
+  }
+
   render() {
     const entryText = marked(this.state.entryText);
     if(this.props.singleView) {
@@ -182,12 +190,12 @@ export default class EntryViewItem extends Component {
             <h4 className="date-text">{this.formatDate(this.props.date)}</h4>
             {this.renderGlyphicons()}
             <div className="shared-link-container">{this.renderSharedLinkInput()}</div>
-            <div className="entry-text" dangerouslySetInnerHTML={{__html: entryText}} />
+            <div className={this.state.isExpanded ? "entry-text-expanded" : "entry-text"} dangerouslySetInnerHTML={{__html: entryText}} />
           </div>
-          <div className="fadeout"></div>
           <div className="tag-container">
             { this.state.tags.map((tag) => <Tag key={tag.id} data={tag} />) }
           </div>
+          <span className={this.state.isExpanded ? "shrink-entry glyphicon glyphicon-fullscreen" : "expand-entry glyphicon glyphicon-fullscreen"} onClick={this.toggleExpandedEntry}></span>
         </div>
       </div>
     );

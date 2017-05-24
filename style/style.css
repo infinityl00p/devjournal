@@ -154,36 +154,6 @@ html, body {
   overflow-y: scroll;
 }
 
-#entry-view-list {
-  height: 100vh;
-  overflow-y: scroll;
-}
-
-#entry-view-list .entry .date-and-text {
-  padding: 15px 0 15px 0;
-  border-bottom: 3px solid #f7f7f7;
-  overflow-y: hidden;
-  height: 30vh;
-}
-
-#entry-view-list .fadeout {
-    position: relative;
-    bottom: 4em;
-    height: 4em;
-    background: -webkit-linear-gradient(rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
-}
-
-#entry-view-list .entry-view-item:hover {
-  padding-right: 5px;
-  cursor: pointer;
-}
-
-#entry-view-list .tag-container {
-  margin: auto;
-  margin-top: -40px;
-  text-align: left;
-}
-
 #entry-view .entry-view-item {
   margin-right: 50px;
 }
@@ -223,6 +193,7 @@ html, body {
   font-weight: bold;
   text-transform: uppercase;
   margin-bottom: 0;
+  padding-top: 30px;
 }
 
 #entry-view .entry-text {
@@ -235,7 +206,64 @@ html, body {
   margin-top: 30px;
 }
 
-/* EntrySeach styles */
+/* EntryViewList styles */
+#entry-view-list {
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+#entry-view-list .entry .entry-text {
+  overflow-y: hidden;
+  position: relative;
+  height: 20vh;
+  margin-bottom: 10px;
+  -webkit-transition: height 1s;
+  border-bottom: 4px solid #f7f7f7;
+
+}
+
+#entry-view-list .entry .entry-text::after {
+  content: '';
+  position: absolute;
+  top: 12vh;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+}
+
+#entry-view-list .entry-view-item:hover {
+  padding-right: 5px;
+  cursor: pointer;
+}
+
+#entry-view-list .entry .entry-text-expanded {
+  height: 80vh;
+  overflow-y: scroll;
+  -webkit-transition: height 1s;
+}
+
+#entry-view-list .tag-container {
+  margin: auto;
+  text-align: left;
+  display: inline;
+}
+
+#entry-view-list .expand-entry, #entry-view-list .shrink-entry {
+  font-size: 1.75em;
+  color: #0EBFE9;
+  float: right;
+}
+
+#entry-view-list .expand-entry:hover {
+  font-size: 2.2em;
+}
+
+#entry-view-list .shrink-entry:hover {
+  font-size: 1em;
+}
+
+/* EntrySearch styles */
 #entry-search {
   margin-top: 15px;
 }
