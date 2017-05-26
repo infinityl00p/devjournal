@@ -161,9 +161,10 @@ export default class EntryViewItem extends Component {
   }
 
   toggleExpandedEntry() {
-    if (this.state.isExpanded) {
-      this.state.isExpanded = false;
-    } else { this.state.isExpanded = true; }
+    var prevState = this.state.isExpanded
+    this.setState({
+      isExpanded: !prevState
+    })
   }
 
   render() {
