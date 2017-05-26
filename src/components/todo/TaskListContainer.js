@@ -14,7 +14,7 @@ export default class TaskListContainer extends Component {
     switch(this.props.activeList) {
       case 'Inbox':
         var tasks = this.props.tasks.filter(function (task){
-          return task.dueDate === null
+          return task.dueDate === null || task.dueDate === ''
         });
         return(
           <TaskList
@@ -26,7 +26,7 @@ export default class TaskListContainer extends Component {
             onSubtaskCheck={this.props.handleSubtaskCheck}
             showWeekdays={false}
             createItems={true}
-            projects={this.props.projects}
+            tags={this.props.tags}
           />
         );
       case 'Today':
@@ -47,7 +47,7 @@ export default class TaskListContainer extends Component {
             onSubtaskCheck={this.props.handleSubtaskCheck}
             showWeekdays={false}
             createItems={true}
-            projects={this.props.projects}
+            tags={this.props.tags}
           />
         );
       case 'Week':
@@ -68,7 +68,7 @@ export default class TaskListContainer extends Component {
             onSubtaskCheck={this.props.handleSubtaskCheck}
             showWeekdays={true}
             createItems={true}
-            projects={this.props.projects}
+            tags={this.props.tags}
           />
         );
       case 'Overdue':

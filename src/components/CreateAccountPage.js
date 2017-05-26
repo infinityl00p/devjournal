@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import * as actionCreators from '../actions/index';
-import { EmailSignUpForm } from 'redux-auth/bootstrap-theme'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 

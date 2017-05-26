@@ -2,139 +2,6 @@ import React, { Component } from 'react';
 import TaskListContainer from './TaskListContainer';
 import TodoSidebar from './TodoSidebar';
 
-// TODO: Store dates in a better format so we don't have to keep parsing them.
-const tasks = [
-  {
-    id: 1,
-    userId: 2,
-    text: 'Lose yourself to dance.',
-    createdDate: 'Tue Mar 21 2017 18:42:29 GMT-0700 (PDT)',
-    dueDate: 'Tue Mar 21 2017 18:42:29 GMT-0700 (PDT)',
-    priority: null,
-    project: null,
-    complete: false,
-    subtasks: [
-      {
-        id: 1,
-        text: 'I know you don\'t get chance to take a break this often',
-        complete: false
-      },
-      {
-        id: 2,
-        text: 'I know your life is speeding and it isn\'t stopping',
-        complete: true
-      }
-    ]
-  },
-  // {
-  //   id: 2,
-  //   userId: 2,
-  //   text: 'I\'m up all night to get lucky',
-  //   createdDate: 'Wed Mar 18 2017 18:42:29 GMT-0700 (PDT)',
-  //   dueDate: null,
-  //   priority: null,
-  //   project: null,
-  //   complete: false,
-  //   subtasks: []
-  // },
-  {
-    id: 3,
-    userId: 2,
-    text: 'Harder. Better. Faster. Stronger.',
-    createdDate: 'Wed Mar 20 2017 18:42:29 GMT-0700 (PDT)',
-    dueDate: 'Wed Mar 25 2017 18:42:29 GMT-0700 (PDT)',
-    priority: null,
-    project: null,
-    complete: false,
-    subtasks: []
-  },
-  {
-    id: 4,
-    userId: 2,
-    text: 'Harder. Better. Faster. Stronger.',
-    createdDate: 'Wed Mar 18 2017 18:42:29 GMT-0700 (PDT)',
-    dueDate: null,
-    priority: null,
-    project: null,
-    complete: true,
-    subtasks: []
-  },
-  {
-    id: 5,
-    userId: 2,
-    text: 'Test weekday 1',
-    createdDate: 'Tues Mar 17 2017 18:42:29 GMT-0700 (PDT)',
-    dueDate: 'Fri Mar 26 2017 18:42:29 GMT-0700 (PDT)',
-    priority: null,
-    project: null,
-    complete: false,
-    subtasks: []
-  },
-  {
-    id: 6,
-    userId: 2,
-    text: 'Test weekday 2',
-    createdDate: 'Thurs Mar 20 2017 18:42:29 GMT-0700 (PDT)',
-    dueDate: 'Fri Mar 27 2017 18:42:29 GMT-0700 (PDT)',
-    priority: null,
-    project: null,
-    complete: false,
-    subtasks: []
-  },
-  {
-    id: 7,
-    userId: 2,
-    text: 'Test weekday 3',
-    createdDate: 'Thurs Mar 19 2017 18:42:29 GMT-0700 (PDT)',
-    dueDate: 'Thu Mar 26 2017 18:42:29 GMT-0700 (PDT)',
-    priority: null,
-    project: null,
-    complete: false,
-    subtasks: []
-  },
-  {
-    id: 8,
-    userId: 2,
-    text: 'Test overdue',
-    createdDate: 'Thurs Mar 12 2017 18:42:29 GMT-0700 (PDT)',
-    dueDate: 'Thu Mar 12 2017 18:42:29 GMT-0700 (PDT)',
-    priority: null,
-    project: null,
-    complete: false,
-    subtasks: []
-  },
-  {
-    id: 9,
-    userId: 2,
-    text: 'Test weekday 4',
-    createdDate: 'Thurs Mar 19 2017 18:42:29 GMT-0700 (PDT)',
-    dueDate: 'Thu Mar 26 2017 18:42:29 GMT-0700 (PDT)',
-    priority: null,
-    project: null,
-    complete: false,
-    subtasks: []
-  },
-];
-
-const projects = [
-  {
-    id: 1,
-    text: 'Javascript'
-  },
-  {
-    id: 2,
-    text: 'Golang'
-  },
-  {
-    id: 3,
-    text: 'DevOps'
-  },
-  {
-    id: 4,
-    text: 'Leadership'
-  }
-];
-
 const priorities = [
   {
     text: "Priority One"
@@ -148,8 +15,8 @@ const priorities = [
 ];
 
 export default class TodoList extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     // TODO: Load tasks from DB.
 
     this.handleFolderClick = this.handleFolderClick.bind(this);
@@ -164,8 +31,8 @@ export default class TodoList extends Component {
 
     this.state = {
       activeTaskList: 'Inbox',
-      tasks: tasks,
-      projects: projects,
+      tasks: this.props.tasks,
+      tags: this.props.tags,
       activeFilter: null,
       filteredTasks: []
     }
@@ -175,41 +42,39 @@ export default class TodoList extends Component {
   handleCreate(newTask) {
     // TODO: update this as we add more logic
     var dueDate = newTask.dueDate ? newTask.dueDate.toString() : null;
-    // TODO: fix hard coding id when backend generates it
-    var id = this.state.tasks.length + 2;
     var task = {
-      id: id,
       userId: 2,
       text: newTask.text,
       createdDate: new Date().toString(),
       dueDate: dueDate,
       complete: false,
-      project: newTask.project
+      tag: newTask.tag
     }
 
+    this.props.actions.createTask(task);
     this.setState({ tasks: this.state.tasks.concat(task) });
   }
 
   handleCreateSubtask(newSubtask) {
     var newTasks = this.state.tasks.slice();
+    var subtask;
     newTasks.map(function(task){
       if (!task.subtasks) {
         task.subtasks = [];
       }
       if (task.id ===  newSubtask.taskId) {
-        // TODO: fix hard coding id when backend generates it
-        var subtask = {
-          id: task.subtasks.length + 1,
+        subtask = {
           taskId: newSubtask.taskId,
           text: newSubtask.text,
           completed: false
         }
-
         task.subtasks.push(subtask);
       }
+
       return task;
     });
 
+    this.props.actions.createSubtask(subtask, this.props.userId);
     this.setState({tasks: newTasks });
   }
 
@@ -229,6 +94,7 @@ export default class TodoList extends Component {
       return task;
     });
 
+    this.props.actions.updateTask(updatedTask, this.props.userId);
     this.setState({ tasks: newTasks });
   }
 
@@ -245,14 +111,15 @@ export default class TodoList extends Component {
       return task;
     });
 
+    this.props.actions.updateSubtask(updatedSubtask, this.props.userId);
     this.setState({ tasks: newTasks });
   }
 
   handleFilterCreate(newFilter) {
     // send through filter type later and support more filter types
-    var newProjects = this.state.projects.slice();
-    newProjects.push(newFilter);
-    this.setState({ projects: newProjects });
+    var newTags = this.state.tags.slice();
+    newTags.push(newFilter);
+    this.setState({ tags: newTags });
   }
 
   handleFilterSelect(id) {
@@ -264,7 +131,7 @@ export default class TodoList extends Component {
   filterTasks() {
     if (this.state.activeFilter) {
       var filteredTasks = this.state.tasks.filter((task) => {
-        return task.project === this.state.activeFilter
+        return task.tag === this.state.activeFilter
       });
 
       this.setState({ filteredTasks: filteredTasks });
@@ -277,7 +144,7 @@ export default class TodoList extends Component {
         <TodoSidebar
           tasks={this.state.tasks}
           onFolderClick={this.handleFolderClick}
-          projects={this.state.projects}
+          tags={this.state.tags}
           priorities={priorities}
           onCreate={this.handleFilterCreate}
           onFilterSelect={this.handleFilterSelect}
@@ -289,7 +156,7 @@ export default class TodoList extends Component {
           handleCreateSubtask={this.handleCreateSubtask}
           handleCheck={this.handleCheck}
           handleSubtaskCheck={this.handleSubtaskCheck}
-          projects={this.state.projects}
+          tags={this.state.tags}
           priorities={priorities}
         />
       </div>

@@ -11,7 +11,7 @@ export default class EntryView extends Component {
     this.renderEntryView = this.renderEntryView.bind(this);
 
     this.state = {
-      multiViewState: false,
+      multiViewState: true,
       activeEntryData: {
         id: this.props.currentEntry.entry.id,
         date: this.props.currentEntry.entry.date,

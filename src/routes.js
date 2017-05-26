@@ -1,9 +1,9 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 import App from './components/app';
-import SharedEntryView from './components/JournalPage/SharedEntryView';
+import SharedEntryView from './components/journal/SharedEntryView';
 import TodoList from './components/todo/TodoList';
-import ProfilePage from './components/ProfilePage/ProfilePage';
+import ProfilePage from './components/profile/ProfilePage';
 import LoginPage from './components/LoginPage';
 import CreateAccountPage from './components/CreateAccountPage';
 
