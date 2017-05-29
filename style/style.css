@@ -338,7 +338,32 @@ html, body {
   overflow-y: scroll;
 }
 
-#entry-view-list .tag-container {
+#entry-view-detailed-list {
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+#entry-view-detailed-list .entry .date-and-text {
+  padding: 15px 0 15px 0;
+  border-bottom: 3px solid #f7f7f7;
+  overflow-y: hidden;
+  height: 30vh;
+}
+
+#entry-view-detailed-list .fadeout {
+    position: relative;
+    bottom: 4em;
+    height: 4em;
+    background: -webkit-linear-gradient(rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+}
+
+/* TODO: Make this effect better */
+#entry-view-detailed-list .entry-view-item:hover {
+  color: #0EBFE9;
+  cursor: pointer;
+}
+
+#entry-view-detailed-list .tag-container {
   margin: auto;
   margin-top: -40px;
   text-align: left;
@@ -361,13 +386,17 @@ html, body {
   text-align: center;
 }
 
+#entry-view .glyphicon {
+  margin-bottom: 10px;
+}
+
 #entry-view .entry-view-selector .glyphicon {
   font-size: 1.75em;
   color: #0EBFE9;
   padding: 10px;
 }
 
-#entry-view .entry-view-selector-multi .glyphicon {
+#entry-view .entry-view-selector-detailed .glyphicon {
   font-size: 1.75em;
   padding: 10px;
   background-color: #0EBFE9;

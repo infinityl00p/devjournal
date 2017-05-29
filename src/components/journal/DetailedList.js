@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import EntryViewItem from './EntryViewItem';
 
-export default class EntryViewList extends Component {
-  constructor(props) {
-      super(props);
+export default class DetailedList extends Component {
+  constructor() {
+      super();
 
-      this.renderEntryList = this.renderEntryList.bind(this);
+      this.renderDetailedEntryList = this.renderDetailedEntryList.bind(this);
   }
 
   componentDidUpdate(prevProps) {
@@ -28,7 +28,7 @@ export default class EntryViewList extends Component {
     containerDomNode.scrollTop = domNode.offsetTop - containerDomNode.offsetTop;
   }
 
-  renderEntryList() {
+  renderDetailedEntryList() {
     var entryItems = this.props.entries.map((entry) => {
       var tags = this.props.tags.filter(function (tag) {
         return _.contains(entry.tags, tag.id);
@@ -54,14 +54,14 @@ export default class EntryViewList extends Component {
 
   render() {
     return(
-      <div id="entry-view-list">
-          {this.renderEntryList()}
+      <div id="entry-view-detailed-list">
+          {this.renderDetailedEntryList()}
       </div>
     );
   }
 }
 
-EntryViewList.proptypes = {
+DetailedList.proptypes = {
   activeEntryId: React.PropTypes.number,
   entries: React.PropTypes.array,
   selectedEntryId: React.PropTypes.number,

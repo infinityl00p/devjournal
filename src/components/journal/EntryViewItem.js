@@ -9,7 +9,6 @@ import base62 from 'base62';
 
 const ROOT_URL = 'http://shielded-basin-84367.herokuapp.com';
 const URL = 'http://localhost:8080/';
-// const URL = 'http://devjournal.co/';
 
 export default class EntryViewItem extends Component {
   constructor(props) {
@@ -109,6 +108,7 @@ export default class EntryViewItem extends Component {
 
   handleShare() {
     if (this.state.sharedEntryUrl === '') {
+      // TODO: Pull this into an action
       const request = axios.post(
         ROOT_URL + '/shared',
         { entryId: this.props.id }

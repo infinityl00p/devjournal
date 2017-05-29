@@ -1,17 +1,21 @@
 import React, { Component } from 'react';
+
 import EntryViewItem from './EntryViewItem';
-import EntryViewList from './EntryViewList';
+import DetailedList from './DetailedList';
+import SimpleList from './SimpleList';
 
 export default class EntryView extends Component {
   constructor(props) {
     super(props);
 
     this.getSelectorClass = this.getSelectorClass.bind(this);
+    this.onDetailedListClick = this.onDetailedListClick.bind(this);
+    this.onSimpleListClick = this.onSimpleListClick.bind(this);
     this.handleViewStateChange = this.handleViewStateChange.bind(this);
     this.renderEntryView = this.renderEntryView.bind(this);
 
     this.state = {
-      multiViewState: true,
+      viewState: 'detailed',
       activeEntryData: {
         id: this.props.currentEntry.entry.id,
         date: this.props.currentEntry.entry.date,
@@ -32,22 +36,31 @@ export default class EntryView extends Component {
     });
   }
 
-  handleViewStateChange() {
-    var prevState = this.state.multiViewState;
-    this.setState({ multiViewState: !prevState });
+  onDetailedListClick() {
+    this.handleViewStateChange('detailed');
+  }
+
+  onSimpleListClick() {
+    this.handleViewStateChange('simple');
+  }
+
+  handleViewStateChange(viewState) {
+    this.setState({ viewState: viewState });
   }
 
   getSelectorClass() {
-    if (this.state.multiViewState) {
-      return "entry-view-selector-multi col-sm-offset-11";
+    if (this.state.viewState === 'detailed') {
+      return "entry-view-selector-detailed col-md-offset-11";
+    } else if (this.state.viewState === 'simple') {
+      return "entry-view-selector-simple col-md-offset-11"
     }
     return "entry-view-selector col-sm-offset-11";
   }
 
   renderEntryView() {
-    if (this.state.multiViewState) {
+    if (this.state.viewState === 'detailed') {
       return(
-        <EntryViewList
+        <DetailedList
           activeEntryId={this.props.currentEntry.entry.id}
           entries={this.props.entries}
           selectedEntryId={this.props.currentEntry.entry.id}
@@ -57,7 +70,16 @@ export default class EntryView extends Component {
           onEdit={this.props.onEdit}
         />
       );
+    } else if (this.state.viewState === 'simple') {
+      return(
+        <SimpleList
+          entries={this.props.entries}
+          tags={this.props.tags}
+        />
+      );
     }
+
+    // TODO: We'll probably get rid of 'single view' in favour of expanding / displaying the entry within the list
     return(
       <EntryViewItem
         id={this.state.activeEntryData.id}
@@ -77,7 +99,8 @@ export default class EntryView extends Component {
     return(
       <div className="col-sm-8" id="entry-view">
         <div className={this.getSelectorClass()}>
-          <span className="glyphicon glyphicon-th-list" onClick={this.handleViewStateChange}/>
+          <span className="glyphicon glyphicon-th-list" onClick={this.onDetailedListClick}/>
+          <span className="glyphicon glyphicon-list" onClick={this.onSimpleListClick}/>
         </div>
         {this.renderEntryView()}
       </div>
