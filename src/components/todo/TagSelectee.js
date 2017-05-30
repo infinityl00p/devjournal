@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class ProjectSelectee extends Component {
+export default class TagSelectee extends Component {
   constructor(props) {
     super(props);
 
@@ -20,7 +20,7 @@ export default class ProjectSelectee extends Component {
   render() {
     return(
       <span
-        className={this.props.isActive ? 'project active' : 'project'}
+        className={this.props.isActive ? 'tag active' : 'tag'}
         onClick={this.onClick}
       >
         {this.props.text}

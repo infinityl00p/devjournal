@@ -26,9 +26,14 @@ export default class Task extends Component {
       "January", "February", "March", "April", "May", "June",
       "July", "August", "September", "October", "November", "December"
     ];
-    var parsedDate = new Date(date);
-
-    return monthNames[parsedDate.getMonth()] + ' ' + parsedDate.getDate();
+    var parsedDate;
+    if (date) {
+      parsedDate = new Date(date);
+      return monthNames[parsedDate.getMonth()] + ' ' + parsedDate.getDate();
+    }
+    else {
+      return 'N/A';
+    }
   }
 
   handleExpand() {

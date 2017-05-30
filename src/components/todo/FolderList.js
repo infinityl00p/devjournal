@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import FolderListItem from './FolderListItem';
 
+
 export default class FolderList extends Component {
   constructor() {
     super();
@@ -43,7 +44,7 @@ export default class FolderList extends Component {
     switch(range) {
       case 'Inbox':
         var tasks = nonCompleteTasks.filter(function (task){
-          return task.dueDate === null
+          return task.dueDate === null || task.dueDate === '';
         });
         return tasks.length;
       case 'Today':

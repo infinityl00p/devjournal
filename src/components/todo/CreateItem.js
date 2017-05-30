@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
-import ProjectSelector from './ProjectSelector';
+import TagSelector from './TagSelector';
 
 import 'react-datepicker/dist/react-datepicker.css';
 // TODO: Bug - selected date doesn't show up if startDate is initialized as null.
@@ -18,18 +18,18 @@ export default class CreateItem extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
     this.handleDateChange = this.handleDateChange.bind(this);
-    this.renderProjectLabel = this.renderProjectLabel.bind(this);
-    this.renderProjectSelector = this.renderProjectSelector.bind(this);
-    this.handleProjectSelectorClick = this.handleProjectSelectorClick.bind(this);
-    this.handleProjectSelect = this.handleProjectSelect.bind(this);
+    this.renderTagLabel = this.renderTagLabel.bind(this);
+    this.renderTagSelector = this.renderTagSelector.bind(this);
+    this.handleTagSelectorClick = this.handleTagSelectorClick.bind(this);
+    this.handleTagSelect = this.handleTagSelect.bind(this);
 
     this.state = {
       isActive: false,
       itemText: '',
       startDate: moment(),
       changedDate: false,
-      showProjects: false,
-      selectedProject: null
+      showTags: false,
+      selectedTag: null
     }
   }
 
@@ -43,7 +43,7 @@ export default class CreateItem extends Component {
     var dueDate = !this.state.changedDate && this.props.type === 'Inbox' ? null : this.state.startDate;
 
     if (/\S/.test(this.state.itemText)) {
-      var newItem = { text: this.state.itemText, dueDate: dueDate, project: this.state.selectedProject }
+      var newItem = { text: this.state.itemText, dueDate: dueDate, tag: this.state.selectedTag }
       this.props.onCreate(newItem);
       this.setState({ itemText: '' });
       this.setState({ isActive: false });
@@ -59,30 +59,30 @@ export default class CreateItem extends Component {
     this.setState({ itemText: e.target.value});
   }
 
-  handleProjectSelectorClick() {
-    this.setState({ showProjects: !this.state.showProjects });
+  handleTagSelectorClick() {
+    this.setState({ showTags: !this.state.showTags });
   }
 
-  renderProjectLabel() {
-    if (this.props.showProjectsDropdown) {
-      var classes = this.state.showProjects ? 'input-group-addon btn project-icon active' : 'input-group-addon btn project-icon'
+  renderTagLabel() {
+    if (this.props.showTagsDropdown) {
+      var classes = this.state.showTags ? 'input-group-addon btn tag-icon active' : 'input-group-addon btn tag-icon'
       return (
-        <label className={classes} onClick={this.handleProjectSelectorClick}>
-          <span className="glyphicon glyphicon-folder-open" />
+        <label className={classes} onClick={this.handleTagSelectorClick}>
+          <span className="glyphicon glyphicon-tag" />
         </label>
       );
     }
     return;
   }
 
-  handleProjectSelect(projectId) {
-    this.setState({ selectedProject: projectId });
+  handleTagSelect(tagId) {
+    this.setState({ selectedTag: tagId });
   }
 
-  renderProjectSelector() {
-    if (this.state.showProjects) {
+  renderTagSelector() {
+    if (this.state.showTags) {
       return(
-        <ProjectSelector projects={this.props.projects} onSelect={this.handleProjectSelect} />
+        <TagSelector tags={this.props.tags} onSelect={this.handleTagSelect} />
       );
     }
     return;
@@ -123,9 +123,9 @@ export default class CreateItem extends Component {
               />
             </div>
           </form>
-          { this.renderProjectLabel() }
+          { this.renderTagLabel() }
           {scheduler}
-          { this.renderProjectSelector() }
+          { this.renderTagSelector() }
         </div>
       );
     }

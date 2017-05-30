@@ -7,20 +7,20 @@ export default class TaskFilter extends Component {
   constructor(props) {
     super(props);
 
-    this.handleProjectClick = this.handleProjectClick.bind(this);
+    this.handleTagClick = this.handleTagClick.bind(this);
     this.handlePriorityClick = this.handlePriorityClick.bind(this);
     this.handleCreate = this.handleCreate.bind(this);
     this.renderCreateFilter = this.renderCreateFilter.bind(this);
 
     this.state = {
-      activeFilter: this.props.projects,
-      activeFilterName: 'project'
+      activeFilter: this.props.tags,
+      activeFilterName: 'tag'
     }
   }
 
-  handleProjectClick() {
-    this.setState({ activeFilter: this.props.projects });
-    this.setState({ activeFilterName: 'project' });
+  handleTagClick() {
+    this.setState({ activeFilter: this.props.tags });
+    this.setState({ activeFilterName: 'tag' });
   }
 
   handlePriorityClick() {
@@ -30,10 +30,10 @@ export default class TaskFilter extends Component {
 
   handleCreate(filter) {
     switch(this.state.activeFilterName) {
-      case 'project':
+      case 'tag':
         var newFilter = {
-          id: this.props.projects.length + 1,
-          text: filter.text
+          id: this.props.tags.length + 1,
+          text: filter.tagText
         }
         this.setState({ activeFilter: this.state.activeFilter.concat(newFilter) });
         this.props.onCreate(newFilter);
@@ -44,13 +44,13 @@ export default class TaskFilter extends Component {
   }
 
   renderCreateFilter() {
-    if (this.state.activeFilterName === 'project') {
+    if (this.state.activeFilterName === 'tag') {
       return(
         <CreateItem
           onCreate={this.handleCreate}
           text={"Add " + this.state.activeFilterName}
           scheduler={false}
-          showProjectsDropdown={false}
+          showTagsDropdown={false}
           placeholder={this.state.activeFilterName + " name"}
         />
       );
@@ -63,10 +63,10 @@ export default class TaskFilter extends Component {
       <div id="task-filter">
         <p className="sub-heading">FILTERS</p>
         <div className="filters">
-          <span className={this.state.activeFilterName === 'project' ? 'active' : ''} onClick={this.handleProjectClick}>Projects</span>
+          <span className={this.state.activeFilterName === 'tag' ? 'active' : ''} onClick={this.handleTagClick}>Tags</span>
           <span className={this.state.activeFilterName === 'priority' ? 'active' : ''} onClick={this.handlePriorityClick}>Priority</span>
         </div>
-        <FilterList key="projects" name="Projects" icon="glyphicon-folder-open" items={this.state.activeFilter} onSelect={this.props.onSelect} />
+        <FilterList key="tags" name="Tags" icon="glyphicon-tag" items={this.state.activeFilter} onSelect={this.props.onSelect} />
         { this.renderCreateFilter() }
       </div>
     );

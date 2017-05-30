@@ -31,7 +31,7 @@ export default class FilterList extends Component {
             key={item.id}
             id={item.id}
             icon={this.props.icon}
-            text={item.text}
+            text={item.tagText}
             onClick={this.onClick}
             isActive={item.id === this.state.activeFilter}
           />

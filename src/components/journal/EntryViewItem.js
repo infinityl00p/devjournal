@@ -21,12 +21,14 @@ export default class EntryViewItem extends Component {
     this.handleDelete = this.handleDelete.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.renderGlyphicons = this.renderGlyphicons.bind(this);
+    this.toggleExpandedEntry = this.toggleExpandedEntry.bind(this);
 
     this.state = {
       sharedEntryUrl: '',
       showLink: false,
       entryText: this.props.entryText,
-      tags: this.props.tags
+      tags: this.props.tags,
+      isExpanded: false
     }
   }
 
@@ -158,6 +160,13 @@ export default class EntryViewItem extends Component {
     );
   }
 
+  toggleExpandedEntry() {
+    var prevState = this.state.isExpanded;
+    this.setState({
+      isExpanded: !prevState
+    });
+  }
+
   render() {
     const entryText = marked(this.state.entryText);
     if(this.props.singleView) {
@@ -177,17 +186,17 @@ export default class EntryViewItem extends Component {
     }
     return(
       <div className="entry-view-item" onClick={this.handleClick}>
-        <div className="entry">
+        <div className={this.state.isExpanded ? "entry-expanded" : "entry"}>
           <div className="date-and-text">
             <h4 className="date-text">{this.formatDate(this.props.date)}</h4>
             {this.renderGlyphicons()}
             <div className="shared-link-container">{this.renderSharedLinkInput()}</div>
             <div className="entry-text" dangerouslySetInnerHTML={{__html: entryText}} />
           </div>
-          <div className="fadeout"></div>
           <div className="tag-container">
             { this.state.tags.map((tag) => <Tag key={tag.id} data={tag} />) }
           </div>
+          <span className={this.state.isExpanded ? "resize-entry glyphicon glyphicon-resize-small" : "resize-entry glyphicon glyphicon-resize-full"} onClick={this.toggleExpandedEntry}></span>
         </div>
       </div>
     );
