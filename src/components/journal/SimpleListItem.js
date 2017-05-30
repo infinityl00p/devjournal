@@ -12,7 +12,7 @@ export default class SimpleListItem extends Component {
     return(
       <div className="simple-list-item">
         <div className="entry">
-          <span classname="entry-title">
+          <span className="entry-title">
             {this.props.title}
           </span>
           <span className="entry-text">

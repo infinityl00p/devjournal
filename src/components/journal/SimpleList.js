@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import SimpleListItem from './SimpleListItem';
+
 export default class SimpleList extends Component {
   /*
       LIST FUNCTIONALITY:
@@ -15,6 +17,23 @@ export default class SimpleList extends Component {
 
   renderSimpleList() {
     // map entries into SimpleListItems
+    var entryItems = this.props.entries.map((entry) => {
+      var tags = this.props.tags.filter(function (tag) {
+        return _.contains(entry.tags, tag.id);
+      });
+
+      var props = {
+        key: entry.id,
+        text: entry.entryText,
+        tags: tags,
+        // title: entry.title,
+        date: entry.date
+      };
+
+      return <SimpleListItem {...props} />
+    });
+
+    return entryItems.reverse();
   }
 
   render() {

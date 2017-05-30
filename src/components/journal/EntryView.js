@@ -8,7 +8,6 @@ export default class EntryView extends Component {
   constructor(props) {
     super(props);
 
-    this.getSelectorClass = this.getSelectorClass.bind(this);
     this.onDetailedListClick = this.onDetailedListClick.bind(this);
     this.onSimpleListClick = this.onSimpleListClick.bind(this);
     this.handleViewStateChange = this.handleViewStateChange.bind(this);
@@ -46,15 +45,6 @@ export default class EntryView extends Component {
 
   handleViewStateChange(viewState) {
     this.setState({ viewState: viewState });
-  }
-
-  getSelectorClass() {
-    if (this.state.viewState === 'detailed') {
-      return "entry-view-selector-detailed col-md-offset-11";
-    } else if (this.state.viewState === 'simple') {
-      return "entry-view-selector-simple col-md-offset-11"
-    }
-    return "entry-view-selector col-sm-offset-11";
   }
 
   renderEntryView() {
@@ -95,12 +85,26 @@ export default class EntryView extends Component {
     );
   }
 
+  getActiveIcon(iconClass, viewState) {
+    var cname = "glyphicon " + iconClass;
+    if (viewState === this.state.viewState) {
+      return cname + " active";
+    }
+    return cname;
+  }
+
   render() {
     return(
-      <div className="col-sm-8" id="entry-view">
-        <div className={this.getSelectorClass()}>
-          <span className="glyphicon glyphicon-th-list" onClick={this.onDetailedListClick}/>
-          <span className="glyphicon glyphicon-list" onClick={this.onSimpleListClick}/>
+      <div className="col-md-8" id="entry-view">
+        <div className="entry-view-selector col-md-offset-10">
+          <span
+            className={this.getActiveIcon("glyphicon-th-list", 'detailed')}
+            onClick={this.onDetailedListClick}
+          />
+          <span
+            className={this.getActiveIcon("glyphicon-list", 'simple')}
+            onClick={this.onSimpleListClick}
+          />
         </div>
         {this.renderEntryView()}
       </div>

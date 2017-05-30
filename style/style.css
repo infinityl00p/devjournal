@@ -387,20 +387,19 @@ html, body {
 }
 
 #entry-view .glyphicon {
-  margin-bottom: 10px;
+  margin-right: 10px;
 }
 
 #entry-view .entry-view-selector .glyphicon {
   font-size: 1.75em;
-  color: #0EBFE9;
   padding: 10px;
+  color: #0EBFE9;
 }
 
-#entry-view .entry-view-selector-detailed .glyphicon {
-  font-size: 1.75em;
-  padding: 10px;
+#entry-view .entry-view-selector .active,
+#entry-view .entry-view-selector .glyphicon:hover {
   background-color: #0EBFE9;
-  color: white;
+  color: white
 }
 
 #entry-view .date-text {
