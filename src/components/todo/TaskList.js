@@ -92,10 +92,10 @@ export default class TaskList extends Component {
           onCreate={this.props.onCreate}
           text="Add Task"
           scheduler={true}
-          showProjectsDropdown={true}
+          showTagsDropdown={true}
           placeholder="e.g. Create new database table for users"
           type={this.props.title}
-          projects={this.props.projects}
+          tags={this.props.tags}
         />
       );
     }

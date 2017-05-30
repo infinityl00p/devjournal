@@ -7,12 +7,14 @@ import { bindActionCreators } from 'redux';
 import _ from 'lodash';
 
 const LOGIN_URL = "http://localhost:8080/login";
+const USER_ID = localStorage.getItem('userId');
+
 
 class JournalPage extends Component {
   constructor(props) {
     super(props);
-    this.props.actions.getEntriesAndTags();
 
+    this.setActiveEntry = this.setActiveEntry.bind(this);
     this.handleEntrySelect = this.handleEntrySelect.bind(this);
     this.setActiveEntry = this.setActiveEntry.bind(this);
     this.sortByDate = this.sortByDate.bind(this);
@@ -20,21 +22,22 @@ class JournalPage extends Component {
     this.renderOlderEntry = this.renderOlderEntry.bind(this);
     this.getEntryIndex = this.getEntryIndex.bind(this);
     this.getEntryTags = this.getEntryTags.bind(this);
-  }
 
-  // TODO: make this better: create helper method to filter by tag
-  componentWillReceiveProps(nextProps) {
-    nextProps = this.sortByDate(nextProps);
-    var firstEntry = nextProps.journal.entries.slice(-1).pop();
-    var firstEntryTags = nextProps.journal.tags.filter(function (tag) {
+    var sortedProps = this.sortByDate(props);
+    var firstEntry = sortedProps.entries.slice(-1).pop();
+    var firstEntryTags = sortedProps.tags.filter(function (tag) {
       return _.contains(firstEntry.tags, tag.id)
     });
-
-    var firstEntry = {
+    var defaultEntry = {
       entry: firstEntry,
       tags: firstEntryTags
     };
-    this.setState({ selectedEntry: firstEntry });
+
+    this.state = {
+      selectedEntry: defaultEntry,
+      visibleEntries: this.props.entries
+    }
+
   }
 
   setActiveEntry(visibleEntry) {
@@ -112,23 +115,6 @@ class JournalPage extends Component {
   }
 
   render() {
-    if (!this.props.journal) {
-      return(
-        <div className="sk-circle">
-          <div className="sk-circle1 sk-child"></div>
-          <div className="sk-circle2 sk-child"></div>
-          <div className="sk-circle3 sk-child"></div>
-          <div className="sk-circle4 sk-child"></div>
-          <div className="sk-circle5 sk-child"></div>
-          <div className="sk-circle6 sk-child"></div>
-          <div className="sk-circle7 sk-child"></div>
-          <div className="sk-circle8 sk-child"></div>
-          <div className="sk-circle9 sk-child"></div>
-          <div className="sk-circle10 sk-child"></div>
-          <div className="sk-circle11 sk-child"></div>
-          <div className="sk-circle12 sk-child"></div>
-        </div>
-    )}
     return(
       <div id="journal-page-container">
         <Sidebar
@@ -137,11 +123,12 @@ class JournalPage extends Component {
           tags={this.props.journal.tags}
           props={this.props}
           onEntryClick={this.handleEntrySelect}
+          onFilter={this.props.onFilter}
         />
         <EntryView
           currentEntry={this.state.selectedEntry}
-          entries={this.props.journal.entries}
-          tags={this.props.journal.tags}
+          entries={this.props.entries}
+          tags={this.props.tags}
           setActiveEntry={this.setActiveEntry}
           onDelete={this.props.actions.deleteEntry}
           onEdit={this.props.actions.updateEntry}

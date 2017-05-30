@@ -11,7 +11,7 @@ export default class EntryView extends Component {
     this.renderEntryView = this.renderEntryView.bind(this);
 
     this.state = {
-      multiViewState: false,
+      multiViewState: true,
       activeEntryData: {
         id: this.props.currentEntry.entry.id,
         date: this.props.currentEntry.entry.date,
@@ -39,9 +39,9 @@ export default class EntryView extends Component {
 
   getSelectorClass() {
     if (this.state.multiViewState) {
-      return "entry-view-selector-multi col-md-offset-11";
+      return "entry-view-selector-multi col-sm-offset-11";
     }
-    return "entry-view-selector col-md-offset-11";
+    return "entry-view-selector col-sm-offset-11";
   }
 
   renderEntryView() {
@@ -54,6 +54,7 @@ export default class EntryView extends Component {
           tags={this.props.tags}
           onClick={this.props.setActiveEntry}
           onDelete={this.props.onDelete}
+          onEdit={this.props.onEdit}
         />
       );
     }
@@ -74,7 +75,7 @@ export default class EntryView extends Component {
 
   render() {
     return(
-      <div className="col-md-8" id="entry-view">
+      <div className="col-sm-8" id="entry-view">
         <div className={this.getSelectorClass()}>
           <span className="glyphicon glyphicon-th-list" onClick={this.handleViewStateChange}/>
         </div>

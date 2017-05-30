@@ -42,7 +42,8 @@ export default class EntryViewList extends Component {
         id: entry.id,
         tags: tags,
         onClick: this.props.onClick,
-        onDelete: this.props.onDelete
+        onDelete: this.props.onDelete,
+        onEdit: this.props.onEdit
       };
       if (active) { props.ref = "activeEntry"; }
       return <EntryViewItem {...props} />

@@ -44,8 +44,8 @@ const entries = (state = null, action) => {
               }
             }
             return {
-                entries: action.payload.data.data.entries,
-                tags: action.payload.data.data.tags
+                entries: response.entries,
+                tags: response.tags
             };
         case actionCreators.UPDATE_ENTRY:
             var response = action.payload.data.success;

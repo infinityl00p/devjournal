@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import _ from 'lodash';
 
+const USER_ID = localStorage.getItem('userId');
+
 const data = {
   avatar: "http://www.skyovnis.com/wp-content/uploads/2014/12/Profile-sky-ovnis.jpg",
   username: "James Gill",
@@ -17,11 +19,12 @@ class ProfilePage extends Component {
   constructor(props) {
     super(props);
 
-    this.props.actions.getEntriesAndTags();
+    this.props.actions.getEntriesAndTags(USER_ID);
+
     this.sortByDate = this.sortByDate.bind(this);
 
     this.state = {
-      data: props
+      data: props.journal
     }
   }
 
@@ -48,7 +51,7 @@ class ProfilePage extends Component {
     }
     return(
       <div id="profile-page-container">
-        <div className="col-md-3" id="user-profile">
+        <div className="col-sm-3" id="user-profile">
           <div id="personal-info-container">
             <img src={data.avatar} className="img-circle" id="profile-picture" />
             <h1 id="name">{data.username}</h1>
@@ -59,7 +62,7 @@ class ProfilePage extends Component {
             <TopTags data={this.state.data} />
           </div>
         </div>
-        <div className="col-md-9">
+        <div className="col-sm-7">
           <ProfileView data={this.state.data} />
         </div>
       </div>
