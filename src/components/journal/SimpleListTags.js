@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import SimpleListTagsItem from './SimpleListTagsItem';
+
 export default class SimpleListTags extends Component {
   constructor() {
     super();
@@ -8,12 +10,15 @@ export default class SimpleListTags extends Component {
   }
 
   renderTags() {
-
+    console.log(this.props.tags);
+    return this.props.tags.map((tag) => {
+      return <SimpleListTagsItem key={tag.id} id={tag.id} text={tag.tagText} />
+    });
   }
 
   render() {
     return(
-      <div id="simple-list-tags">
+      <div className="simple-list-tags">
         {this.renderTags()}
       </div>
     );

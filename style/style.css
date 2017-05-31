@@ -338,6 +338,28 @@ html, body {
   overflow-y: scroll;
 }
 
+#entry-view .glyphicon {
+  margin-right: 10px;
+}
+
+#entry-view .entry-view-selector .glyphicon {
+  font-size: 1.75em;
+  padding: 10px;
+  color: #0EBFE9;
+}
+
+#entry-view .entry-view-selector .active,
+#entry-view .entry-view-selector .glyphicon:hover {
+  background-color: #0EBFE9;
+  color: white
+}
+
+.entry-view-selector #entry-view .tag-container {
+  margin-top: 30px;
+}
+
+/* Detailed View */
+
 #entry-view-detailed-list {
   height: 100vh;
   overflow-y: scroll;
@@ -369,40 +391,28 @@ html, body {
   text-align: left;
 }
 
-#entry-view .entry-view-item .action-bar {
+#entry-view #entry-view-detailed-list .entry-view-item {
+  margin-right: 50px;
+}
+
+#entry-view #entry-view-detailed-list #entry-view-detailed-list .entry-view-item .action-bar {
   font-size: 1.35em;
   text-align: center;
 }
 
-#entry-view .entry-view-item .action-bar span {
+#entry-view #entry-view-detailed-list .entry-view-item .action-bar span {
   color: #A9A9A9;
   margin: 0 10px 0 10px;
 }
-#entry-view .entry-view-item .action-bar span:hover {
+#entry-view #entry-view-detailed-list .entry-view-item .action-bar span:hover {
   color: #0EBFE9;
 }
 
-#entry-view .shared-link-container {
+#entry-view #entry-view-detailed-list .shared-link-container {
   text-align: center;
 }
 
-#entry-view .glyphicon {
-  margin-right: 10px;
-}
-
-#entry-view .entry-view-selector .glyphicon {
-  font-size: 1.75em;
-  padding: 10px;
-  color: #0EBFE9;
-}
-
-#entry-view .entry-view-selector .active,
-#entry-view .entry-view-selector .glyphicon:hover {
-  background-color: #0EBFE9;
-  color: white
-}
-
-#entry-view .date-text {
+#entry-view #entry-view-detailed-list .date-text {
   text-align: center;
   font-weight: bold;
   text-transform: uppercase;
@@ -410,14 +420,102 @@ html, body {
   padding-top: 30px;
 }
 
-#entry-view .entry-text {
+#entry-view #entry-view-detailed-list .entry-text {
   margin-top: 30px;
   font-weight: lighter;
   font-size: 12pt;
 }
 
-.entry-view-selector #entry-view .tag-container {
-  margin-top: 30px;
+/* Simple View */
+
+#entry-view-simple-list {
+  margin-top: 50px;
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+#entry-view-simple-list .simple-list-item {
+  height: 40px;
+  line-height: 2;
+  border: 1px solid #f1f1f1;
+  overflow: hidden;
+}
+
+#entry-view-simple-list .simple-list-item:hover {
+  background: rgba(14, 191, 233, 0.10);
+  border: 1px solid  #0EBFE9;
+  cursor: pointer;
+}
+
+#entry-view-simple-list .simple-list-item .entry {
+  margin-left: 5px;
+  padding-top: 3px;
+}
+
+.simple-list-item .entry * {
+  font-size: 12pt;
+  font-weight: bolder;
+  padding: 0;
+}
+
+.simple-list-item .entry-date {
+  margin-left: 20px;
+  padding-top: 5px;
+  font-size: 10pt;
+}
+
+.simple-list-item .entry-tags {
+  margin-left: 20px;
+}
+
+.simple-list-item .entry-tags .simple-list-tags {
+  padding-top: 3px;
+  overflow-x: scroll;
+}
+
+.simple-list-item .entry-tags .simple-list-tags .tags-item {
+  margin-right: 7px;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  position: relative;
+}
+
+.simple-list-item .entry-tags .simple-list-tags .tags-item .tag-text {
+  visibility: hidden;
+  width: 120px;
+  background-color: #555;
+  color:black;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+
+  /* Position the tooltip text */
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+
+  /* Fade in tooltip */
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+.simple-list-item .entry-tags .simple-list-tags .tags-item .tag-text::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.simple-list-item .entry-tags .simple-list-tags .tags-item:hover .tag-text {
+  visibility: visible;
+  opacity: 1;
 }
 
 /* EntryViewList styles */

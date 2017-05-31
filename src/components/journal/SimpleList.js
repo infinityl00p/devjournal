@@ -22,9 +22,10 @@ export default class SimpleList extends Component {
         return _.contains(entry.tags, tag.id);
       });
 
+      var text = entry.entryText;
       var props = {
         key: entry.id,
-        text: entry.entryText,
+        text: text.substring(0, 70),
         tags: tags,
         // title: entry.title,
         date: entry.date
