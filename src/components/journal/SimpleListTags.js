@@ -10,7 +10,6 @@ export default class SimpleListTags extends Component {
   }
 
   renderTags() {
-    console.log(this.props.tags);
     return this.props.tags.map((tag) => {
       return <SimpleListTagsItem key={tag.id} id={tag.id} text={tag.tagText} />
     });

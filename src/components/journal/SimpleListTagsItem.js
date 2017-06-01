@@ -12,7 +12,6 @@ export default class SimpleListTagsItem extends Component {
   }
 
   render() {
-    console.log(this.props.text);
     return(
       <div
         className="tags-item"

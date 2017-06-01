@@ -21,7 +21,6 @@ export default class SimpleList extends Component {
       var tags = this.props.tags.filter(function (tag) {
         return _.contains(entry.tags, tag.id);
       });
-
       var text = entry.entryText;
       var props = {
         key: entry.id,

@@ -5,6 +5,10 @@ import SimpleListTags from './SimpleListTags';
 export default class SimpleListItem extends Component {
 
   // TODO: move this to utils class
+
+  formatText(text) {
+    return text.replace(/[^a-z0-9\.'"\/:?=!+]+/gi, ' ');
+  }
   formatDate(date) {
     var monthNames = [
       "January", "February", "March", "April", "May", "June",
@@ -25,7 +29,7 @@ export default class SimpleListItem extends Component {
       <div className="simple-list-item col-md-12">
         <div className="entry">
           <span className="entry-text col-md-7">
-            {this.props.text}
+            {this.formatText(this.props.text)}
           </span>
           <span className="entry-date col-md-1">
             {this.formatDate(this.props.date)}
