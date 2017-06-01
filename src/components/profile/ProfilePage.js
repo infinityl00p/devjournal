@@ -19,28 +19,9 @@ class ProfilePage extends Component {
   constructor(props) {
     super(props);
 
-    this.props.actions.getEntriesAndTags(USER_ID);
-
-    this.sortByDate = this.sortByDate.bind(this);
-
     this.state = {
       data: props.journal
     }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    var sortedProps = this.sortByDate(nextProps);
-    this.setState({
-      data: sortedProps.journal
-    });
-  }
-
-  sortByDate(props) {
-    props.journal.entries.sort((a,b) => {
-      return new Date(a.date) - new Date(b.date);
-    });
-
-    return props;
   }
 
   render() {

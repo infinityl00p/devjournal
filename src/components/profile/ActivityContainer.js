@@ -25,7 +25,7 @@ export default class ActivityContainer extends Component {
       displayedEntries = this.props.data.entries.length;
     }
 
-    if (this.props.data.entries > 1 && this.props.data.entries[0].date < this.props.data.entries[1].date) {
+    if (this.props.data.entries.length > 1 && this.props.data.entries[0].date < this.props.data.entries[1].date) {
       var reversedEntries = this.props.data.entries.reverse();
     } else {
       var reversedEntries = this.props.data.entries;

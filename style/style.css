@@ -176,11 +176,17 @@ html, body {
 }
 
 #action-bar2 .action-input .input-group {
-  width: 70%;
+  width: 90%;
 }
 
 #action-bar2 .preferences {
   padding-top: 10px;
+}
+
+#action-bar2 .preferences div {
+  display: inline-block;
+  margin-right: 20px;
+  float: right;
 }
 
 #action-bar2 .preferences p {
@@ -286,7 +292,6 @@ html, body {
   border-right: 4px solid #f7f7f7;
 }
 
-/* Fix for markdown */
 #entry-list .entry-item-container .entry-text * {
   font-size: 14px;
 }
@@ -330,12 +335,6 @@ html, body {
 #entry-view {
   padding-left: 50px;
   margin-top: 30px;
-  height: 100vh;
-  overflow-y: scroll;
-}
-
-#entry-view-list {
-  height: 100vh;
   overflow-y: scroll;
 }
 
@@ -343,10 +342,6 @@ html, body {
   margin: auto;
   margin-top: -40px;
   text-align: left;
-}
-
-#entry-view .entry-view-item {
-  margin-right: 50px;
 }
 
 #entry-view .entry-view-item .action-bar {
@@ -413,12 +408,6 @@ html, body {
   border-bottom: 1px solid #f7f7f7;
 }
 
-#entry-view-list .entry .date-and-text {
-  padding: 15px 0 15px 0;
-  overflow-y: hidden;
-  height: 30vh;
-}
-
 #entry-view-list .entry-view-item:hover {
   color: #0EBFE9;
   cursor: pointer;
@@ -426,15 +415,15 @@ html, body {
 
 #entry-view-list .entry .entry-text {
   overflow-y: hidden;
+  height: 65px;
   position: relative;
-  height: 20vh;
   margin-bottom: 10px;
 }
 
 #entry-view-list .entry .entry-text::after {
   content: '';
   position: absolute;
-  top: 12vh;
+  top: 15px;
   bottom: 0;
   left: 0;
   right: 0;

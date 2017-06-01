@@ -8,7 +8,11 @@ import LoginPage from './components/LoginPage';
 import CreateAccountPage from './components/CreateAccountPage';
 
 function loggedIn() {
-  var loggedIn = localStorage.getItem('userId');
+  var name = "userId=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  var c = ca[0];
+  var loggedIn = c.substring(name.length, c.length);
   //Comparison is string number
   if (loggedIn && loggedIn != 0) {
     return true;
@@ -22,7 +26,7 @@ function requireAuth(nextState, replace) {
     //TODO: use bootstrap flash or bootstrap notice
     alert("already logged in, redirecting...");
     replace({
-      pathname: '/todo'
+      pathname: '/'
     });
   }
   else if (!loggedIn() && nextState.location.pathname != "/login") {

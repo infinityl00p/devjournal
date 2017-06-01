@@ -8,7 +8,17 @@ import JournalPage from './journal/JournalPage';
 import TodoList from './todo/TodoList';
 import ProfilePage from './profile/ProfilePage';
 
-const USER_ID = localStorage.getItem('userId');
+const USER_ID = getUserId();
+
+//TODO: BETTER SOLUTION THAN REUSING THIS FUNCTION?!
+function getUserId() {
+  var name = "userId=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  var c = ca[0];
+  var userId = c.substring(name.length, c.length);
+  return userId;
+}
 
 class App extends Component {
   constructor(props) {
