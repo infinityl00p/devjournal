@@ -8,6 +8,7 @@ export default class ActionBar extends Component {
     this.handleJournalClick = this.handleJournalClick.bind(this);
     this.handleTodoClick = this.handleTodoClick.bind(this);
     this.handleProfileClick = this.handleProfileClick.bind(this);
+    this.handleLogoutClick = this.handleLogoutClick.bind(this);
     this.onSearch = this.onSearch.bind(this);
 
     this.state = {
@@ -35,6 +36,16 @@ export default class ActionBar extends Component {
   handleProfileClick() {
     this.setState({ activeView: 'profile' });
     this.props.onNav('profile');
+  }
+
+  handleLogoutClick() {
+    document.cookie = "userId=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+
+    if(!document.cookie) {
+      alert("successfully logged out");
+      //TODO: USE REACT-ROUTER
+      location.href = "http://localhost:8080/login";
+    }
   }
 
   onSubmit(e) {
@@ -68,7 +79,7 @@ export default class ActionBar extends Component {
             </span>
           </div>
         </div>
-        <div className="action-input col-sm-7">
+        <div className="action-input col-sm-6">
           <form onSubmit={this.onSubmit} className="input-group">
             <input
               placeholder="Enter search text"
@@ -78,8 +89,13 @@ export default class ActionBar extends Component {
             />
           </form>
         </div>
-        <div className="preferences col-sm-2" onClick={this.handleProfileClick}>
-          <div className="profile">
+        <div className="preferences col-sm-3">
+          <div className="logout" onClick={this.handleLogoutClick}>
+            <a href="#">
+              <p>LOGOUT</p>
+            </a>
+          </div>
+          <div className="profile" onClick={this.handleProfileClick}>
             <a href="#" className={this.state.activeView === 'profile' ? "active" : ""}>
               <span className="glyphicon glyphicon-user"/>
               <p>PROFILE</p>

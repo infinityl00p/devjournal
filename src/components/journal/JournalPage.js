@@ -6,9 +6,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import _ from 'lodash';
 
-const LOGIN_URL = "http://localhost:8080/login";
-const USER_ID = localStorage.getItem('userId');
-
 
 class JournalPage extends Component {
   constructor(props) {

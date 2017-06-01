@@ -85,7 +85,8 @@ const entries = (state = null, action) => {
             var response = action.payload.data;
             if (response) {
               var userId = response.userId
-              localStorage.setItem('userId', JSON.stringify(userId));
+              var cookie = "userId" + "=" + userId + ";";
+              document.cookie = cookie;
 
               return Object.assign({}, state, {
                 ...state,

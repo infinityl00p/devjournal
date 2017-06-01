@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 const CREATE_ACCOUNT_URL = "http://localhost:8080/createaccount";
-const TODO_URL = "http://localhost:8080/todo";
+const JOURNAL_URL = "http://localhost:8080/";
 
 // TODO: add logged in to global state; add logic to redirect here if not logged in.
 class LoginPage extends Component {
@@ -27,7 +27,7 @@ class LoginPage extends Component {
       if(nextProps.journal.entries.user.loggedIn) {
         alert("logged in");
         //TODO: Use react router here
-        location.href = TODO_URL;
+        location.href = JOURNAL_URL;
       } else {
         alert("wrong username or password");
       }

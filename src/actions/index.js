@@ -13,11 +13,21 @@ export const CREATE_SUBTASK = 'CREATE_SUBTASK';
 export const UPDATE_TASK = 'UPDATE_TASK';
 export const UPDATE_SUBTASK = 'UPDATE_SUBTASK';
 
-const USER_ID = localStorage.getItem('userId');
+//TODO: GET FROM STATE TREE
+const USER_ID = getUserId();
 
 export const CREATE_USER = 'CREATE_USER';
 export const LOGIN_USER = 'LOGIN_USER';
 export const CHECK_LOGIN = 'CHECK_LOGIN';
+
+function getUserId() {
+  var name = "userId=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  var c = ca[0];
+  var userId = c.substring(name.length, c.length);
+  return userId;
+}
 
 // TODO: ADD ERROR HANDLING
 export function createEntryAndTags(entry) {
