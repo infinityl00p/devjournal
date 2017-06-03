@@ -107,7 +107,6 @@ class App extends Component {
 
   // TODO: Make Searching and Filtering use the same set of entries (not this.props.entries)
   handleFilter(filteredTagIds) {
-    // console.log('filteredTagIds: ' + filteredTagIds);
     if (filteredTagIds.length > 0) {
       var filteredEntries = this.props.entries.entries.filter(function (entry) {
         var intersectedTags = _.intersection(entry.tags, filteredTagIds);
