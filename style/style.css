@@ -335,7 +335,7 @@ html, body {
   padding-left: 50px;
   padding-top: 30px;
   overflow-y: scroll;
-  background-color: #fafafa;
+  background-color: #ffffff;
   border-right: 1px solid #f1f1f1
 }
 
@@ -453,7 +453,7 @@ html, body {
 }
 
 #entry-view-detailed-list .entry {
-  background: white;
+  background: #fafafa;
   border: 1px solid #f1f1f1;
   margin-bottom: 20px;
 }
@@ -489,7 +489,6 @@ html, body {
 #entry-view-simple-list .simple-list-item {
   height: 40px;
   line-height: 2;
-  background: #ffffff;
   border: 1px solid #f1f1f1;
   overflow: hidden;
 }
