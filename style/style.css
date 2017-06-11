@@ -489,6 +489,7 @@ html, body {
 #entry-view-simple-list .simple-list-item {
   height: 40px;
   line-height: 2;
+  background: #ffffff;
   border: 1px solid #f1f1f1;
   overflow: hidden;
 }
