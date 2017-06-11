@@ -41,10 +41,12 @@ export default class EntryFilter extends Component {
   renderTags() {
     var tags = this.props.tags.map((tag) => {
       return(
-        <li key={tag.id} className="filter-list-item col-md-6">
+        <li key={tag.id} className="filter-list-item col-md-12">
+
           <FilterTag
             data={tag}
             id={tag.id}
+            icon={"glyphicon-tag"}
             onSelect={this.onSelect}
             active={this.checkActive}
           />

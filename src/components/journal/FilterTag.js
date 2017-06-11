@@ -24,7 +24,8 @@ export default class FilterTag extends Component {
   render() {
     return(
         <span onClick={this.updateFilter} className={this.state.active ? "filter-tag active" : "filter-tag"}>
-          {this.props.data.tagText}
+          <span className={"glyphicon " + this.props.icon} />
+          <p>{this.props.data.tagText}</p>
         </span>
     );
   }

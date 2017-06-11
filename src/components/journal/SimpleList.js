@@ -24,10 +24,12 @@ export default class SimpleList extends Component {
       var text = entry.entryText;
       var props = {
         key: entry.id,
+        entryText: text,
         text: text.substring(0, 70),
         tags: tags,
         // title: entry.title,
-        date: entry.date
+        date: entry.date,
+        onClick: this.props.onClick
       };
 
       return <SimpleListItem {...props} />
