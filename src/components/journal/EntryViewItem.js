@@ -194,7 +194,7 @@ export default class EntryViewItem extends Component {
           <div className="tag-container">
             { this.state.tags.map((tag) => <Tag key={tag.id} data={tag} />) }
           </div>
-          </div>
+        </div>
       </div>
     );
   }
