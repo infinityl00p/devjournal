@@ -26,8 +26,7 @@ export default class EntryViewItem extends Component {
       sharedEntryUrl: '',
       showLink: false,
       entryText: this.props.entryText,
-      tags: this.props.tags,
-      isExpanded: false
+      tags: this.props.tags
     }
   }
 
@@ -186,14 +185,12 @@ export default class EntryViewItem extends Component {
     }
     return(
       <div className="entry-view-item" onClick={this.handleClick}>
-        <div className={this.state.isExpanded ? "entry-expanded" : "entry"}>
-          <h4 className="date-text">{this.formatDate(this.props.date)}</h4>
-          {this.renderGlyphicons()}
-          <div className="shared-link-container">{this.renderSharedLinkInput()}</div>
-          <div className="entry-text" dangerouslySetInnerHTML={{__html: entryText}} />
-          <div className="tag-container">
-            { this.state.tags.map((tag) => <Tag key={tag.id} data={tag} />) }
-          </div>
+        <h4 className="date-text">{this.formatDate(this.props.date)}</h4>
+        {this.renderGlyphicons()}
+        <div className="shared-link-container">{this.renderSharedLinkInput()}</div>
+        <div className="entry-text" dangerouslySetInnerHTML={{__html: entryText}} />
+        <div className="tag-container">
+          { this.state.tags.map((tag) => <Tag key={tag.id} data={tag} />) }
         </div>
       </div>
     );

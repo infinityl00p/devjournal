@@ -87,9 +87,8 @@ class JournalPage extends Component {
 
   getEntryIndex() {
     var entryIndex;
-
     this.props.journal.entries.forEach((entry, index) => {
-        if (entry === this.state.selectedEntry.entry) {
+        if (entry.entryText === this.state.selectedEntry.entry.entryText) {
           entryIndex = index;
         }
     });
@@ -99,13 +98,14 @@ class JournalPage extends Component {
 
   getEntryTags(entryIndex) {
     var tagArray = [];
-
     this.props.journal.tags.forEach((tag1) => {
-      this.props.journal.entries[entryIndex].tags.forEach((tag2) => {
+      if(this.props.journal.entries[entryIndex].tags) {
+        this.props.journal.entries[entryIndex].tags.forEach((tag2) => {
         if(tag1.id === tag2) {
           tagArray.push(tag1);
         }
       })
+      }
     });
 
     return tagArray;
