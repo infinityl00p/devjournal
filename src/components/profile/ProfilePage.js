@@ -43,7 +43,7 @@ class ProfilePage extends Component {
             <TopTags data={this.state.data} />
           </div>
         </div>
-        <div className="col-sm-7">
+        <div id="profile-view" className="col-sm-7">
           <ProfileView data={this.state.data} />
         </div>
       </div>

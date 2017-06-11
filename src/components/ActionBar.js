@@ -42,7 +42,6 @@ export default class ActionBar extends Component {
     document.cookie = "userId=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
 
     if(!document.cookie) {
-      alert("successfully logged out");
       //TODO: USE REACT-ROUTER
       location.href = "http://localhost:8080/login";
     }

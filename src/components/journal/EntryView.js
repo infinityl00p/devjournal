@@ -12,6 +12,7 @@ export default class EntryView extends Component {
     this.onSimpleListClick = this.onSimpleListClick.bind(this);
     this.handleViewStateChange = this.handleViewStateChange.bind(this);
     this.renderEntryView = this.renderEntryView.bind(this);
+    this.renderEntry = this.renderEntry.bind(this);
 
     this.state = {
       viewState: 'detailed',
@@ -47,6 +48,11 @@ export default class EntryView extends Component {
     this.setState({ viewState: viewState });
   }
 
+  renderEntry(entry) {
+    this.handleViewStateChange('single');
+    this.props.setActiveEntry(entry);
+  }
+
   renderEntryView() {
     if (this.state.viewState === 'detailed') {
       return(
@@ -55,7 +61,7 @@ export default class EntryView extends Component {
           entries={this.props.entries}
           selectedEntryId={this.props.currentEntry.entry.id}
           tags={this.props.tags}
-          onClick={this.props.setActiveEntry}
+          onClick={this.renderEntry}
           onDelete={this.props.onDelete}
           onEdit={this.props.onEdit}
         />
@@ -65,24 +71,26 @@ export default class EntryView extends Component {
         <SimpleList
           entries={this.props.entries}
           tags={this.props.tags}
+          onClick={this.renderEntry}
         />
       );
-    }
-
-    // TODO: We'll probably get rid of 'single view' in favour of expanding / displaying the entry within the list
-    return(
-      <EntryViewItem
-        id={this.state.activeEntryData.id}
-        date={this.state.activeEntryData.date}
-        entryText={this.state.activeEntryData.entryText}
-        tags={this.state.activeEntryData.tags}
-        onDelete={this.props.onDelete}
-        onEdit={this.props.onEdit}
-        handleLeftClick={this.props.renderOlderEntry}
-        handleRightClick={this.props.renderNewerEntry}
-        singleView={true}
-      />
+    } else if (this.state.viewState === 'single') {
+       return(
+        <div id="single-entry-view">
+          <EntryViewItem
+            id={this.state.activeEntryData.id}
+            date={this.state.activeEntryData.date}
+            entryText={this.state.activeEntryData.entryText}
+            tags={this.state.activeEntryData.tags}
+            onDelete={this.props.onDelete}
+            onEdit={this.props.onEdit}
+            handleLeftClick={this.props.renderOlderEntry}
+            handleRightClick={this.props.renderNewerEntry}
+            singleView={true}
+          />
+        </div>
     );
+    }
   }
 
   getActiveIcon(iconClass, viewState) {
@@ -95,7 +103,7 @@ export default class EntryView extends Component {
 
   render() {
     return(
-      <div className="col-md-8" id="entry-view">
+      <div className="col-md-7" id="entry-view">
         <div className="entry-view-selector col-md-offset-10">
           <span
             className={this.getActiveIcon("glyphicon-th-list", 'detailed')}
