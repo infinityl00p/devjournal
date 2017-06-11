@@ -37,7 +37,7 @@ export default class SimpleListItem extends Component {
       date: this.props.date,
       entryText: this.props.entryText,
       id: this.props.key,
-    }
+    };
 
     var visibleEntry = {
       entry: updatedEntry,
