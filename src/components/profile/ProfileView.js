@@ -44,7 +44,7 @@ export default class ActiveProfileView extends Component {
 
   render() {
     return(
-      <div id="stats-container" className="col-sm-12">
+      <div>
         <StatsBar data={this.props.data} onClick={this.handleComponentSelection} type="stats-bar"/>
         {this.renderActiveComponent()}
       </div>

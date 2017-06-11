@@ -194,7 +194,6 @@ export default class EntryViewItem extends Component {
           <div className="tag-container">
             { this.state.tags.map((tag) => <Tag key={tag.id} data={tag} />) }
           </div>
-          <span className={this.state.isExpanded ? "resize-entry glyphicon glyphicon-resize-small" : "resize-entry glyphicon glyphicon-resize-full"} onClick={this.toggleExpandedEntry}></span>
         </div>
       </div>
     );

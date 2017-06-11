@@ -25,7 +25,6 @@ class LoginPage extends Component {
   componentWillReceiveProps(nextProps) {
     if(nextProps.journal.entries.user) {
       if(nextProps.journal.entries.user.loggedIn) {
-        alert("logged in");
         //TODO: Use react router here
         location.href = JOURNAL_URL;
       } else {
