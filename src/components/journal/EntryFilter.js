@@ -42,7 +42,6 @@ export default class EntryFilter extends Component {
     var tags = this.props.tags.map((tag) => {
       return(
         <li key={tag.id} className="filter-list-item col-md-12">
-
           <FilterTag
             data={tag}
             id={tag.id}
