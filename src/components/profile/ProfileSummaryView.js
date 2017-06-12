@@ -170,11 +170,11 @@ export default class ProfileSummaryView extends Component {
     var statsComponentArray = [];
     var statsArray = [
       {
-        name: "Total Post Count",
+        name: "Total Posts",
         count: this.state.totalPostCount
       },
       {
-        name: "Total Tag Count",
+        name: "Total Tags",
         count: this.state.totalTagCount
       },
       {
@@ -190,7 +190,7 @@ export default class ProfileSummaryView extends Component {
         count: this.state.currentStreak
       },
       {
-        name: "Todays Post Count",
+        name: "Posts Today",
         count: this.state.todaysPostCount
       }
     ];
